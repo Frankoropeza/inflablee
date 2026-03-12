@@ -1,0 +1,82 @@
+---
+export interface Props {
+  nombre: string;
+  tipo: "cdmx" | "edomex";
+  colonias: string[];
+  href?: string;
+  destacada?: boolean;
+}
+
+const { nombre, tipo, colonias, href, destacada = false } = Astro.props;
+const colorClass = tipo === "cdmx" ? "zona-card--cdmx" : "zona-card--edomex";
+const badge = tipo === "cdmx" ? "CDMX" : "Estado de México";
+const badgeColor = tipo === "cdmx" ? "#16a34a" : "#1565c0";
+const badgeBg = tipo === "cdmx" ? "#e8f5e9" : "#e3f2fd";
+---
+
+<div class={`zona-card-new${destacada ? " zona-card-new--destacada" : ""} ${colorClass}`}>
+  <div class="zona-card-new__header">
+    <h3 class="zona-card-new__nombre">{nombre}</h3>
+    <span class="zona-card-new__badge" style={`background:${badgeBg};color:${badgeColor};`}>{badge}</span>
+  </div>
+  <p class="zona-card-new__colonias">
+    {colonias.slice(0, 4).join(" · ")}{colonias.length > 4 ? ` · y ${colonias.length - 4} más` : ""}
+  </p>
+  {href && (
+    <a href={href} class="zona-card-new__cta">Ver cobertura completa →</a>
+  )}
+</div>
+
+<style>
+.zona-card-new {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.zona-card-new:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+.zona-card-new--destacada {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(255,75,31,0.1);
+}
+.zona-card-new--cdmx { border-left: 3px solid #16a34a; }
+.zona-card-new--edomex { border-left: 3px solid #1565c0; }
+
+.zona-card-new__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+.zona-card-new__nombre {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0;
+}
+.zona-card-new__badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+.zona-card-new__colonias {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0 0 0.625rem;
+}
+.zona-card-new__cta {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.zona-card-new__cta:hover { text-decoration: underline; }
+</style>

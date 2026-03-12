@@ -1,0 +1,50 @@
+---
+// Catch-all for zone pages that don't have dedicated pages
+// Redirects to the main zonas page
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "zona-norte" }, props: { zona: "Zona Norte" } },
+    { params: { slug: "zona-sur" }, props: { zona: "Zona Sur" } },
+    { params: { slug: "zona-oriente" }, props: { zona: "Zona Oriente" } },
+    { params: { slug: "zona-poniente" }, props: { zona: "Zona Poniente" } },
+  ];
+}
+
+const { zona } = Astro.props;
+
+import PageLayout from "@/layouts/PageLayout.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+---
+
+<PageLayout
+  title={`Renta de Inflables en ${zona} CDMX y Edomex | INFLABLEE`}
+  description={`INFLABLEE entrega inflables en ${zona} de la Ciudad de México y Estado de México. Consulta disponibilidad y cotiza sin compromiso.`}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: zona }]}
+>
+  <main id="contenido-principal">
+    <section style="padding:var(--spacing-4xl) 0;text-align:center;">
+      <div class="container" style="max-width:680px;">
+        <span style="font-size:3rem;">📍</span>
+        <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;color:var(--color-secondary);margin:1rem 0;">
+          Renta de inflables en {zona}
+        </h1>
+        <p style="color:var(--color-text-light);font-size:var(--font-size-lg);line-height:1.7;margin-bottom:var(--spacing-xl);">
+          INFLABLEE cubre {zona} de CDMX y Estado de México. Escríbenos por WhatsApp para verificar disponibilidad en tu zona específica y recibir cotización personalizada.
+        </p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero cotizar inflables en ${zona}.`)}`}
+            class="btn btn--primary" target="_blank" rel="noopener">
+            Cotizar por WhatsApp
+          </a>
+          <a href="/zonas" class="btn btn--outline">Ver todas las zonas</a>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>

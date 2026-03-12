@@ -1,0 +1,86 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const municipios = [
+  { nombre: "Ecatepec de Morelos", colonias: ["Las Américas", "Ciudad Azteca", "Jardines de Morelos", "Xalostoc", "Hank González"], destacado: true },
+  { nombre: "Nezahualcóyotl", colonias: ["Ciudad Lago", "Jardines", "Metropolitana", "Benito Juárez", "Reforma"], destacado: true },
+  { nombre: "Naucalpan de Juárez", colonias: ["Satélite", "Lomas Verdes", "San Bartolo", "Industrial Vallejo", "Hacienda la Florida"], destacado: true },
+  { nombre: "Tlalnepantla de Baz", colonias: ["San Andrés Atenco", "La Romana", "Tequesquináhuac", "Industrial", "Buenavista"], destacado: true },
+  { nombre: "Chimalhuacán", colonias: ["La Guadalupana", "Ejido de Chimalhuacán", "Los Laureles", "San Pablo"], destacado: false },
+  { nombre: "Ixtapaluca", colonias: ["San Buenaventura", "Las Canteras", "El Tejocote", "Galaxias", "Los Héroes"], destacado: false },
+  { nombre: "Toluca de Lerdo", colonias: ["Las Torres", "San Buenaventura", "Universidad", "Pilares", "Oxtotitlán"], destacado: false },
+  { nombre: "Atizapán de Zaragoza", colonias: ["Ciudad Adolfo López Mateos", "Lomas de San Ángel", "Ojo de Agua"], destacado: false },
+  { nombre: "Coacalco de Berriozábal", colonias: ["Los Olivos", "Las Hadas", "San Francisco", "Lázaro Cárdenas"], destacado: false },
+  { nombre: "Cuautitlán Izcalli", colonias: ["Jardines", "Arcos del Alba", "Hacienda la Puerta", "Ojo de Agua"], destacado: false },
+  { nombre: "La Paz", colonias: ["Los Reyes", "Magdalena Atlipac", "Ixtapaluca", "Esperanza"], destacado: false },
+  { nombre: "Tecámac", colonias: ["Santa Cruz", "San Marcos", "San Jerónimo", "Fuentes del Valle"], destacado: false },
+];
+---
+
+<PageLayout
+  title="Renta de Inflables en Estado de México — Municipios con Cobertura | INFLABLEE"
+  description="INFLABLEE lleva inflables a Ecatepec, Neza, Naucalpan, Tlalnepantla, Toluca y 30+ municipios del Estado de México. Entrega incluida en zonas principales."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: "Estado de México" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Estado de México · 30+ municipios"
+      title="Renta de inflables en\n<span>Estado de México</span>"
+      desc="Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Toluca y más. Llevamos inflables a más de 30 municipios del Estado de México con entrega incluida."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero rentar inflables en Estado de México.")}`, label: "Cotizar en Edomex", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "30+", label: "Municipios cubiertos" },
+        { value: "Gratis*", label: "Entrega en zonas principales" },
+        { value: "50km", label: "Radio de cobertura" },
+      ]}
+    />
+
+    <section class="zonas-section">
+      <div class="container">
+        <SectionHeader
+          title="Municipios con cobertura en Edomex"
+          subtitle="Los destacados tienen atención prioritaria y entrega sin costo adicional."
+        />
+        <div class="zonas-grid" style="margin-top:var(--spacing-xl);">
+          {municipios.map(m => (
+            <div class={`zona-card${m.destacado ? " zona-card--destacada" : ""}`} style="border-left: 3px solid #1565c0;">
+              <div class="zona-card__header">
+                <span class="zona-card__nombre">{m.nombre}</span>
+                {m.destacado && <span style="font-size:0.65rem;font-weight:700;background:#e3f2fd;color:#1565c0;padding:0.2rem 0.5rem;border-radius:50px;">Zona prioritaria</span>}
+              </div>
+              <p class="zona-card__alcaldias">{m.colonias.join(" · ")}</p>
+              <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero rentar inflables en ${m.nombre}, Estado de México.`)}`}
+                class="zona-card__cta" target="_blank" rel="noopener">
+                Cotizar en {m.nombre} →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:var(--spacing-2xl) 0;background:var(--color-accent);">
+      <div class="container" style="max-width:720px;text-align:center;">
+        <h2 style="font-size:var(--font-size-xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-md);">¿Tu municipio no está en la lista?</h2>
+        <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:var(--spacing-lg);">
+          Cubrimos un radio de aproximadamente 50 km desde el centro de la CDMX. Si tu evento es en un municipio no listado, escríbenos — probablemente podamos llegar con un pequeño costo de traslado.
+        </p>
+        <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero verificar si tienen cobertura en mi municipio del Estado de México.")}`}
+          class="btn btn--primary" target="_blank" rel="noopener">
+          Consultar mi municipio
+        </a>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>

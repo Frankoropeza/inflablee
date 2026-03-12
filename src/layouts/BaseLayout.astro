@@ -1,0 +1,206 @@
+---
+import "@/styles/global.css";
+import { SITE } from "@/data/site";
+
+export interface BreadcrumbItem { name: string; href?: string; }
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  pageType?: "home" | "page";
+  breadcrumbs?: BreadcrumbItem[];
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = "/img/og-inflablee.jpg",
+  pageType = "page",
+  breadcrumbs,
+  schema,
+} = Astro.props;
+
+const schemaOrg = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE.url}/org`,
+  "name": SITE.name,
+  "url": SITE.url,
+  "description": SITE.description,
+  "telephone": SITE.tel,
+  "email": SITE.email,
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "MX"
+  },
+  "areaServed": { "@type": "Country", "name": "México" },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": SITE.tel,
+    "contactType": "sales",
+    "areaServed": "MX",
+    "availableLanguage": "Spanish"
+  }
+};
+
+const schemaLocal = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE.url}/negocio`,
+  "name": "INFLABLEE — Renta de Inflables",
+  "url": SITE.url,
+  "image": `${SITE.url}/img/og-inflablee.jpg`,
+  "description": SITE.description,
+  "telephone": SITE.tel,
+  "email": SITE.email,
+  "priceRange": "$$",
+  "currenciesAccepted": "MXN",
+  "paymentAccepted": "Transferencia, Tarjeta, Efectivo",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Entrega e instalación incluida", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Supervisión durante el evento", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Seguro de responsabilidad civil", "value": true }
+  ],
+  "geo": { "@type": "GeoCoordinates", "latitude": SITE.coords.lat, "longitude": SITE.coords.lng },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "MX"
+  },
+  "areaServed": ["México", "CDMX", "Estado de México"],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": "312",
+    "ratingCount": "312"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+      "author": { "@type": "Person", "name": "Laura Martínez" },
+      "datePublished": "2026-01-15",
+      "reviewBody": "Excelente servicio. El castillo inflable llegó puntual, limpio y los niños la pasaron increíble. Totalmente recomendados para fiestas infantiles."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
+      "author": { "@type": "Person", "name": "Carlos Ramírez" },
+      "datePublished": "2026-02-20",
+      "reviewBody": "Rentamos el tobogán acuático para el cumpleaños de mi hijo. Instalación rápida, personal amable y los inflables en perfectas condiciones. Repetiré sin duda."
+    }
+  ]
+};
+
+const schemaWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE.url}/website`,
+  "name": SITE.name,
+  "url": SITE.url,
+  "publisher": { "@id": `${SITE.url}/org` }
+};
+
+const schemaBreadcrumb = breadcrumbs ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbs.map((b, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": b.name,
+    ...(b.href ? { "item": `${SITE.url}${b.href}` } : {})
+  }))
+} : null;
+
+const allSchemas: object[] = [schemaOrg, schemaLocal, schemaWebSite];
+if (schemaBreadcrumb) allSchemas.push(schemaBreadcrumb);
+if (schema) {
+  const extra = Array.isArray(schema) ? schema : [schema];
+  allSchemas.push(...extra);
+}
+
+const ogType = "website";
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <style>html,body{overflow-x:hidden;max-width:100%}*,*::before,*::after{box-sizing:border-box}</style>
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:image" content={`${SITE.url}${ogImage}`} />
+    <meta property="og:locale" content="es_MX" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${SITE.url}${ogImage}`} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#FF4B1F" />
+
+    {allSchemas.map(s => (
+      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} />
+    ))}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const overlay = document.getElementById('mobile-overlay');
+
+  function openNav() {
+    mobileNav?.classList.add('mobile-nav--open');
+    overlay?.classList.add('mobile-overlay--open');
+    hamburger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav?.classList.remove('mobile-nav--open');
+    overlay?.classList.remove('mobile-overlay--open');
+    hamburger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburger?.addEventListener('click', () => {
+    mobileNav?.classList.contains('mobile-nav--open') ? closeNav() : openNav();
+  });
+  overlay?.addEventListener('click', closeNav);
+
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq__item');
+      const answer = item?.querySelector('.faq__answer');
+      const icon = btn.querySelector('.faq__icon');
+      const isOpen = answer?.classList.contains('faq__answer--open');
+      document.querySelectorAll('.faq__answer--open').forEach(a => a.classList.remove('faq__answer--open'));
+      document.querySelectorAll('.faq__question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      document.querySelectorAll('.faq__icon').forEach(i => { (i as HTMLElement).textContent = '+'; });
+      if (!isOpen) {
+        answer?.classList.add('faq__answer--open');
+        btn.setAttribute('aria-expanded', 'true');
+        if (icon) (icon as HTMLElement).textContent = '−';
+      }
+    });
+  });
+</script>

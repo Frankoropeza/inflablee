@@ -1,0 +1,71 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const todos = await getCollection("inflables");
+// Inflables grandes = toboganes grandes + pistas de obstáculos
+const inflables = todos
+  .filter(i => i.data.categoria === "toboganes-acuaticos" || i.data.categoria === "pistas-obstaculos")
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Inflables Gigantes para Renta en CDMX y Edomex | INFLABLEE"
+  description="Renta de inflables gigantes: toboganes de 5 metros, pistas de obstáculos de 15 metros y más. Para eventos grandes, festivales y kermeses en CDMX y Estado de México."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Inflables Gigantes" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Inflables gigantes"
+      title="Inflables de gran formato\npara <span>eventos épicos</span>"
+      desc="Toboganes de 5 metros, pistas de obstáculos de 15 metros y más. Para eventos donde la diversión debe ser tan grande como la celebración."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables gigantes para mi evento.")}`, label: "Cotizar ahora", variant: "primary" },
+        { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "5m", label: "Altura máxima" },
+        { value: "15m", label: "Pista más larga" },
+        { value: "200+", label: "Niños por turno" },
+      ]}
+    />
+
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Inflables de gran formato"
+          subtitle="Perfectos para eventos masivos, kermeses escolares y festivales comunitarios."
+        />
+        <div class="prod-catalog__grid">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient="linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Tienes un evento grande?"
+      subtitle="Para kermeses, festivales y eventos corporativos tenemos paquetes especiales con múltiples inflables y supervisores."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

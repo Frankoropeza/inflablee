@@ -1,0 +1,57 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+---
+
+<PageLayout
+  title="Nosotros — INFLABLEE | Renta de Inflables en México"
+  description="Conoce a INFLABLEE: empresa dedicada a la renta de inflables para fiestas y eventos en México. Seguridad, diversión y servicio profesional."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Nosotros" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Sobre nosotros"
+      title="Diversión segura para cada evento"
+      desc="En INFLABLEE nos dedicamos a llevar alegría y entretenimiento a fiestas infantiles, eventos corporativos y celebraciones de todo tipo en México."
+    />
+
+    <section style="padding:var(--spacing-4xl) 0;">
+      <div class="container" style="max-width:800px;">
+        <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-lg);">Nuestra historia</h2>
+        <p style="color:var(--color-text-light);line-height:var(--line-height-relaxed);margin-bottom:var(--spacing-lg);">
+          INFLABLEE nació con una misión clara: hacer que cada fiesta y evento sea memorable a través de
+          juegos inflables seguros, limpios y de la más alta calidad. Desde nuestros inicios, hemos
+          participado en cientos de eventos, desde cumpleaños íntimos hasta grandes festivales corporativos.
+        </p>
+        <p style="color:var(--color-text-light);line-height:var(--line-height-relaxed);margin-bottom:var(--spacing-lg);">
+          Nos distinguimos por nuestro compromiso con la seguridad: todos nuestros inflables son
+          sanitizados antes de cada evento, contamos con seguro de responsabilidad civil y nuestro
+          personal está capacitado para supervisar la diversión de los más pequeños.
+        </p>
+
+        <h2 style="font-size:var(--font-size-2xl);margin-bottom:var(--spacing-lg);margin-top:var(--spacing-3xl);">¿Por qué elegirnos?</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--spacing-lg);">
+          <div style="background:var(--color-accent);padding:var(--spacing-lg);border-radius:var(--border-radius-lg);">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-xs);color:var(--color-secondary);">Seguridad</h3>
+            <p style="font-size:var(--font-size-sm);color:var(--color-text-light);">Inflables certificados, seguro de responsabilidad civil y supervisión profesional en cada evento.</p>
+          </div>
+          <div style="background:var(--color-accent);padding:var(--spacing-lg);border-radius:var(--border-radius-lg);">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-xs);color:var(--color-secondary);">Higiene</h3>
+            <p style="font-size:var(--font-size-sm);color:var(--color-text-light);">Proceso de sanitización completo antes de cada entrega. Inflables siempre limpios y en perfecto estado.</p>
+          </div>
+          <div style="background:var(--color-accent);padding:var(--spacing-lg);border-radius:var(--border-radius-lg);">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-xs);color:var(--color-secondary);">Puntualidad</h3>
+            <p style="font-size:var(--font-size-sm);color:var(--color-text-light);">Llegamos a tiempo, instalamos rápido y recogemos al finalizar. Sin preocupaciones para ti.</p>
+          </div>
+          <div style="background:var(--color-accent);padding:var(--spacing-lg);border-radius:var(--border-radius-lg);">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-xs);color:var(--color-secondary);">Variedad</h3>
+            <p style="font-size:var(--font-size-sm);color:var(--color-text-light);">Amplio catálogo de inflables para todas las edades: brincalines, toboganes, acuáticos y juegos interactivos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LeadCapture />
+  </main>
+</PageLayout>

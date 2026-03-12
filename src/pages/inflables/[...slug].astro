@@ -1,0 +1,343 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const inflables = await getCollection("inflables");
+  return inflables.map(i => ({
+    params: { slug: i.slug },
+    props: { inflable: i },
+  }));
+}
+
+const { inflable } = Astro.props;
+const { Content } = await inflable.render();
+
+const todosInflables = await getCollection("inflables");
+const relacionados = todosInflables
+  .filter(i => i.data.categoria === inflable.data.categoria && i.data.slug !== inflable.data.slug)
+  .slice(0, 3);
+
+const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${inflable.data.title}. ¿Cuál es la disponibilidad y precio exacto?`);
+
+const categoriaEmojis: Record<string, string> = {
+  "castillos-inflables": "🏰",
+  "toboganes-acuaticos": "🌊",
+  "pistas-obstaculos": "🏃",
+  "juegos-interactivos": "🥊",
+  "inflables-gigantes": "🎪",
+};
+const emoji = categoriaEmojis[inflable.data.categoria] ?? "🎈";
+
+const gradients: Record<string, string> = {
+  "castillos-inflables": "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
+  "toboganes-acuaticos": "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
+  "pistas-obstaculos":   "linear-gradient(135deg, #FF4B1F22 0%, #FF4B1F11 100%)",
+  "juegos-interactivos": "linear-gradient(135deg, #FFD70022 0%, #FF4B1F22 100%)",
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": inflable.data.title,
+  "description": inflable.data.descripcion,
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "MXN",
+    "price": inflable.data.precio_desde,
+    "availability": inflable.data.disponible ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": { "@type": "Organization", "name": SITE.name }
+  }
+};
+---
+
+<PageLayout
+  title={`${inflable.data.title} — Renta de Inflable | INFLABLEE`}
+  description={inflable.data.descripcion.slice(0, 155)}
+  breadcrumbs={[
+    { name: "Inicio", href: "/" },
+    { name: "Inflables", href: "/inflables" },
+    { name: inflable.data.title }
+  ]}
+  schema={schema}
+>
+  <main id="contenido-principal">
+    <!-- Detail hero -->
+    <section class="inflable-detail">
+      <div class="container">
+        <div class="inflable-detail__inner">
+          <!-- Imagen placeholder -->
+          <div class="inflable-detail__img-col">
+            <div class="inflable-detail__img" style={`background: ${gradients[inflable.data.categoria] ?? "linear-gradient(135deg, #FF4B1F15 0%, #1A1A2E15 100%)"};`}>
+              <span class="inflable-detail__emoji">{emoji}</span>
+              {inflable.data.featured && (
+                <span class="inflable-detail__featured-badge">⭐ Más popular</span>
+              )}
+            </div>
+            <!-- Specs strip -->
+            <div class="inflable-detail__strip">
+              <div class="inflable-detail__strip-item">
+                <span class="inflable-detail__strip-value">{inflable.data.capacidad}</span>
+                <span class="inflable-detail__strip-label">👥 Capacidad</span>
+              </div>
+              <div class="inflable-detail__strip-item">
+                <span class="inflable-detail__strip-value">{inflable.data.medidas}</span>
+                <span class="inflable-detail__strip-label">📐 Medidas</span>
+              </div>
+              <div class="inflable-detail__strip-item">
+                <span class="inflable-detail__strip-value">{inflable.data.tiempo_instalacion}</span>
+                <span class="inflable-detail__strip-label">⏱️ Instalación</span>
+              </div>
+              <div class="inflable-detail__strip-item">
+                <span class="inflable-detail__strip-value" style="color:var(--color-primary);">${inflable.data.precio_desde.toLocaleString()} MXN</span>
+                <span class="inflable-detail__strip-label">💰 Desde</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="inflable-detail__content">
+            <span class="inflable-detail__cat">
+              {emoji} {inflable.data.categoria.replace(/-/g, " ")}
+            </span>
+            <h1 class="inflable-detail__title">{inflable.data.title}</h1>
+            <p class="inflable-detail__desc">{inflable.data.descripcion}</p>
+
+            <!-- Includes -->
+            <div class="inflable-detail__includes">
+              <h3 class="inflable-detail__includes-title">✅ Incluye en tu renta</h3>
+              <ul class="inflable-detail__includes-list">
+                <li>Entrega y retiro a domicilio</li>
+                <li>Instalación y desinstalación profesional</li>
+                <li>Soplador eléctrico</li>
+                <li>Supervisor durante todo el evento</li>
+                <li>Seguro de responsabilidad civil</li>
+                <li>Sanitización previa al evento</li>
+              </ul>
+            </div>
+
+            <div class="inflable-detail__actions">
+              <a
+                href={`https://wa.me/${SITE.whatsapp}?text=${waText}`}
+                class="btn btn--primary"
+                target="_blank"
+                rel="noopener"
+                style="flex:1;justify-content:center;"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Cotizar por WhatsApp
+              </a>
+              <a href="/inflables" class="btn btn--outline" style="flex-shrink:0;">← Volver al catálogo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- MDX Content -->
+        <div class="inflable-detail__prose">
+          <Content />
+        </div>
+      </div>
+    </section>
+
+    <!-- Relacionados -->
+    {relacionados.length > 0 && (
+      <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);">
+        <div class="container">
+          <SectionHeader
+            title="También te puede interesar"
+            subtitle="Más inflables de la misma categoría para complementar tu evento."
+          />
+          <div class="prod-catalog__grid" style="margin-top:var(--spacing-xl);">
+            {relacionados.map(i => (
+              <InflableCard
+                title={i.data.title}
+                descripcion={i.data.descripcion}
+                categoria={i.data.categoria}
+                precio_desde={i.data.precio_desde}
+                capacidad={i.data.capacidad}
+                medidas={i.data.medidas}
+                tiempo_instalacion={i.data.tiempo_instalacion}
+                slug={i.data.slug}
+                disponible={i.data.disponible}
+                featured={i.data.featured}
+                gradient={gradients[i.data.categoria] ?? "linear-gradient(135deg, #FF4B1F22 0%, #1A1A2E11 100%)"}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>
+
+<style>
+.inflable-detail {
+  padding: var(--spacing-3xl) 0;
+}
+.inflable-detail__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+}
+@media (min-width: 1024px) {
+  .inflable-detail__inner { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+.inflable-detail__img-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.inflable-detail__img {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inflable-detail__emoji {
+  font-size: 8rem;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+}
+.inflable-detail__featured-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+}
+.inflable-detail__strip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: var(--color-secondary);
+  border-radius: var(--border-radius-lg);
+}
+@media (min-width: 480px) {
+  .inflable-detail__strip { grid-template-columns: repeat(4, 1fr); }
+}
+.inflable-detail__strip-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+}
+.inflable-detail__strip-value {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+.inflable-detail__strip-label {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.inflable-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.inflable-detail__cat {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: capitalize;
+}
+.inflable-detail__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-secondary);
+  line-height: 1.15;
+  margin: 0;
+}
+.inflable-detail__desc {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin: 0;
+}
+.inflable-detail__includes {
+  background: var(--color-accent);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+}
+.inflable-detail__includes-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 0.75rem;
+}
+.inflable-detail__includes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.inflable-detail__includes-list li {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  padding-left: 1.25rem;
+  position: relative;
+}
+.inflable-detail__includes-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-success);
+  font-weight: 700;
+}
+.inflable-detail__actions {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+.inflable-detail__prose {
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-2xl);
+  border-top: 1px solid var(--color-border);
+  max-width: 720px;
+}
+.inflable-detail__prose :global(h2) {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-secondary);
+  margin: var(--spacing-xl) 0 var(--spacing-sm);
+}
+.inflable-detail__prose :global(p) {
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+.inflable-detail__prose :global(ul) {
+  padding-left: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+.inflable-detail__prose :global(li) {
+  color: var(--color-text-light);
+  line-height: 1.8;
+  margin-bottom: 0.25rem;
+}
+.inflable-detail__prose :global(strong) { color: var(--color-secondary); }
+</style>

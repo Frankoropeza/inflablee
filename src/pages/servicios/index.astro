@@ -1,0 +1,197 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const tiposServicio = [
+  {
+    icon: "🎂",
+    title: "Fiestas infantiles",
+    desc: "El paquete perfecto para el cumpleaños de tu hijo. Castillo inflable, supervisión y toda la diversión.",
+    href: "/servicios/fiestas-infantiles",
+    tags: ["Castillos", "Toboganes", "Cumpleaños"],
+  },
+  {
+    icon: "🏫",
+    title: "Eventos escolares",
+    desc: "Kermeses, días del niño y festivales. Paquetes para 50 hasta 500 niños con múltiples inflables.",
+    href: "/servicios/eventos-escolares",
+    tags: ["Kermés", "Día del niño", "Pistas de obstáculos"],
+  },
+  {
+    icon: "🏢",
+    title: "Eventos corporativos",
+    desc: "Integración de equipos y actividades para empresas. Ring de boxeo, toro mecánico y más.",
+    href: "/servicios/eventos-corporativos",
+    tags: ["Team building", "Convivencia", "Empresas"],
+  },
+  {
+    icon: "🎄",
+    title: "Posadas y festivales",
+    desc: "Alegra las fiestas navideñas y festivales comunitarios con inflables y juegos para toda la familia.",
+    href: "/servicios/fiestas-infantiles",
+    tags: ["Posadas", "Navidad", "Comunidad"],
+  },
+  {
+    icon: "💃",
+    title: "Quinceañeras y XV años",
+    desc: "Zona de juegos para los más jóvenes de tu quinceañera. Perfecta para mantener a todos entretenidos.",
+    href: "/servicios/eventos-corporativos",
+    tags: ["Quinceañera", "Bodas", "Adultos"],
+  },
+  {
+    icon: "🎓",
+    title: "Graduaciones",
+    desc: "Celebra el logro con una zona de inflables. Actividad perfecta para fin de cursos y clausuras.",
+    href: "/servicios/eventos-escolares",
+    tags: ["Graduación", "Clausura", "Fin de ciclo"],
+  },
+];
+
+const paquetes = [
+  {
+    title: "Paquete Básico",
+    price: "desde $1,200 MXN",
+    description: "Perfecto para fiestas íntimas de hasta 30 niños. Un inflable + supervisor.",
+    includes: [
+      "1 castillo inflable o brincalín",
+      "Entrega y retiro incluido",
+      "Instalación profesional",
+      "1 supervisor durante el evento",
+      "Hasta 5 horas de renta",
+    ],
+    featured: false,
+  },
+  {
+    title: "Paquete Familiar",
+    price: "desde $2,200 MXN",
+    description: "Para fiestas medianas con 30-60 niños. Dos inflables + tobogán o juego interactivo.",
+    includes: [
+      "1 castillo inflable + 1 tobogán o juego",
+      "Entrega y retiro incluido",
+      "Instalación profesional",
+      "2 supervisores durante el evento",
+      "Hasta 6 horas de renta",
+      "Descuento de 10% vs precio individual",
+    ],
+    featured: true,
+    badge: "⭐ Más popular",
+  },
+  {
+    title: "Paquete Escolar",
+    price: "desde $4,500 MXN",
+    description: "Para kermeses y eventos con 60-150 niños. Pista de obstáculos + múltiples inflables.",
+    includes: [
+      "1 pista de obstáculos + 2 castillos",
+      "Entrega y retiro incluido",
+      "Instalación profesional",
+      "3-4 supervisores capacitados",
+      "Hasta 8 horas de renta",
+      "Factura electrónica disponible",
+      "Descuento de 15% vs precio individual",
+    ],
+    featured: false,
+  },
+];
+---
+
+<PageLayout
+  title="Servicios de Renta de Inflables para Todo Tipo de Evento | INFLABLEE"
+  description="INFLABLEE ofrece servicios de renta de inflables para fiestas infantiles, eventos escolares, corporativos y más. Paquetes desde $1,200 MXN con entrega en CDMX."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Nuestros servicios"
+      title="Renta de inflables para\n<span>todo tipo de evento</span>"
+      desc="Fiestas infantiles, eventos escolares, corporativos, posadas y más. Personalizamos cada renta para garantizar la mejor experiencia."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un servicio para mi evento.")}`, label: "Cotizar servicio", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "6+", label: "Tipos de eventos" },
+        { value: "500+", label: "Eventos realizados" },
+        { value: "4.9★", label: "Calificación" },
+      ]}
+    />
+
+    <!-- Tipos de servicio -->
+    <section class="svc-list">
+      <div class="container">
+        <SectionHeader
+          title="¿Para qué tipo de evento buscas inflables?"
+          subtitle="Tenemos soluciones para cada celebración. Desde cumpleaños íntimos hasta kermeses masivas."
+        />
+        <div class="svc-list__grid">
+          {tiposServicio.map(s => (
+            <div class="svc-card">
+              <div class="svc-card__header">
+                <span class="svc-card__icon">{s.icon}</span>
+              </div>
+              <h3 class="svc-card__title">{s.title}</h3>
+              <p class="svc-card__desc">{s.desc}</p>
+              <div class="svc-card__tags">
+                {s.tags.map(t => <span class="svc-card__tag">{t}</span>)}
+              </div>
+              <a href={s.href} class="svc-card__link">Ver servicio →</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Paquetes -->
+    <section style="background:var(--color-accent);padding:var(--spacing-4xl) 0;" id="paquetes">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes todo incluido"
+          subtitle="Combina inflables y ahorra. Sin sorpresas ni costos ocultos."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
+          {paquetes.map(p => (
+            <PricingCard
+              title={p.title}
+              price={p.price}
+              description={p.description}
+              includes={p.includes}
+              featured={p.featured}
+              badge={p.badge}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Proceso -->
+    <section style="padding:var(--spacing-4xl) 0;background:var(--color-secondary);">
+      <div class="container">
+        <SectionHeader
+          title="¿Cómo funciona nuestra renta?"
+          subtitle="Proceso simple en 4 pasos. Nosotros nos encargamos de todo."
+        />
+        <div class="process__grid" style="margin-top:var(--spacing-2xl);">
+          {[
+            { num: "1", title: "Cotiza", desc: "Escríbenos por WhatsApp o llena el formulario con los detalles de tu evento." },
+            { num: "2", title: "Confirma", desc: "Elige tu inflable o paquete. Apartamos la fecha con un anticipo." },
+            { num: "3", title: "Disfruta", desc: "Llegamos 1 hora antes, instalamos todo y supervisamos durante el evento." },
+            { num: "4", title: "Descansa", desc: "Al terminar, retiramos y limpiamos todo. Sin preocupaciones para ti." },
+          ].map(s => (
+            <div class="process-step">
+              <div class="process-step__num">{s.num}</div>
+              <h3 class="process-step__title" style="color:#fff;">{s.title}</h3>
+              <p class="process-step__desc">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>

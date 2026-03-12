@@ -1,0 +1,118 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const paquetesCollection = (await getCollection("paquetes")).sort((a, b) => a.data.order - b.data.order);
+
+const paquetesExtra = [
+  {
+    title: "Paquete Agua + Diversión",
+    price: "desde $2,500 MXN",
+    description: "El combo veraniego: tobogán acuático + alberca inflable + castillo. Para fiestas de verano con agua.",
+    includes: ["1 tobogán acuático doble carril", "1 alberca inflable", "1 castillo brincalín", "3 supervisores", "Hasta 7 horas"],
+    featured: true,
+    badge: "🌊 Verano 2026",
+  },
+  {
+    title: "Paquete Kermés Premium",
+    price: "desde $7,500 MXN",
+    description: "Para festivales de 150-300 asistentes. Máxima variedad de actividades.",
+    includes: ["Pista de obstáculos 15m", "2 castillos inflables", "Toro mecánico o ring de boxeo", "4-5 supervisores", "Todo el día", "Factura electrónica"],
+    featured: false,
+  },
+  {
+    title: "Paquete Posada Navideña",
+    price: "desde $3,500 MXN",
+    description: "Alegra tu posada con inflables temáticos y actividades para toda la familia.",
+    includes: ["2 castillos inflables (temáticos disponibles)", "1 juego interactivo", "3 supervisores", "6 horas de renta", "Ambientación navideña opcional"],
+    featured: false,
+  },
+];
+---
+
+<PageLayout
+  title="Paquetes de Renta de Inflables — Combos y Ofertas | INFLABLEE"
+  description="Paquetes de renta de inflables todo incluido: combinados para cumpleaños, kermeses, verano y posadas. Ahorra hasta 20% vs precio individual. CDMX y Edomex."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Paquetes" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Paquetes y combos"
+      title="Más diversión,\n<span>mejor precio</span>"
+      desc="Combina inflables en paquetes completos y ahorra hasta 20% vs contratar por separado. Todo incluido: entrega, instalación y supervisión."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un paquete de inflables.")}`, label: "Ver disponibilidad", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo completo", variant: "outline" },
+      ]}
+    />
+
+    <!-- Paquetes de la colección -->
+    {paquetesCollection.length > 0 && (
+      <section style="padding:var(--spacing-3xl) 0;">
+        <div class="container">
+          <SectionHeader
+            title="Paquetes estándar"
+            subtitle="Nuestros paquetes más populares para todo tipo de evento."
+          />
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
+            {paquetesCollection.map(p => (
+              <div style="background:var(--color-white);border-radius:var(--border-radius-lg);padding:var(--spacing-xl);box-shadow:var(--shadow-sm);border:1.5px solid var(--color-border);">
+                <h3 style="font-size:var(--font-size-xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-xs);">{p.data.title}</h3>
+                {p.data.price && <p style="color:var(--color-primary);font-weight:700;font-size:var(--font-size-xl);margin-bottom:var(--spacing-sm);">{p.data.price}</p>}
+                <p style="color:var(--color-text-light);margin-bottom:var(--spacing-md);font-size:var(--font-size-sm);">{p.data.description}</p>
+                {p.data.includes.length > 0 && (
+                  <ul style="list-style:none;padding:0;margin-bottom:var(--spacing-lg);">
+                    {p.data.includes.map((item: string) => (
+                      <li style="padding:0.4rem 0;border-bottom:1px solid var(--color-border);font-size:var(--font-size-sm);color:var(--color-text);display:flex;align-items:center;gap:0.5rem;">
+                        <span style="color:var(--color-success);font-weight:700;">✓</span> {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, me interesa el ${p.data.title}.`)}`}
+                  class="btn btn--primary" style="width:100%;text-align:center;" target="_blank" rel="noopener">
+                  Cotizar paquete
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Paquetes especiales -->
+    <section style="background:var(--color-accent);padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes especiales 2026"
+          subtitle="Combos diseñados para los eventos más populares del año."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
+          {paquetesExtra.map(p => (
+            <PricingCard
+              title={p.title}
+              price={p.price}
+              description={p.description}
+              includes={p.includes}
+              featured={p.featured}
+              badge={p.badge}
+              ctaHref={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, me interesa el paquete especial: ${p.title}.`)}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿No encuentras el paquete que buscas?"
+      subtitle="Armamos paquetes personalizados según tu presupuesto y necesidades. ¡Escríbenos!"
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

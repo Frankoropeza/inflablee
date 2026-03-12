@@ -1,0 +1,149 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const inflables = (await getCollection("inflables")).sort((a, b) => a.data.order - b.data.order);
+
+const categorias = [
+  { slug: "castillos-inflables", label: "Castillos", emoji: "🏰" },
+  { slug: "toboganes-acuaticos", label: "Toboganes acuáticos", emoji: "🌊" },
+  { slug: "pistas-obstaculos", label: "Pistas de obstáculos", emoji: "🏃" },
+  { slug: "juegos-interactivos", label: "Juegos interactivos", emoji: "🥊" },
+];
+
+const gradients: Record<string, string> = {
+  "castillos-inflables": "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
+  "toboganes-acuaticos": "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
+  "pistas-obstaculos":   "linear-gradient(135deg, #FF4B1F22 0%, #FF4B1F11 100%)",
+  "juegos-interactivos": "linear-gradient(135deg, #FFD70022 0%, #FF4B1F22 100%)",
+};
+
+const schema = inflables.map(i => ({
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": i.data.title,
+  "description": i.data.descripcion,
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "MXN",
+    "price": i.data.precio_desde,
+    "availability": i.data.disponible ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+    "seller": { "@type": "Organization", "name": SITE.name }
+  }
+}));
+---
+
+<PageLayout
+  title="Catálogo de Inflables para Renta — Castillos, Toboganes y Más | INFLABLEE"
+  description="Renta de inflables en CDMX y Estado de México. Castillos inflables, toboganes acuáticos, pistas de obstáculos y juegos interactivos. Entrega e instalación incluida."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables" }]}
+  schema={schema}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Catálogo de inflables"
+      title={`Inflables para cada\n<span>tipo de evento</span>`}
+      desc="Desde brincalines para los más pequeños hasta toboganes gigantes y juegos interactivos. Todos incluyen entrega, instalación y supervisión."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`, label: "Cotizar ahora", variant: "primary" },
+        { href: "#categorias", label: "Ver categorías", variant: "outline" },
+      ]}
+      stats={[
+        { value: "12+", label: "Modelos disponibles" },
+        { value: "4", label: "Categorías" },
+        { value: "100%", label: "Supervisión incluida" },
+      ]}
+    />
+
+    <!-- Filtro por categorías -->
+    <nav class="cat-bar" id="categorias" aria-label="Categorías de inflables">
+      <div class="container">
+        <ul class="cat-bar__list" role="list">
+          <li><a href="#todos" class="cat-bar__btn cat-bar__btn--active">🎪 Todos</a></li>
+          {categorias.map(c => (
+            <li><a href={`/inflables/${c.slug}`} class="cat-bar__btn">{c.emoji} {c.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Catálogo -->
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Todos nuestros inflables"
+          subtitle="Haz clic en cualquier inflable para ver detalles o cotizar directamente por WhatsApp."
+        />
+        <div class="prod-catalog__grid" id="todos">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient={gradients[i.data.categoria] ?? "linear-gradient(135deg, #FF4B1F22 0%, #1A1A2E11 100%)"}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Links a categorías -->
+    <section style="padding: var(--spacing-3xl) 0; background: var(--color-accent);">
+      <div class="container">
+        <SectionHeader
+          title="Explorar por categoría"
+          subtitle="¿Buscas algo específico? Explora cada categoría para ver todos los modelos disponibles."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
+          {categorias.map(c => (
+            <a href={`/inflables/${c.slug}`} class="cat-link-card">
+              <span class="cat-link-card__emoji">{c.emoji}</span>
+              <div>
+                <strong class="cat-link-card__title">{c.label}</strong>
+                <p class="cat-link-card__sub">Ver todos los modelos →</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>
+
+<style>
+.cat-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+.cat-link-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+.cat-link-card__emoji { font-size: 2rem; flex-shrink: 0; }
+.cat-link-card__title { display: block; font-size: var(--font-size-base); font-weight: 700; color: var(--color-secondary); }
+.cat-link-card__sub { font-size: var(--font-size-sm); color: var(--color-primary); margin: 0.2rem 0 0; }
+</style>

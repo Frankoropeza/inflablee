@@ -1,0 +1,46 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Topbar from "@/components/Topbar.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import WaBubble from "@/components/WaBubble.astro";
+import { SITE } from "@/data/site";
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  pageType?: "home" | "page";
+  breadcrumbs?: Array<{ name: string; href?: string }>;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  schema,
+  pageType,
+  breadcrumbs,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={ogImage}
+  schema={schema}
+  pageType={pageType}
+  breadcrumbs={breadcrumbs}
+>
+  <Topbar phone={SITE.tel} whatsapp={SITE.whatsapp} />
+  <Header whatsapp={SITE.whatsapp} currentPath={Astro.url.pathname} />
+
+  <slot />
+
+  <Footer phone={SITE.tel} whatsapp={SITE.whatsapp} email={SITE.email} address={SITE.address} />
+  <WaBubble whatsapp={SITE.whatsapp} />
+</BaseLayout>

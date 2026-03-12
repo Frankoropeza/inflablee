@@ -1,0 +1,131 @@
+---
+export interface Reason {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  reasons?: Reason[];
+}
+
+const {
+  title = "¿Por qué elegir INFLABLEE?",
+  subtitle = "Más de 500 familias y empresas confían en nosotros. Aquí está el por qué.",
+  reasons = [
+    {
+      icon: "🛡️",
+      title: "Seguridad certificada",
+      desc: "Todos nuestros inflables tienen seguro de responsabilidad civil vigente y son revisados antes de cada evento.",
+    },
+    {
+      icon: "⏰",
+      title: "Puntualidad garantizada",
+      desc: "Llegamos 1 hora antes del evento para tener todo listo. Tu fiesta empieza a tiempo, siempre.",
+    },
+    {
+      icon: "✨",
+      title: "Higiene y limpieza",
+      desc: "Sanitizamos cada inflable con productos de grado alimenticio antes de entregarlo en tu evento.",
+    },
+    {
+      icon: "👷",
+      title: "Supervisión incluida",
+      desc: "Un supervisor capacitado estará presente durante todo el evento para garantizar la diversión segura.",
+    },
+    {
+      icon: "💰",
+      title: "Precios accesibles",
+      desc: "Ofrecemos los mejores precios de la zona sin sacrificar calidad. Cotización sin compromiso.",
+    },
+    {
+      icon: "💯",
+      title: "Garantía total",
+      desc: "Si el inflable presenta algún problema durante tu evento, lo resolvemos o te devolvemos tu dinero.",
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="why-us">
+  <div class="container">
+    <div class="why-us__header">
+      <h2 class="why-us__title">{title}</h2>
+      <p class="why-us__subtitle">{subtitle}</p>
+    </div>
+    <div class="why-us__grid">
+      {reasons.map((r) => (
+        <div class="why-us__card">
+          <span class="why-us__icon">{r.icon}</span>
+          <h3 class="why-us__card-title">{r.title}</h3>
+          <p class="why-us__card-desc">{r.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.why-us {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-white);
+}
+.why-us__header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+.why-us__title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--color-secondary);
+  margin: 0 0 0.75rem;
+}
+.why-us__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.why-us__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) {
+  .why-us__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .why-us__grid { grid-template-columns: repeat(3, 1fr); }
+}
+.why-us__card {
+  background: var(--color-accent);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.why-us__card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.why-us__icon {
+  display: block;
+  font-size: 2.25rem;
+  margin-bottom: 0.875rem;
+}
+.why-us__card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin: 0 0 0.5rem;
+}
+.why-us__card-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.7;
+  margin: 0;
+}
+</style>

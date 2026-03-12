@@ -1,0 +1,95 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import FaqItem from "@/components/FaqItem.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const todos = await getCollection("inflables");
+const inflables = todos
+  .filter(i => i.data.categoria === "castillos-inflables")
+  .sort((a, b) => a.data.order - b.data.order);
+
+const faqs = [
+  { id: "c1", question: "¿Qué tamaño de espacio necesito para un castillo inflable?", answer: "Un castillo estándar de 4×4 m necesita un área libre de al menos 5×5 m más 1 m de perímetro de seguridad en todos los lados. Te recomendamos medir tu espacio antes de reservar." },
+  { id: "c2", question: "¿Los castillos inflables son seguros para niños pequeños?", answer: "Sí. Todos nuestros castillos tienen mallas de seguridad en los laterales para evitar caídas. Para niños menores de 2 años recomendamos siempre supervisión directa de un adulto dentro del área." },
+  { id: "c3", question: "¿Puedo combinar un castillo con un tobogán acuático?", answer: "¡Por supuesto! Muchos de nuestros paquetes combinan castillo inflable + tobogán acuático a un precio especial. Pregunta por nuestros paquetes de verano." },
+];
+---
+
+<PageLayout
+  title="Castillos Inflables para Renta en CDMX y Edomex | INFLABLEE"
+  description="Renta de castillos inflables y brincalines en CDMX y Estado de México. Modelos para niñas (princesas), niños (dragones, piratas) y clásicos. Entrega incluida."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Castillos" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Castillos inflables"
+      title="Castillos inflables para\n<span>fiestas inolvidables</span>"
+      desc="Brincalines, castillos temáticos y combinados con tobogán. Los favoritos de los niños de 2 a 12 años. Entrega, instalación y supervisión incluida."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un castillo inflable.")}`, label: "Cotizar castillo", variant: "primary" },
+        { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
+      ]}
+    />
+
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Nuestros castillos inflables"
+          subtitle={`${inflables.length} modelos disponibles para tu evento. Todos con entrega e instalación en CDMX y Edomex.`}
+        />
+        <div class="prod-catalog__grid">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient="linear-gradient(135deg, #FF4B1F18 0%, #FFD70018 100%)"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Info SEO -->
+    <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);">
+      <div class="container" style="max-width:860px;">
+        <h2 style="font-size:var(--font-size-2xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-lg);">¿Por qué rentar un castillo inflable?</h2>
+        <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:1rem;">
+          Los <strong>castillos inflables</strong> son la atracción número uno en fiestas infantiles. Desde un brincalín clásico hasta un castillo temático de princesas o piratas, estos inflables mantienen a los niños activos y entretenidos durante horas.
+        </p>
+        <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:1rem;">
+          En INFLABLEE contamos con una amplia variedad de <strong>castillos inflables para renta</strong> en CDMX y Estado de México. Todos nuestros brincalines incluyen entrega a domicilio, instalación profesional, soplador eléctrico y supervisor durante todo el evento.
+        </p>
+        <p style="color:var(--color-text-light);line-height:1.8;">
+          Los precios van desde <strong>$750 MXN</strong> para un brincalín clásico hasta <strong>$1,200 MXN</strong> para castillos temáticos con tobogán incluido. Consulta nuestra disponibilidad para tu fecha.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding:var(--spacing-3xl) 0;">
+      <div class="container" style="max-width:800px;">
+        <SectionHeader title="Preguntas frecuentes sobre castillos inflables" />
+        <div style="margin-top:var(--spacing-xl);">
+          {faqs.map(f => <FaqItem id={f.id} question={f.question} answer={f.answer} />)}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>

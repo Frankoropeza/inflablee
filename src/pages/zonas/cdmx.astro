@@ -1,0 +1,75 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const alcaldias = [
+  { nombre: "Álvaro Obregón", colonias: ["Santa Fe", "Tetelpan", "Olivar del Conde", "Lomas de Santa Fe", "La Mexicana"], destacada: false },
+  { nombre: "Azcapotzalco", colonias: ["Del Gas", "Clavería", "San Álvaro", "Tlatilco", "San Marcos"], destacada: false },
+  { nombre: "Benito Juárez", colonias: ["Del Valle", "Narvarte", "Nápoles", "Insurgentes Mixcoac", "Extremadura Insurgentes"], destacada: true },
+  { nombre: "Coyoacán", colonias: ["Del Carmen", "Pedregal de Santa Úrsula", "Xotepingo", "Copilco", "Barrio de Santa Catarina"], destacada: true },
+  { nombre: "Cuajimalpa", colonias: ["Santa Fe", "La Mexicana", "Palo Alto", "Xochitepec"], destacada: false },
+  { nombre: "Cuauhtémoc", colonias: ["Centro Histórico", "Doctores", "Santa María la Ribera", "Guerrero", "Tepito"], destacada: true },
+  { nombre: "Gustavo A. Madero", colonias: ["Lindavista", "Tepeyac Insurgentes", "Nueva Atzacoalco", "Cuautepec", "La Raza"], destacada: true },
+  { nombre: "Iztacalco", colonias: ["Agrícola Oriental", "Pantitlán", "Jardín Balbuena", "El Pañuelito"], destacada: false },
+  { nombre: "Iztapalapa", colonias: ["Jardín Balbuena", "Cuatro Árboles", "Santa Cruz Meyehualco", "Pueblo de Los Reyes", "Unidad Habitacional"], destacada: true },
+  { nombre: "Magdalena Contreras", colonias: ["San Ángel", "Pedregal", "Barranca Seca", "La Otra Banda"], destacada: false },
+  { nombre: "Miguel Hidalgo", colonias: ["Polanco", "Lomas de Chapultepec", "Irrigación", "Argentina", "Popotla"], destacada: true },
+  { nombre: "Milpa Alta", colonias: ["Villa Milpa Alta", "San Pablo Oztotepec", "San Pedro Atocpan"], destacada: false },
+  { nombre: "Tláhuac", colonias: ["El Llano", "La Turba", "Zapotitla", "Selene"], destacada: false },
+  { nombre: "Tlalpan", colonias: ["Pedregal de San Ángel", "Isidro Fabela", "Ajusco", "Xochimilco", "Toriello Guerra"], destacada: false },
+  { nombre: "Venustiano Carranza", colonias: ["Jardín Balbuena", "Moctezuma", "Aeronáutica Militar", "Morelos"], destacada: false },
+  { nombre: "Xochimilco", colonias: ["La Nativitas", "San Gregorio Atlapulco", "Santa Cruz Xochitepec", "Tulyehualco"], destacada: false },
+];
+---
+
+<PageLayout
+  title="Renta de Inflables en Ciudad de México — Las 16 Alcaldías | INFLABLEE"
+  description="INFLABLEE entrega inflables en las 16 alcaldías de la Ciudad de México. Coyoacán, Iztapalapa, GAM, Benito Juárez y más. Sin costo de entrega en zonas principales."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: "CDMX" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="CDMX · 16 alcaldías"
+      title="Renta de inflables en\n<span>Ciudad de México</span>"
+      desc="Cubrimos las 16 alcaldías de la CDMX. Entrega, instalación y retiro incluido sin costo adicional en la mayoría de las zonas. Llegamos el día de tu evento."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero rentar inflables en CDMX.")}`, label: "Cotizar en CDMX", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo", variant: "outline" },
+      ]}
+    />
+
+    <section class="zonas-section">
+      <div class="container">
+        <SectionHeader
+          title="Alcaldías con cobertura"
+          subtitle="Servicio en las 16 alcaldías de la Ciudad de México. Las destacadas tienen atención prioritaria."
+        />
+        <div class="zonas-grid" style="margin-top:var(--spacing-xl);">
+          {alcaldias.map(a => (
+            <div class={`zona-card${a.destacada ? " zona-card--destacada" : ""}`} style="border-left: 3px solid #16a34a;">
+              <div class="zona-card__header">
+                <span class="zona-card__nombre">{a.nombre}</span>
+                {a.destacada && <span style="font-size:0.65rem;font-weight:700;background:#e8f5e9;color:#16a34a;padding:0.2rem 0.5rem;border-radius:50px;">Zona prioritaria</span>}
+              </div>
+              <p class="zona-card__alcaldias">{a.colonias.join(" · ")}</p>
+              <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero rentar inflables en ${a.nombre}.`)}`}
+                class="zona-card__cta" target="_blank" rel="noopener">
+                Cotizar en {a.nombre} →
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Tu alcaldía está en la lista?"
+      subtitle="Cotiza ahora y recibe respuesta en menos de 2 horas. Disponibilidad para tu fecha."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

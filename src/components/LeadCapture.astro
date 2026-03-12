@@ -1,0 +1,83 @@
+---
+import { SITE } from "@/data/site";
+
+export interface Props {
+  whatsapp?: string;
+  title?: string;
+}
+
+const {
+  whatsapp = SITE.whatsapp,
+  title = "Cotiza tu evento en minutos",
+} = Astro.props;
+---
+
+<section class="lead-capture" id="cotizar" aria-labelledby="cotizar-title">
+  <div class="container">
+    <h2 id="cotizar-title" class="lead-capture__title">{title}</h2>
+
+    <div class="lead-capture__bullets">
+      <span class="lead-capture__bullet">Respuesta inmediata</span>
+      <span class="lead-capture__bullet">Entrega e instalación incluida</span>
+      <span class="lead-capture__bullet">Inflables limpios y seguros</span>
+      <span class="lead-capture__bullet">Supervisión durante tu evento</span>
+    </div>
+
+    <form class="lead-capture__form" id="cotizar-form" aria-label="Formulario de cotización">
+      <input
+        type="text" class="lead-capture__input"
+        name="nombre" placeholder="Tu nombre"
+        required aria-label="Nombre completo" autocomplete="name"
+      />
+      <input
+        type="text" class="lead-capture__input"
+        name="contacto" placeholder="Teléfono o Email"
+        required aria-label="Teléfono o correo electrónico"
+      />
+      <select class="lead-capture__select" name="tipo" required aria-label="Tipo de inflable">
+        <option value="" disabled selected>Tipo de inflable</option>
+        <option value="Castillo inflable">Castillo inflable</option>
+        <option value="Tobogán inflable">Tobogán inflable</option>
+        <option value="Alberca de pelotas">Alberca de pelotas</option>
+        <option value="Inflable acuático">Inflable acuático</option>
+        <option value="Juego interactivo">Juego interactivo</option>
+        <option value="Paquete completo">Paquete completo</option>
+        <option value="Otro">Otro (especificar)</option>
+      </select>
+      <select class="lead-capture__select" name="evento" required aria-label="Tipo de evento">
+        <option value="" disabled selected>Tipo de evento</option>
+        <option value="Cumpleaños infantil">Cumpleaños infantil</option>
+        <option value="Fiesta escolar">Fiesta escolar</option>
+        <option value="Evento corporativo">Evento corporativo</option>
+        <option value="Posada / Navidad">Posada / Navidad</option>
+        <option value="Día del niño">Día del niño</option>
+        <option value="Otro evento">Otro evento</option>
+      </select>
+      <button type="submit" class="lead-capture__submit">
+        Enviar cotización por WhatsApp
+      </button>
+    </form>
+
+    <p class="lead-capture__trust">Sin compromiso · Inflables sanitizados · Seguro incluido</p>
+    <p class="lead-capture__alt">
+      También escríbenos directo:
+      <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener">WhatsApp directo</a>
+      · <a href="/contacto">Ver todos los canales de contacto</a>
+    </p>
+  </div>
+</section>
+
+<script define:vars={{ whatsapp }}>
+  document.getElementById("cotizar-form")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const nombre = form.querySelector('[name="nombre"]')?.value.trim();
+    const contacto = form.querySelector('[name="contacto"]')?.value.trim();
+    const tipo = form.querySelector('[name="tipo"]')?.value;
+    const evento = form.querySelector('[name="evento"]')?.value;
+    const msg = encodeURIComponent(
+      `Hola INFLABLEE, soy ${nombre}.\nQuiero cotizar: ${tipo}\nTipo de evento: ${evento}\nContacto: ${contacto}`
+    );
+    window.open(`https://wa.me/${whatsapp}?text=${msg}`, "_blank");
+  });
+</script>

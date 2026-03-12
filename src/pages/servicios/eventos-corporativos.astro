@@ -1,0 +1,83 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+---
+
+<PageLayout
+  title="Inflables para Eventos Corporativos y Team Building CDMX | INFLABLEE"
+  description="Renta de inflables para eventos corporativos, días de campo, convivencias y team building en CDMX y Estado de México. Ring de boxeo, toro mecánico y pistas."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Eventos Corporativos" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Eventos corporativos"
+      title="Inflables para\n<span>team building y convivencias</span>"
+      desc="Ring de boxeo inflable, toro mecánico y pistas de obstáculos para actividades de integración empresarial. Diversión que fortalece equipos."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para un evento corporativo.")}`, label: "Cotizar evento", variant: "primary" },
+        { href: "/inflables/juegos-interactivos", label: "Ver juegos interactivos", variant: "outline" },
+      ]}
+      stats={[
+        { value: "50+", label: "Empresas atendidas" },
+        { value: "CFDI", label: "Factura incluida" },
+        { value: "24/7", label: "Atención" },
+      ]}
+    />
+
+    <section style="padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Actividades para equipos de trabajo"
+          subtitle="Los inflables interactivos son perfectos para romper el hielo y fomentar el trabajo en equipo."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
+          {[
+            { icon: "🥊", title: "Ring de boxeo", desc: "Competencia amistosa en equipos. Perfecto para generar adrenalina y compañerismo." },
+            { icon: "🤠", title: "Toro mecánico", desc: "El clásico de eventos corporativos. Genera risas y competencia sana entre colegas." },
+            { icon: "🏃", title: "Pista de obstáculos", desc: "Relevos por equipos en la pista de obstáculos. Team building en su máxima expresión." },
+            { icon: "🎪", title: "Zona de inflables completa", desc: "Combinación de actividades para eventos con 50 a 500 personas. Coordinación incluida." },
+          ].map(r => (
+            <div class="svc-card">
+              <span class="svc-card__icon">{r.icon}</span>
+              <h3 class="svc-card__title">{r.title}</h3>
+              <p class="svc-card__desc">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--color-accent);padding:var(--spacing-3xl) 0;">
+      <div class="container" style="max-width:860px;">
+        <h2 style="font-size:var(--font-size-2xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-lg);">Lo que incluye nuestro servicio corporativo</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);">
+          {[
+            "Entrega y retiro en tu empresa o venue",
+            "Instalación y desinstalación profesional",
+            "Supervisores capacitados durante todo el evento",
+            "Seguro de responsabilidad civil vigente",
+            "Factura electrónica CFDI",
+            "Coordinador de evento disponible",
+            "Servicio en CDMX y Estado de México",
+            "Atención personalizada desde la cotización",
+          ].map(item => (
+            <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;background:white;border-radius:var(--border-radius);font-size:var(--font-size-sm);color:var(--color-text);">
+              <span style="color:var(--color-success);font-weight:700;flex-shrink:0;">✓</span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Tienes un evento de empresa próximo?"
+      subtitle="Cotiza sin compromiso. Respondemos en menos de 2 horas en horario hábil."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

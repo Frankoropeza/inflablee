@@ -1,0 +1,65 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const todos = await getCollection("inflables");
+const inflables = todos
+  .filter(i => i.data.categoria === "juegos-interactivos")
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Juegos Interactivos para Renta CDMX — Toro, Boxeo y Más | INFLABLEE"
+  description="Renta de juegos interactivos inflables: ring de boxeo, toro mecánico y más. Perfectos para eventos corporativos, quinceañeras y kermeses en CDMX y Edomex."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Juegos Interactivos" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Juegos interactivos"
+      title="Diversión para\n<span>todas las edades</span>"
+      desc="Ring de boxeo inflable, toro mecánico y más juegos que enganchan a niños y adultos por igual. El complemento perfecto para cualquier evento."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar juegos interactivos.")}`, label: "Cotizar juegos", variant: "primary" },
+        { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
+      ]}
+    />
+
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Juegos interactivos disponibles"
+          subtitle="Actividades que combinan diversión, deporte y competencia sana para toda la familia."
+        />
+        <div class="prod-catalog__grid">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient="linear-gradient(135deg, #FFD70018 0%, #FF4B1F18 100%)"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Buscas algo diferente para tu evento?"
+      subtitle="Los juegos interactivos son el complemento perfecto para eventos corporativos, posadas y quinceañeras."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

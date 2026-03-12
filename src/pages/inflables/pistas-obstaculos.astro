@@ -1,0 +1,65 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const todos = await getCollection("inflables");
+const inflables = todos
+  .filter(i => i.data.categoria === "pistas-obstaculos")
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Pistas de Obstáculos Inflables para Renta CDMX | INFLABLEE"
+  description="Renta de pistas de obstáculos inflables en CDMX y Estado de México. Hasta 15 metros de recorrido con túneles, montañas y tobogán. Perfectas para eventos escolares."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Pistas de Obstáculos" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Pistas de obstáculos"
+      title="Adrenalina pura con\n<span>pistas de obstáculos</span>"
+      desc="15 metros de pura diversión: túneles, montañas, saltos y tobogán final. La actividad favorita en eventos escolares y corporativos. Para niños y adultos."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar una pista de obstáculos.")}`, label: "Cotizar pista", variant: "primary" },
+        { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
+      ]}
+    />
+
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Pistas de obstáculos disponibles"
+          subtitle="Desde pistas básicas hasta profesionales de 15 metros. Ideales para eventos escolares y kermeses."
+        />
+        <div class="prod-catalog__grid">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient="linear-gradient(135deg, #FF4B1F15 0%, #FF4B1F08 100%)"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Organizas un evento escolar o corporativo?"
+      subtitle="Tenemos paquetes especiales para kermeses, días del niño y eventos empresariales. Cotiza sin compromiso."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

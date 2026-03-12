@@ -1,0 +1,49 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import "@/styles/blog.css";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = post.data.pubDate.toLocaleDateString("es-MX", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<PageLayout
+  title={`${post.data.title} | Blog INFLABLEE`}
+  description={post.data.description}
+  breadcrumbs={[
+    { name: "Inicio", href: "/" },
+    { name: "Blog", href: "/blog" },
+    { name: post.data.title },
+  ]}
+>
+  <main id="contenido-principal">
+    <article class="blog-post">
+      <header class="blog-post__header">
+        {post.data.category && (
+          <span class="blog-post__category">{post.data.category}</span>
+        )}
+        <h1 class="blog-post__title">{post.data.title}</h1>
+        <p class="blog-post__meta">
+          Por {post.data.author} · {formattedDate}
+        </p>
+      </header>
+      <div class="blog-post__content">
+        <Content />
+      </div>
+    </article>
+  </main>
+</PageLayout>

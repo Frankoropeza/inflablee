@@ -1,0 +1,99 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  href: string;
+  emoji?: string;
+  count?: number;
+  gradient?: string;
+}
+
+const { title, description, href, emoji = "🎪", count, gradient = "linear-gradient(135deg, #FF4B1F 0%, #FF7B57 100%)" } = Astro.props;
+---
+
+<a href={href} class="category-card">
+  <div class="category-card__img" style={`background: ${gradient};`}>
+    <span class="category-card__emoji">{emoji}</span>
+    {count && <span class="category-card__count">{count} inflables</span>}
+  </div>
+  <div class="category-card__body">
+    <h3 class="category-card__title">{title}</h3>
+    <p class="category-card__desc">{description}</p>
+    <span class="category-card__cta">Ver catálogo →</span>
+  </div>
+</a>
+
+<style>
+.category-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+.category-card__img {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.category-card__emoji {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  transition: transform var(--transition-base);
+}
+.category-card:hover .category-card__emoji {
+  transform: scale(1.1) rotate(-5deg);
+}
+.category-card__count {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  backdrop-filter: blur(4px);
+}
+.category-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+.category-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-secondary);
+  line-height: 1.2;
+  margin: 0;
+}
+.category-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+.category-card__cta {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 0.25rem;
+}
+</style>

@@ -1,0 +1,19 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+---
+
+<PageLayout
+  title="Página no encontrada — INFLABLEE"
+  description="La página que buscas no existe o fue movida."
+>
+  <main id="contenido-principal" style="text-align:center;padding:var(--spacing-4xl) var(--container-pad);">
+    <h1 style="font-size:var(--font-size-4xl);color:var(--color-primary);margin-bottom:var(--spacing-md);">404</h1>
+    <p style="font-size:var(--font-size-xl);color:var(--color-text);margin-bottom:var(--spacing-lg);">
+      ¡Ups! Esta página no existe
+    </p>
+    <p style="color:var(--color-text-light);margin-bottom:var(--spacing-2xl);max-width:500px;margin-left:auto;margin-right:auto;">
+      Parece que el inflable se voló a otra parte. Regresa al inicio para encontrar lo que buscas.
+    </p>
+    <a href="/" class="btn btn--primary">Volver al inicio</a>
+  </main>
+</PageLayout>

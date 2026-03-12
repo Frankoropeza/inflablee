@@ -1,0 +1,47 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+---
+
+<PageLayout
+  title="Contacto — INFLABLEE | Cotiza tu Evento"
+  description="Contáctanos para cotizar la renta de inflables para tu fiesta o evento. Respuesta inmediata por WhatsApp, teléfono o correo."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Contacto" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Contáctanos"
+      title="Estamos listos para hacer tu evento increíble"
+      desc="Cotiza sin compromiso. Respondemos de inmediato por WhatsApp o en menos de 2 horas por correo electrónico."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`, label: "WhatsApp directo", variant: "primary" },
+      ]}
+    />
+
+    <section style="padding:var(--spacing-4xl) 0;">
+      <div class="container" style="max-width:900px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--spacing-xl);">
+          <div style="background:var(--color-accent);padding:var(--spacing-xl);border-radius:var(--border-radius-lg);text-align:center;">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-sm);">WhatsApp</h3>
+            <p style="color:var(--color-text-light);font-size:var(--font-size-sm);margin-bottom:var(--spacing-md);">Respuesta inmediata</p>
+            <a href={`https://wa.me/${SITE.whatsapp}`} class="btn btn--primary btn--sm" target="_blank" rel="noopener">Escribir ahora</a>
+          </div>
+          <div style="background:var(--color-accent);padding:var(--spacing-xl);border-radius:var(--border-radius-lg);text-align:center;">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-sm);">Teléfono</h3>
+            <p style="color:var(--color-text-light);font-size:var(--font-size-sm);margin-bottom:var(--spacing-md);">Llámanos directo</p>
+            <a href={`tel:+${SITE.whatsapp}`} class="btn btn--outline btn--sm">{SITE.tel}</a>
+          </div>
+          <div style="background:var(--color-accent);padding:var(--spacing-xl);border-radius:var(--border-radius-lg);text-align:center;">
+            <h3 style="font-size:var(--font-size-lg);margin-bottom:var(--spacing-sm);">Email</h3>
+            <p style="color:var(--color-text-light);font-size:var(--font-size-sm);margin-bottom:var(--spacing-md);">Respuesta en 2 hrs</p>
+            <a href={`mailto:${SITE.email}`} class="btn btn--outline btn--sm">{SITE.email}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LeadCapture title="O cotiza directamente aquí" />
+  </main>
+</PageLayout>

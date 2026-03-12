@@ -1,0 +1,110 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const paquetes = [
+  {
+    title: "Cumpleaños Mini",
+    price: "desde $900 MXN",
+    description: "Para fiestas de hasta 20 niños en jardín pequeño.",
+    includes: ["1 castillo inflable temático", "Entrega e instalación", "1 supervisor", "5 horas de renta"],
+    featured: false,
+  },
+  {
+    title: "Cumpleaños Clásico",
+    price: "desde $1,800 MXN",
+    description: "El favorito: castillo + tobogán para fiestas de 20-50 niños.",
+    includes: ["1 castillo + 1 tobogán", "Entrega e instalación", "2 supervisores", "6 horas de renta", "Ahorro de $400 vs precio individual"],
+    featured: true,
+    badge: "⭐ El más elegido",
+  },
+  {
+    title: "Cumpleaños Grande",
+    price: "desde $2,800 MXN",
+    description: "Para fiestas de 50-80 niños. Máxima diversión.",
+    includes: ["2 castillos + 1 pista obstáculos", "Entrega e instalación", "3 supervisores", "7 horas de renta", "Música ambiente opcional", "Ahorro de $600 vs precio individual"],
+    featured: false,
+  },
+];
+---
+
+<PageLayout
+  title="Renta de Inflables para Fiestas Infantiles CDMX y Edomex | INFLABLEE"
+  description="Inflables para fiestas de cumpleaños en CDMX y Estado de México. Castillos temáticos, toboganes y paquetes completos desde $900 MXN. Supervisión incluida."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Fiestas Infantiles" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Fiestas infantiles"
+      title="Inflables para el cumpleaños\nmás <span>memorable</span>"
+      desc="Castillos temáticos, toboganes y combinados para fiestas infantiles en CDMX y Estado de México. Hacemos tu fiesta un recuerdo para toda la vida."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para una fiesta infantil.")}`, label: "Cotizar mi fiesta", variant: "primary" },
+        { href: "/inflables/castillos-inflables", label: "Ver castillos", variant: "outline" },
+      ]}
+      stats={[
+        { value: "300+", label: "Fiestas realizadas" },
+        { value: "4.9★", label: "Calificación papás" },
+        { value: "0", label: "Accidentes registrados" },
+      ]}
+    />
+
+    <!-- Por qué es especial -->
+    <section style="padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Hacemos la fiesta de tu hijo perfecta"
+          subtitle="No solo rentamos inflables — creamos experiencias que los niños recordarán siempre."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
+          {[
+            { icon: "🎂", title: "Temáticas favoritas", desc: "Princesas, dragones, piratas, superhéroes y más. El castillo que tu hijo eligió para su fiesta." },
+            { icon: "👷", title: "Supervisor dedicado", desc: "Un profesional supervisa el inflable durante toda la fiesta para que tú disfrutes sin preocupaciones." },
+            { icon: "🧼", title: "Limpieza garantizada", desc: "Cada inflable es desinfectado antes de entregarse. Los papás nos lo agradecen siempre." },
+            { icon: "⏰", title: "Puntualidad total", desc: "Llegamos 1 hora antes del evento. Tu fiesta empieza a tiempo, sin retrasos." },
+          ].map(r => (
+            <div class="svc-card">
+              <span class="svc-card__icon">{r.icon}</span>
+              <h3 class="svc-card__title">{r.title}</h3>
+              <p class="svc-card__desc">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Paquetes -->
+    <section style="background:var(--color-accent);padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes para cumpleaños"
+          subtitle="Todo incluido. Sin sorpresas. Sin costos ocultos."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
+          {paquetes.map(p => (
+            <PricingCard
+              title={p.title}
+              price={p.price}
+              description={p.description}
+              includes={p.includes}
+              featured={p.featured}
+              badge={p.badge}
+              ctaHref={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, me interesa el paquete ${p.title} para una fiesta infantil.`)}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Cuándo es el cumpleaños?"
+      subtitle="Reserva con anticipación, especialmente para fechas de fin de semana. ¡Tu fecha está esperando!"
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

@@ -1,0 +1,108 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const paquetes = [
+  {
+    title: "Paquete Básico Escolar",
+    price: "desde $2,800 MXN",
+    description: "Para grupos de hasta 80 niños. Ideal para eventos de un salón.",
+    includes: ["2 castillos inflables", "Entrega e instalación", "2 supervisores", "6 horas de renta", "Factura electrónica"],
+    featured: false,
+  },
+  {
+    title: "Paquete Kermés Completa",
+    price: "desde $5,500 MXN",
+    description: "Para 80-200 niños. Pista de obstáculos + castillos + supervisión completa.",
+    includes: ["1 pista obstáculos 15m + 2 castillos", "Entrega e instalación", "4 supervisores capacitados", "8 horas de renta", "Factura electrónica", "Informe de seguridad incluido"],
+    featured: true,
+    badge: "⭐ El más pedido",
+  },
+  {
+    title: "Paquete Festival Grande",
+    price: "desde $9,000 MXN",
+    description: "Para festivales masivos de 200+ niños. Múltiples inflables y actividades.",
+    includes: ["3+ inflables grandes", "Toro mecánico o ring de boxeo", "5-6 supervisores", "Todo el día (10 horas)", "Generador eléctrico opcional", "Factura electrónica", "Coordinador de evento incluido"],
+    featured: false,
+  },
+];
+---
+
+<PageLayout
+  title="Renta de Inflables para Kermeses y Eventos Escolares CDMX | INFLABLEE"
+  description="Inflables para kermeses, días del niño y festivales escolares en CDMX y Estado de México. Paquetes para 50 hasta 500 niños. Factura electrónica disponible."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Eventos Escolares" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Eventos escolares"
+      title="Kermeses y festivales\n<span>con inflables profesionales</span>"
+      desc="Paquetes completos para kermeses, día del niño y festivales escolares. Desde 50 hasta 500 niños. Factura electrónica y coordinación completa incluida."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para un evento escolar.")}`, label: "Cotizar evento", variant: "primary" },
+        { href: "/inflables/pistas-obstaculos", label: "Ver pistas", variant: "outline" },
+      ]}
+      stats={[
+        { value: "150+", label: "Eventos escolares" },
+        { value: "200+", label: "Niños máx. por evento" },
+        { value: "CFDI", label: "Factura incluida" },
+      ]}
+    />
+
+    <section style="padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Todo lo que necesitas para tu evento escolar"
+          subtitle="Nos encargamos de toda la logística para que tú solo te preocupes por disfrutar."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
+          {[
+            { icon: "📋", title: "Planeación previa", desc: "Coordinamos el montaje, lay-out y horarios de rotación para maximizar la diversión de todos los niños." },
+            { icon: "🔌", title: "Infraestructura completa", desc: "Llevamos el equipo necesario: sopladores, cables, lonas de piso y herramientas de anclaje." },
+            { icon: "👷", title: "Supervisores certificados", desc: "Todos nuestros supervisores tienen capacitación en primeros auxilios y seguridad en inflables." },
+            { icon: "📄", title: "Factura electrónica", desc: "CFDI para instituciones públicas y privadas. Coordinamos la documentación administrativa." },
+          ].map(r => (
+            <div class="svc-card">
+              <span class="svc-card__icon">{r.icon}</span>
+              <h3 class="svc-card__title">{r.title}</h3>
+              <p class="svc-card__desc">{r.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--color-accent);padding:var(--spacing-3xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes para eventos escolares"
+          subtitle="Precios especiales para instituciones educativas. Sin compromiso al cotizar."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
+          {paquetes.map(p => (
+            <PricingCard
+              title={p.title}
+              price={p.price}
+              description={p.description}
+              includes={p.includes}
+              featured={p.featured}
+              badge={p.badge}
+              ctaHref={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, me interesa el ${p.title} para mi evento escolar.`)}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Cuándo es tu kermés o festival escolar?"
+      subtitle="El 30 de abril se reserva desde febrero. No dejes para después tu evento de Día del Niño."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

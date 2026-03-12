@@ -1,0 +1,174 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const categorias = [
+  "Castillos Inflables",
+  "Toboganes Acuáticos",
+  "Pistas de Obstáculos",
+  "Juegos Interactivos",
+  "Fiestas Infantiles",
+  "Eventos Escolares",
+];
+
+const galeria = [
+  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)", emoji: "🎂", title: "Cumpleaños princesas en Coyoacán" },
+  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)", emoji: "🌊", title: "Tobogán acuático en Naucalpan" },
+  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a15 0%, #16a34a08 100%)", emoji: "🏫", title: "Kermés escuela primaria Edomex" },
+  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FF4B1F20 0%, #FFD70015 100%)", emoji: "🏰", title: "Castillo dragón en Iztapalapa" },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E12 100%)", emoji: "🏃", title: "Pista obstáculos evento corporativo" },
+  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)", emoji: "🥊", title: "Ring de boxeo en quinceañera" },
+  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #0077CC20 0%, #1A1A2E15 100%)", emoji: "💦", title: "Doble tobogán fiesta de verano" },
+  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F15 0%, #FFD70022 100%)", emoji: "🎉", title: "Paquete cumpleaños en Benito Juárez" },
+  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a12 0%, #16a34a20 100%)", emoji: "🎓", title: "Festival fin de ciclo escolar" },
+  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FFD70018 0%, #FF4B1F20 100%)", emoji: "🏰", title: "Castillo princesas en GAM" },
+  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #FFD70015 100%)", emoji: "🤠", title: "Toro mecánico evento empresa" },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🎪", title: "Pista obstáculos 15m en kermés" },
+];
+---
+
+<PageLayout
+  title="Galería de Eventos — Inflables para Fiestas y Kermeses | INFLABLEE"
+  description="Galería de fotos de eventos con inflables INFLABLEE: cumpleaños infantiles, kermeses escolares, eventos corporativos y más en CDMX y Estado de México."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Galería" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Galería de eventos"
+      title="Momentos de pura\n<span>diversión inflable</span>"
+      desc="Más de 500 eventos realizados en CDMX y Estado de México. Mira cómo transformamos cada fiesta en un recuerdo inolvidable."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, vi la galería y quiero cotizar para mi evento.")}`, label: "Quiero esto para mi fiesta", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "500+", label: "Eventos realizados" },
+        { value: "4.9★", label: "Calificación promedio" },
+        { value: "0", label: "Eventos cancelados" },
+      ]}
+    />
+
+    <!-- Filtros de categoría -->
+    <nav style="background:var(--color-white);border-bottom:2px solid var(--color-border);padding:1rem 0;position:sticky;top:72px;z-index:100;">
+      <div class="container">
+        <div style="display:flex;gap:0.5rem;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;">
+          <a href="#galeria" class="cat-bar__btn cat-bar__btn--active">Todos</a>
+          {categorias.map(c => (
+            <a href="#galeria" class="cat-bar__btn">{c}</a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Galería grid -->
+    <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);" id="galeria">
+      <div class="container">
+        <SectionHeader
+          title="Nuestros mejores momentos"
+          subtitle="Cada foto representa una fiesta exitosa y familias felices."
+        />
+        <div class="galeria-grid" style="margin-top:var(--spacing-xl);">
+          {galeria.map((item, i) => (
+            <div class={`galeria-item${i === 0 || i === 7 ? " galeria-item--wide" : ""}`} style={`background:${item.gradient};`}>
+              <div class="galeria-item__overlay">
+                <span class="galeria-item__emoji">{item.emoji}</span>
+                <div class="galeria-item__info">
+                  <span class="galeria-item__cat">{item.cat}</span>
+                  <span class="galeria-item__title">{item.title}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA social proof -->
+    <section style="padding:var(--spacing-3xl) 0;text-align:center;">
+      <div class="container" style="max-width:680px;">
+        <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--color-secondary);margin-bottom:1rem;">¿Tu fiesta podría ser la próxima?</h2>
+        <p style="color:var(--color-text-light);font-size:var(--font-size-lg);line-height:1.7;margin-bottom:var(--spacing-xl);">
+          Únete a las más de 500 familias y empresas que ya confiaron en INFLABLEE para hacer sus eventos especiales.
+        </p>
+        <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, vi la galería y quiero cotizar inflables para mi evento.")}`}
+          class="btn btn--primary" target="_blank" rel="noopener" style="font-size:var(--font-size-base);padding:1rem 2rem;">
+          Cotizar mi evento ahora →
+        </a>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>
+
+<style>
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .galeria-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1200px) {
+  .galeria-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.galeria-item {
+  position: relative;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+  transition: transform var(--transition-base);
+}
+.galeria-item:hover { transform: scale(1.02); }
+.galeria-item--wide {
+  grid-column: span 2;
+  aspect-ratio: 16/7;
+}
+.galeria-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
+  transition: background var(--transition-base);
+}
+.galeria-item:hover .galeria-item__overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 100%);
+}
+.galeria-item__emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+.galeria-item__info {
+  position: absolute;
+  bottom: 0.875rem;
+  left: 0.875rem;
+  right: 0.875rem;
+}
+.galeria-item__cat {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 0.2rem;
+}
+.galeria-item__title {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+}
+</style>

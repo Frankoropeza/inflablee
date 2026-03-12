@@ -1,0 +1,82 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const todos = await getCollection("inflables");
+const inflables = todos
+  .filter(i => i.data.categoria === "toboganes-acuaticos")
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<PageLayout
+  title="Toboganes Acuáticos para Renta CDMX y Edomex | INFLABLEE"
+  description="Renta de toboganes acuáticos inflables en CDMX y Estado de México. Toboganes con chapoteadero, doble carril y albercas inflables. Perfectos para el verano."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Toboganes Acuáticos" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Toboganes acuáticos"
+      title="Toboganes de agua para\n<span>fiestas de verano</span>"
+      desc="Diversión y frescura en uno. Toboganes con chapoteadero, doble carril y albercas inflables para fiestas en jardín. ¡El hit del verano en CDMX!"
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un tobogán acuático.")}`, label: "Cotizar tobogán", variant: "primary" },
+        { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "1.5-5m", label: "Alturas disponibles" },
+        { value: "100%", label: "Supervisión incluida" },
+        { value: "CDMX", label: "Cobertura" },
+      ]}
+    />
+
+    <section class="prod-catalog">
+      <div class="container">
+        <SectionHeader
+          title="Toboganes acuáticos disponibles"
+          subtitle="Desde albercas para bebés hasta toboganes gigantes de 5 metros. Encuentra el ideal para tu evento."
+        />
+        <div class="prod-catalog__grid">
+          {inflables.map(i => (
+            <InflableCard
+              title={i.data.title}
+              descripcion={i.data.descripcion}
+              categoria={i.data.categoria}
+              precio_desde={i.data.precio_desde}
+              capacidad={i.data.capacidad}
+              medidas={i.data.medidas}
+              tiempo_instalacion={i.data.tiempo_instalacion}
+              slug={i.data.slug}
+              disponible={i.data.disponible}
+              featured={i.data.featured}
+              gradient="linear-gradient(135deg, #1A1A2E18 0%, #0077CC18 100%)"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);">
+      <div class="container" style="max-width:860px;">
+        <h2 style="font-size:var(--font-size-2xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-lg);">Toboganes acuáticos en CDMX y Estado de México</h2>
+        <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:1rem;">
+          Los <strong>toboganes inflables con agua</strong> son los inflables más populares durante la temporada de calor (marzo–octubre) en la Ciudad de México y el Estado de México. Con temperaturas que superan los 28°C, un tobogán acuático transforma cualquier fiesta en una aventura refrescante.
+        </p>
+        <p style="color:var(--color-text-light);line-height:1.8;">
+          En INFLABLEE contamos con toboganes desde 4 hasta 5 metros de altura, modelos de doble carril para competencia, y albercas inflables para los más pequeños. Llevamos todo lo necesario: lona de piso, soplador y sistema de agua. Solo necesitas una manguera de jardín.
+        </p>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Listo para el tobogán más divertido del verano?"
+      subtitle="Reserva con anticipación. Los toboganes acuáticos se agotan rápido en temporada alta."
+    />
+    <LeadCapture />
+  </main>
+</PageLayout>

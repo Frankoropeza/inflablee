@@ -1,0 +1,294 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import StatsBar from "@/components/StatsBar.astro";
+import CategoryCard from "@/components/CategoryCard.astro";
+import PricingCard from "@/components/PricingCard.astro";
+import WhyUs from "@/components/WhyUs.astro";
+import TestimonialCard from "@/components/TestimonialCard.astro";
+import ZonaCard from "@/components/ZonaCard.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import FaqItem from "@/components/FaqItem.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+import { getCollection } from "astro:content";
+
+const blogPosts = (await getCollection("blog"))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const categorias = [
+  { title: "Castillos Inflables", description: "Brincalines, castillos temáticos y combos con tobogán. El favorito de los niños.", href: "/inflables/castillos-inflables", emoji: "🏰", count: 5, gradient: "linear-gradient(135deg, #FF4B1F 0%, #FF7B57 100%)" },
+  { title: "Toboganes Acuáticos", description: "Toboganes con agua, doble carril y albercas inflables para el verano.", href: "/inflables/toboganes-acuaticos", emoji: "🌊", count: 3, gradient: "linear-gradient(135deg, #0077CC 0%, #00A5E0 100%)" },
+  { title: "Pistas de Obstáculos", description: "Hasta 15 metros de adrenalina: túneles, montañas y tobogán final.", href: "/inflables/pistas-obstaculos", emoji: "🏃", count: 2, gradient: "linear-gradient(135deg, #1A1A2E 0%, #4A4A6A 100%)" },
+  { title: "Juegos Interactivos", description: "Ring de boxeo, toro mecánico y más. Para niños y adultos.", href: "/inflables/juegos-interactivos", emoji: "🥊", count: 2, gradient: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)" },
+  { title: "Inflables Gigantes", description: "Los más grandes del catálogo para eventos masivos y kermeses.", href: "/inflables/inflables-gigantes", emoji: "🎪", count: 4, gradient: "linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%)" },
+  { title: "Paquetes Completos", description: "Combina inflables y ahorra hasta 20%. Todo incluido.", href: "/servicios/paquetes", emoji: "📦", count: 6, gradient: "linear-gradient(135deg, #38A169 0%, #68D391 100%)" },
+];
+
+const serviciosDestacados = [
+  { icon: "🎂", title: "Fiestas infantiles", desc: "Castillos temáticos, toboganes y paquetes completos para el cumpleaños perfecto. Supervisión incluida.", href: "/servicios/fiestas-infantiles", badge: "Más pedido" },
+  { icon: "🏫", title: "Eventos escolares", desc: "Kermeses, días del niño y festivales. Paquetes para 50 hasta 500 niños con factura.", href: "/servicios/eventos-escolares", badge: "Factura CFDI" },
+  { icon: "🏢", title: "Eventos corporativos", desc: "Team building y convivencias con ring de boxeo, toro mecánico y pistas de obstáculos.", href: "/servicios/eventos-corporativos", badge: "Empresas" },
+];
+
+const paquetes = [
+  {
+    title: "Paquete Básico",
+    price: "desde $1,200",
+    description: "1 inflable + supervisor. Para fiestas de hasta 30 niños.",
+    includes: ["1 castillo inflable", "Entrega e instalación", "Supervisor durante el evento", "5 horas de renta"],
+    featured: false,
+  },
+  {
+    title: "Paquete Familiar",
+    price: "desde $2,200",
+    description: "2 inflables + supervisión. La opción más popular para cumpleaños.",
+    includes: ["1 castillo + 1 tobogán/juego", "Entrega e instalación", "2 supervisores", "6 horas de renta", "10% de descuento"],
+    featured: true,
+    badge: "⭐ El más elegido",
+  },
+  {
+    title: "Paquete Escolar",
+    price: "desde $4,500",
+    description: "3+ inflables + pista obstáculos. Para kermeses y festivales.",
+    includes: ["Pista obstáculos + 2 castillos", "Instalación completa", "3-4 supervisores", "8 horas de renta", "Factura electrónica", "15% de descuento"],
+    featured: false,
+  },
+];
+
+const testimonios = [
+  { name: "Laura Martínez", text: "El castillo inflable llegó puntual, limpio y los niños la pasaron increíble. Totalmente recomendados para fiestas infantiles.", event: "Cumpleaños infantil en Coyoacán", stars: 5 },
+  { name: "Carlos Ramírez", text: "Rentamos el tobogán acuático para el cumpleaños de mi hijo. Instalación rápida, personal amable y los inflables en perfectas condiciones.", event: "Fiesta de verano en Naucalpan", stars: 5 },
+  { name: "Ana García", text: "Contratamos el paquete corporativo para el día del niño en la empresa. Todo perfecto, los niños felices y los papás tranquilos.", event: "Evento corporativo en Santa Fe", stars: 5 },
+  { name: "Roberto Sánchez", text: "La pista de obstáculos fue el hit de la kermés escolar. 200 niños la disfrutaron todo el día sin ningún problema.", event: "Kermés escolar en Iztapalapa", stars: 5 },
+];
+
+const faqs = [
+  { id: "1", question: "¿Qué incluye la renta de inflables?", answer: "Incluye entrega, instalación, inflador eléctrico, supervisión durante todo el evento y retiro al finalizar. Solo necesitas tener acceso a una toma de corriente eléctrica." },
+  { id: "2", question: "¿Con cuánta anticipación debo reservar?", answer: "Te recomendamos reservar con al menos 3 a 5 días de anticipación, especialmente en temporada alta (abril, mayo, diciembre). Para eventos de último momento, contáctanos y haremos lo posible." },
+  { id: "3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Todos nuestros inflables cuentan con certificaciones de seguridad, son sanitizados antes de cada evento y contamos con seguro de responsabilidad civil. Un supervisor estará presente durante toda la renta." },
+  { id: "4", question: "¿Cuánto espacio necesito?", answer: "Depende del inflable. Un brincalín estándar necesita 5×5 metros más perímetro de seguridad. Los toboganes grandes pueden requerir hasta 15×5 metros. Te asesoramos al cotizar." },
+  { id: "5", question: "¿Qué pasa si llueve?", answer: "Si las condiciones climáticas no permiten la instalación segura, te ofrecemos reagendar sin costo adicional o la devolución completa de tu anticipo." },
+];
+---
+
+<PageLayout
+  title="INFLABLEE — Renta de Inflables para Fiestas y Eventos en CDMX y Edomex"
+  description="Renta de inflables, brincalines, castillos inflables y toboganes para fiestas infantiles y eventos en CDMX y Estado de México. Entrega, instalación y supervisión incluida."
+  pageType="home"
+>
+  <main id="contenido-principal">
+
+    <!-- 1. HERO -->
+    <PageHero
+      eyebrow="CDMX y Estado de México · Entrega e instalación incluida"
+      title="Haz de tu fiesta algo <span>inolvidable</span>"
+      desc="Castillos inflables, toboganes acuáticos, brincalines y juegos interactivos para cumpleaños, posadas, eventos corporativos y más. Todo incluido: entrega, instalación y supervisión."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`, label: "Cotizar por WhatsApp", variant: "primary" },
+        { href: "/inflables", label: "Ver catálogo completo", variant: "outline" },
+      ]}
+      stats={[
+        { value: "500+", label: "Eventos realizados" },
+        { value: "4.9★", label: "Calificación" },
+        { value: "100%", label: "Seguro incluido" },
+      ]}
+      size="lg"
+    />
+
+    <!-- 2. STATS BAR -->
+    <StatsBar />
+
+    <!-- 3. CATEGORÍAS -->
+    <section style="padding:var(--spacing-4xl) 0;">
+      <div class="container">
+        <SectionHeader
+          title="Nuestro catálogo de inflables"
+          subtitle="Diversión garantizada para todas las edades. Encuentra el inflable perfecto para tu evento."
+          link={{ text: "Ver catálogo completo →", href: "/inflables" }}
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
+          {categorias.map(c => (
+            <CategoryCard
+              title={c.title}
+              description={c.description}
+              href={c.href}
+              emoji={c.emoji}
+              count={c.count}
+              gradient={c.gradient}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SERVICIOS DESTACADOS -->
+    <section style="padding:var(--spacing-4xl) 0;background:var(--color-accent);">
+      <div class="container">
+        <SectionHeader
+          title="¿Para qué tipo de evento necesitas inflables?"
+          subtitle="Personalizamos cada renta según tu celebración. Desde fiestas íntimas hasta kermeses con 500 niños."
+          link={{ text: "Ver todos los servicios →", href: "/servicios" }}
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
+          {serviciosDestacados.map(s => (
+            <a href={s.href} class="svc-card" style="text-decoration:none;color:inherit;">
+              <div class="svc-card__header">
+                <span class="svc-card__icon">{s.icon}</span>
+                <span class="svc-card__badge">{s.badge}</span>
+              </div>
+              <h3 class="svc-card__title">{s.title}</h3>
+              <p class="svc-card__desc">{s.desc}</p>
+              <span class="svc-card__link">Ver servicio →</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WHY US -->
+    <WhyUs />
+
+    <!-- 6. PAQUETES -->
+    <section style="padding:var(--spacing-4xl) 0;background:var(--color-accent);" id="paquetes">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes populares"
+          subtitle="Combina inflables y ahorra. Sin sorpresas ni costos ocultos."
+          link={{ text: "Ver todos los paquetes →", href: "/servicios/paquetes" }}
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
+          {paquetes.map(p => (
+            <PricingCard
+              title={p.title}
+              price={p.price}
+              description={p.description}
+              includes={p.includes}
+              featured={p.featured}
+              badge={p.badge}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. GALERÍA PREVIEW -->
+    <section style="padding:var(--spacing-4xl) 0;" id="galeria">
+      <div class="container">
+        <SectionHeader
+          title="Galería de eventos"
+          subtitle="Momentos de diversión en fiestas y eventos con nuestros inflables."
+          link={{ text: "Ver galería completa →", href: "/galeria" }}
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--spacing-md);margin-top:var(--spacing-2xl);">
+          {[
+            { emoji: "🎂", label: "Cumpleaños", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)" },
+            { emoji: "🌊", label: "Tobogán acuático", gradient: "linear-gradient(135deg, #0077CC22 0%, #00A5E022 100%)" },
+            { emoji: "🏫", label: "Kermés escolar", gradient: "linear-gradient(135deg, #16a34a18 0%, #16a34a08 100%)" },
+            { emoji: "🏰", label: "Castillo dragón", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E15 100%)" },
+            { emoji: "🏃", label: "Pista obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F12 100%)" },
+            { emoji: "🥊", label: "Ring de boxeo", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)" },
+          ].map(item => (
+            <a href="/galeria" style={`background:${item.gradient};border-radius:var(--border-radius-lg);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;transition:transform 0.2s;`}>
+              <span style="font-size:3rem;">{item.emoji}</span>
+              <span style="font-size:var(--font-size-sm);font-weight:700;color:var(--color-secondary);">{item.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. TESTIMONIOS -->
+    <section style="background:var(--color-secondary);padding:var(--spacing-4xl) 0;color:#fff;">
+      <div class="container">
+        <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);text-align:center;font-weight:800;color:#fff;margin-bottom:var(--spacing-sm);">Lo que dicen nuestros clientes</h2>
+        <p style="text-align:center;color:rgba(255,255,255,0.65);margin-bottom:var(--spacing-2xl);font-size:var(--font-size-lg);">Más de 500 eventos exitosos nos respaldan</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--spacing-xl);">
+          {testimonios.map(t => (
+            <TestimonialCard
+              name={t.name}
+              text={t.text}
+              event={t.event}
+              stars={t.stars}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. ZONAS DE COBERTURA -->
+    <section class="home-zonas">
+      <div class="container">
+        <div class="home-zonas__header">
+          <h2 class="home-zonas__title">📍 Zonas de cobertura</h2>
+          <p class="home-zonas__subtitle">Entregamos en toda la zona metropolitana de la Ciudad de México y Estado de México.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--spacing-md);">
+          <ZonaCard nombre="Coyoacán" tipo="cdmx" colonias={["Del Carmen","Pedregal","Xotepingo","Copilco"]} href="/zonas/cdmx" />
+          <ZonaCard nombre="Iztapalapa" tipo="cdmx" colonias={["Santa Cruz","Cuatro Árboles","Los Reyes","Jardín Balbuena"]} href="/zonas/cdmx" destacada={true} />
+          <ZonaCard nombre="Benito Juárez" tipo="cdmx" colonias={["Del Valle","Narvarte","Nápoles","Insurgentes"]} href="/zonas/cdmx" />
+          <ZonaCard nombre="Ecatepec" tipo="edomex" colonias={["Las Américas","Ciudad Azteca","Jardines de Morelos"]} href="/zonas/estado-de-mexico" destacada={true} />
+          <ZonaCard nombre="Naucalpan" tipo="edomex" colonias={["Satélite","Lomas Verdes","San Bartolo"]} href="/zonas/estado-de-mexico" />
+          <ZonaCard nombre="Nezahualcóyotl" tipo="edomex" colonias={["Ciudad Lago","Jardines","Metropolitana"]} href="/zonas/estado-de-mexico" />
+        </div>
+        <div style="text-align:center;margin-top:var(--spacing-xl);">
+          <a href="/zonas" class="btn btn--outline" style="border-color:var(--color-primary);color:var(--color-primary);">Ver todas las zonas de cobertura →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. BLOG PREVIEW -->
+    {blogPosts.length > 0 && (
+      <section style="padding:var(--spacing-4xl) 0;">
+        <div class="container">
+          <SectionHeader
+            title="Blog: guías y consejos"
+            subtitle="Tips para elegir inflables, precios, seguridad y más."
+            link={{ text: "Ver todos los artículos →", href: "/blog" }}
+          />
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
+            {blogPosts.map(post => (
+              <BlogCard
+                title={post.data.title}
+                description={post.data.description}
+                slug={post.slug}
+                pubDate={post.data.pubDate}
+                category={post.data.category ?? "General"}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- 11. CTA BANNER -->
+    <CTABanner
+      eyebrow="🎉 Reserva tu fecha hoy"
+      title="¿Listo para hacer tu fiesta inolvidable?"
+      subtitle="Reserva hoy con disponibilidad garantizada. Entrega e instalación incluida en CDMX y Estado de México."
+    />
+
+    <!-- FAQ -->
+    <section style="padding:var(--spacing-4xl) 0;">
+      <div class="container" style="max-width:800px;">
+        <SectionHeader
+          title="Preguntas frecuentes"
+          subtitle="Todo lo que necesitas saber sobre la renta de inflables."
+        />
+        <div style="margin-top:var(--spacing-2xl);">
+          {faqs.map(faq => (
+            <FaqItem id={faq.id} question={faq.question} answer={faq.answer} />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. LEAD CAPTURE -->
+    <LeadCapture />
+
+  </main>
+</PageLayout>

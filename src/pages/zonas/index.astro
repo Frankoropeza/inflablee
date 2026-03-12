@@ -1,0 +1,116 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import ZonaCard from "@/components/ZonaCard.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { SITE } from "@/data/site";
+
+const zonasCDMX = [
+  { nombre: "Iztapalapa", colonias: ["Jardín Balbuena", "Cuatro Árboles", "Santa Cruz Meyehualco", "Pueblo de Los Reyes"] },
+  { nombre: "Gustavo A. Madero", colonias: ["Lindavista", "Tepeyac Insurgentes", "Nueva Atzacoalco", "Cuautepec"] },
+  { nombre: "Álvaro Obregón", colonias: ["Santa Fe", "Tetelpan", "Olivar del Conde", "Lomas de Santa Fe"] },
+  { nombre: "Tlalpan", colonias: ["Pedregal de San Ángel", "Isidro Fabela", "Ajusco", "Xochimilco"] },
+  { nombre: "Coyoacán", colonias: ["Del Carmen", "Pedregal de Santa Úrsula", "Xotepingo", "Copilco"] },
+  { nombre: "Xochimilco", colonias: ["La Nativitas", "San Gregorio Atlapulco", "Santa Cruz Xochitepec"] },
+  { nombre: "Azcapotzalco", colonias: ["Del Gas", "Clavería", "San Álvaro", "Tlatilco"] },
+  { nombre: "Benito Juárez", colonias: ["Del Valle", "Narvarte", "Nápoles", "Insurgentes Mixcoac"] },
+];
+
+const zonasEdomex = [
+  { nombre: "Ecatepec", colonias: ["Las Américas", "Ciudad Azteca", "Jardines de Morelos", "Xalostoc"] },
+  { nombre: "Nezahualcóyotl", colonias: ["Ciudad Lago", "Jardines", "Metropolitana", "Benito Juárez"] },
+  { nombre: "Toluca", colonias: ["Las Torres", "San Buenaventura", "Universidad", "Pilares"] },
+  { nombre: "Naucalpan", colonias: ["Satélite", "Lomas Verdes", "San Bartolo", "Industrial Vallejo"] },
+  { nombre: "Tlalnepantla", colonias: ["San Andrés Atenco", "La Romana", "Tequesquináhuac", "Industrial"] },
+  { nombre: "Chimalhuacán", colonias: ["La Guadalupana", "Ejido de Chimalhuacán", "Los Laureles"] },
+  { nombre: "Ixtapaluca", colonias: ["San Buenaventura", "Las Canteras", "El Tejocote"] },
+  { nombre: "Valle de México", colonias: ["Tecámac", "Tecalco", "San Marcos", "Santa Cruz"] },
+];
+---
+
+<PageLayout
+  title="Zonas de Cobertura de Renta de Inflables — CDMX y Estado de México | INFLABLEE"
+  description="INFLABLEE entrega inflables en toda la Ciudad de México y Estado de México. Consulta tu alcaldía o municipio. Entrega e instalación incluida sin costo extra en zonas principales."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas de Cobertura" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Zonas de cobertura"
+      title="Llevamos inflables a\n<span>toda la zona metropolitana</span>"
+      desc="Entregamos en CDMX y Estado de México. Más de 50 alcaldías y municipios cubiertos. Consulta tu zona y cotiza sin compromiso."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero verificar si tienen cobertura en mi zona.")}`, label: "Verificar mi zona", variant: "primary" },
+        { href: "#cdmx", label: "Ver zonas", variant: "outline" },
+      ]}
+      stats={[
+        { value: "16", label: "Alcaldías CDMX" },
+        { value: "30+", label: "Municipios Edomex" },
+        { value: "0", label: "Costo de entrega*" },
+      ]}
+    />
+
+    <!-- CDMX -->
+    <section class="zonas-section" id="cdmx">
+      <div class="container">
+        <SectionHeader
+          title="🏙️ Ciudad de México"
+          subtitle="Cubrimos las 16 alcaldías de la CDMX. Entrega sin costo en la mayoría de las zonas."
+          link={{ text: "Ver detalle CDMX →", href: "/zonas/cdmx" }}
+        />
+        <div class="zonas-grid">
+          {zonasCDMX.map(z => (
+            <ZonaCard
+              nombre={z.nombre}
+              tipo="cdmx"
+              colonias={z.colonias}
+              href="/zonas/cdmx"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Estado de México -->
+    <section class="zonas-section zonas-section--alt" id="edomex">
+      <div class="container">
+        <SectionHeader
+          title="🏘️ Estado de México"
+          subtitle="Más de 30 municipios del Estado de México en nuestra zona de cobertura."
+          link={{ text: "Ver detalle Edomex →", href: "/zonas/estado-de-mexico" }}
+        />
+        <div class="zonas-grid">
+          {zonasEdomex.map(z => (
+            <ZonaCard
+              nombre={z.nombre}
+              tipo="edomex"
+              colonias={z.colonias}
+              href="/zonas/estado-de-mexico"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Nota -->
+    <section style="padding:var(--spacing-2xl) 0;border-top:1px solid var(--color-border);">
+      <div class="container" style="max-width:720px;text-align:center;">
+        <h2 style="font-size:var(--font-size-xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-md);">*Política de entrega</h2>
+        <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:1rem;">
+          La entrega es <strong>sin costo adicional</strong> en la mayoría de las zonas de CDMX y el área conurbada del Estado de México. Para municipios más alejados (Toluca, Ixtapaluca, zonas rurales), puede aplicar un costo de traslado que te indicamos al cotizar.
+        </p>
+        <p style="color:var(--color-text-light);line-height:1.8;">
+          ¿Tu zona no aparece en la lista? Escríbenos — probablemente podamos llegar. Cubrimos un radio aproximado de 50 km desde el centro de la CDMX.
+        </p>
+        <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero verificar si tienen cobertura en mi zona.")}`}
+          class="btn btn--primary" style="margin-top:var(--spacing-lg);display:inline-flex;" target="_blank" rel="noopener">
+          Consultar mi zona por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <CTABanner />
+    <LeadCapture />
+  </main>
+</PageLayout>
