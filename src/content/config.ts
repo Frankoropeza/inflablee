@@ -48,6 +48,7 @@ const inflables = defineCollection({
     tiempo_instalacion: z.string(),
     descripcion: z.string(),
     imagen: z.string().optional(),
+    imagenes: z.array(z.string()).default([]),
     disponible: z.boolean().default(true),
     featured: z.boolean().default(false),
     order: z.number().default(99),

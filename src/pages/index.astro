@@ -1,252 +1,392 @@
 ---
 import PageLayout from "@/layouts/PageLayout.astro";
-import PageHero from "@/components/PageHero.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
-import StatsBar from "@/components/StatsBar.astro";
-import CategoryCard from "@/components/CategoryCard.astro";
-import PricingCard from "@/components/PricingCard.astro";
-import WhyUs from "@/components/WhyUs.astro";
-import TestimonialCard from "@/components/TestimonialCard.astro";
-import ZonaCard from "@/components/ZonaCard.astro";
-import BlogCard from "@/components/BlogCard.astro";
+import InflableCard from "@/components/InflableCard.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import FaqItem from "@/components/FaqItem.astro";
-import LeadCapture from "@/components/LeadCapture.astro";
+import BlogCard from "@/components/BlogCard.astro";
 import { SITE } from "@/data/site";
 import { getCollection } from "astro:content";
+
+const allInflables = await getCollection("inflables");
+const inflables = allInflables
+  .filter(i => i.data.disponible)
+  .sort((a, b) => a.data.order - b.data.order);
 
 const blogPosts = (await getCollection("blog"))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
   .slice(0, 3);
 
-const categorias = [
-  { title: "Castillos Inflables", description: "Brincalines, castillos temáticos y combos con tobogán. El favorito de los niños.", href: "/inflables/castillos-inflables", emoji: "🏰", count: 5, gradient: "linear-gradient(135deg, #FF4B1F 0%, #FF7B57 100%)" },
-  { title: "Toboganes Acuáticos", description: "Toboganes con agua, doble carril y albercas inflables para el verano.", href: "/inflables/toboganes-acuaticos", emoji: "🌊", count: 3, gradient: "linear-gradient(135deg, #0077CC 0%, #00A5E0 100%)" },
-  { title: "Pistas de Obstáculos", description: "Hasta 15 metros de adrenalina: túneles, montañas y tobogán final.", href: "/inflables/pistas-obstaculos", emoji: "🏃", count: 2, gradient: "linear-gradient(135deg, #1A1A2E 0%, #4A4A6A 100%)" },
-  { title: "Juegos Interactivos", description: "Ring de boxeo, toro mecánico y más. Para niños y adultos.", href: "/inflables/juegos-interactivos", emoji: "🥊", count: 2, gradient: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)" },
-  { title: "Inflables Gigantes", description: "Los más grandes del catálogo para eventos masivos y kermeses.", href: "/inflables/inflables-gigantes", emoji: "🎪", count: 4, gradient: "linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%)" },
-  { title: "Paquetes Completos", description: "Combina inflables y ahorra hasta 20%. Todo incluido.", href: "/servicios/paquetes", emoji: "📦", count: 6, gradient: "linear-gradient(135deg, #38A169 0%, #68D391 100%)" },
-];
-
-const serviciosDestacados = [
-  { icon: "🎂", title: "Fiestas infantiles", desc: "Castillos temáticos, toboganes y paquetes completos para el cumpleaños perfecto. Supervisión incluida.", href: "/servicios/fiestas-infantiles", badge: "Más pedido" },
-  { icon: "🏫", title: "Eventos escolares", desc: "Kermeses, días del niño y festivales. Paquetes para 50 hasta 500 niños con factura.", href: "/servicios/eventos-escolares", badge: "Factura CFDI" },
-  { icon: "🏢", title: "Eventos corporativos", desc: "Team building y convivencias con ring de boxeo, toro mecánico y pistas de obstáculos.", href: "/servicios/eventos-corporativos", badge: "Empresas" },
-];
-
-const paquetes = [
-  {
-    title: "Paquete Básico",
-    price: "desde $1,200",
-    description: "1 inflable + supervisor. Para fiestas de hasta 30 niños.",
-    includes: ["1 castillo inflable", "Entrega e instalación", "Supervisor durante el evento", "5 horas de renta"],
-    featured: false,
-  },
-  {
-    title: "Paquete Familiar",
-    price: "desde $2,200",
-    description: "2 inflables + supervisión. La opción más popular para cumpleaños.",
-    includes: ["1 castillo + 1 tobogán/juego", "Entrega e instalación", "2 supervisores", "6 horas de renta", "10% de descuento"],
-    featured: true,
-    badge: "⭐ El más elegido",
-  },
-  {
-    title: "Paquete Escolar",
-    price: "desde $4,500",
-    description: "3+ inflables + pista obstáculos. Para kermeses y festivales.",
-    includes: ["Pista obstáculos + 2 castillos", "Instalación completa", "3-4 supervisores", "8 horas de renta", "Factura electrónica", "15% de descuento"],
-    featured: false,
-  },
-];
+const waBase = `https://wa.me/${SITE.whatsapp}`;
+const waCotizar = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento 🎈")}`;
+const waCatalogo = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, me gustaría ver el catálogo completo de inflables.")}`;
 
 const testimonios = [
-  { name: "Laura Martínez", text: "El castillo inflable llegó puntual, limpio y los niños la pasaron increíble. Totalmente recomendados para fiestas infantiles.", event: "Cumpleaños infantil en Coyoacán", stars: 5 },
-  { name: "Carlos Ramírez", text: "Rentamos el tobogán acuático para el cumpleaños de mi hijo. Instalación rápida, personal amable y los inflables en perfectas condiciones.", event: "Fiesta de verano en Naucalpan", stars: 5 },
-  { name: "Ana García", text: "Contratamos el paquete corporativo para el día del niño en la empresa. Todo perfecto, los niños felices y los papás tranquilos.", event: "Evento corporativo en Santa Fe", stars: 5 },
-  { name: "Roberto Sánchez", text: "La pista de obstáculos fue el hit de la kermés escolar. 200 niños la disfrutaron todo el día sin ningún problema.", event: "Kermés escolar en Iztapalapa", stars: 5 },
+  { name: "Laura Martínez", inicial: "L", color: "#FF4B1F", text: "El castillo inflable llegó puntual, limpio y los niños la pasaron increíble. Totalmente recomendados. El supervisor fue super atento con los niños todo el tiempo.", event: "Cumpleaños infantil · Coyoacán", stars: 5 },
+  { name: "Carlos Ramírez", inicial: "C", color: "#0077CC", text: "Rentamos el barco pirata para el cumpleaños de mi hijo. Instalación rapidísima, personal muy amable y el inflable en perfectas condiciones. Ya los contratamos por tercera vez.", event: "Fiesta temática pirata · Naucalpan", stars: 5 },
+  { name: "Ana García", inicial: "A", color: "#7C3AED", text: "Contratamos la pista extremo para el día del niño en la empresa. Los niños felices, los papás tranquilos y el personal muy profesional. Los recomendaría 100%.", event: "Evento corporativo · Santa Fe", stars: 5 },
+  { name: "Roberto Sánchez", inicial: "R", color: "#059669", text: "La pista de obstáculos fue el hit de la kermés escolar. 200 niños la disfrutaron todo el día sin ningún problema. Precio justo y servicio de primera.", event: "Kermés escolar · Iztapalapa", stars: 5 },
 ];
 
 const faqs = [
-  { id: "1", question: "¿Qué incluye la renta de inflables?", answer: "Incluye entrega, instalación, inflador eléctrico, supervisión durante todo el evento y retiro al finalizar. Solo necesitas tener acceso a una toma de corriente eléctrica." },
-  { id: "2", question: "¿Con cuánta anticipación debo reservar?", answer: "Te recomendamos reservar con al menos 3 a 5 días de anticipación, especialmente en temporada alta (abril, mayo, diciembre). Para eventos de último momento, contáctanos y haremos lo posible." },
-  { id: "3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Todos nuestros inflables cuentan con certificaciones de seguridad, son sanitizados antes de cada evento y contamos con seguro de responsabilidad civil. Un supervisor estará presente durante toda la renta." },
-  { id: "4", question: "¿Cuánto espacio necesito?", answer: "Depende del inflable. Un brincalín estándar necesita 5×5 metros más perímetro de seguridad. Los toboganes grandes pueden requerir hasta 15×5 metros. Te asesoramos al cotizar." },
-  { id: "5", question: "¿Qué pasa si llueve?", answer: "Si las condiciones climáticas no permiten la instalación segura, te ofrecemos reagendar sin costo adicional o la devolución completa de tu anticipo." },
+  { id: "f1", question: "¿Qué incluye la renta de inflables?", answer: "Incluye entrega, instalación, soplador eléctrico, supervisor capacitado durante todo el evento, seguro de responsabilidad civil, sanitización previa y retiro al finalizar. Solo necesitas tener acceso a una toma de corriente eléctrica." },
+  { id: "f2", question: "¿Con cuánta anticipación debo reservar?", answer: "Recomendamos reservar con 3 a 5 días de anticipación, especialmente en temporada alta (abril, mayo, diciembre). Para eventos de último momento, contáctanos y haremos lo posible por atenderte." },
+  { id: "f3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Todos nuestros inflables cuentan con certificaciones de seguridad, son sanitizados antes de cada evento y contamos con seguro de responsabilidad civil. Un supervisor estará presente durante toda la renta para cuidar a los niños." },
+  { id: "f4", question: "¿Cuánto espacio necesito en mi casa o salón?", answer: "Depende del inflable. Un mini castillo necesita solo 3×3 m. Los inflables medianos entre 4×4 y 5×5 m. La pista extremo requiere 9×4 m. En todos los casos necesitas 50 cm adicionales de perímetro de seguridad. Te asesoramos al cotizar." },
+  { id: "f5", question: "¿Qué pasa si llueve el día de mi evento?", answer: "Si las condiciones climáticas no permiten la instalación segura, te ofrecemos reagendar sin costo adicional o la devolución completa de tu anticipo. Tu inversión está protegida." },
+  { id: "f6", question: "¿Aceptan pago con tarjeta o transferencia?", answer: "Sí. Aceptamos efectivo, transferencia SPEI, tarjeta de débito y crédito. Para reservar se requiere un anticipo del 50% y el resto se liquida el día del evento." },
+  { id: "f7", question: "¿Hacen envíos a toda la CDMX y Estado de México?", answer: "Cubrimos toda la CDMX y la zona metropolitana del Estado de México sin costo adicional de entrega. Para zonas más alejadas puede aplicar un pequeño cargo de transporte. Consulta al cotizar." },
+  { id: "f8", question: "¿Cuánto tiempo dura la renta?", answer: "El tiempo estándar es de 4 a 6 horas de uso efectivo. Si necesitas más tiempo, podemos extender la renta con un costo adicional. Consúltanos según tu evento." },
+];
+
+const zonas = [
+  "Coyoacán", "Iztapalapa", "Benito Juárez", "Gustavo A. Madero",
+  "Tlalpan", "Xochimilco", "Álvaro Obregón", "Miguel Hidalgo",
+  "Ecatepec", "Naucalpan", "Nezahualcóyotl", "Tlalnepantla",
+  "Chimalhuacán", "Texcoco", "Tultitlán", "Cuautitlán"
 ];
 ---
 
 <PageLayout
-  title="INFLABLEE — Renta de Inflables para Fiestas y Eventos en CDMX y Edomex"
-  description="Renta de inflables, brincalines, castillos inflables y toboganes para fiestas infantiles y eventos en CDMX y Estado de México. Entrega, instalación y supervisión incluida."
+  title="INFLABLEE — Renta de Inflables para Fiestas en CDMX y Estado de México"
+  description="Renta de inflables, brincalines, castillos y toboganes en CDMX y Estado de México. Entrega, instalación y supervisor incluidos. Desde $800 MXN. ¡Cotiza gratis!"
   pageType="home"
 >
   <main id="contenido-principal">
 
-    <!-- 1. HERO -->
-    <PageHero
-      eyebrow="CDMX y Estado de México · Entrega e instalación incluida"
-      title="Haz de tu fiesta algo <span>inolvidable</span>"
-      desc="Castillos inflables, toboganes acuáticos, brincalines y juegos interactivos para cumpleaños, posadas, eventos corporativos y más. Todo incluido: entrega, instalación y supervisión."
-      ctas={[
-        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`, label: "Cotizar por WhatsApp", variant: "primary" },
-        { href: "/inflables", label: "Ver catálogo completo", variant: "outline" },
-      ]}
-      stats={[
-        { value: "500+", label: "Eventos realizados" },
-        { value: "4.9★", label: "Calificación" },
-        { value: "100%", label: "Seguro incluido" },
-      ]}
-      size="lg"
-    />
+    <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+    <section class="hero" aria-label="Inicio">
+      <div class="hero__particles" aria-hidden="true"></div>
+      <div class="container hero__container">
 
-    <!-- 2. STATS BAR -->
-    <StatsBar />
+        <!-- Columna izquierda -->
+        <div class="hero__left">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            Entrega e instalación GRATIS · CDMX y Estado de México
+          </div>
 
-    <!-- 3. CATEGORÍAS -->
-    <section style="padding:var(--spacing-4xl) 0;">
-      <div class="container">
-        <SectionHeader
-          title="Nuestro catálogo de inflables"
-          subtitle="Diversión garantizada para todas las edades. Encuentra el inflable perfecto para tu evento."
-          link={{ text: "Ver catálogo completo →", href: "/inflables" }}
-        />
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
-          {categorias.map(c => (
-            <CategoryCard
-              title={c.title}
-              description={c.description}
-              href={c.href}
-              emoji={c.emoji}
-              count={c.count}
-              gradient={c.gradient}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+          <h1 class="hero__title">
+            Renta de <span class="hero__title-highlight">Inflables</span><br/>
+            para Fiestas en CDMX
+          </h1>
 
-    <!-- 4. SERVICIOS DESTACADOS -->
-    <section style="padding:var(--spacing-4xl) 0;background:var(--color-accent);">
-      <div class="container">
-        <SectionHeader
-          title="¿Para qué tipo de evento necesitas inflables?"
-          subtitle="Personalizamos cada renta según tu celebración. Desde fiestas íntimas hasta kermeses con 500 niños."
-          link={{ text: "Ver todos los servicios →", href: "/servicios" }}
-        />
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
-          {serviciosDestacados.map(s => (
-            <a href={s.href} class="svc-card" style="text-decoration:none;color:inherit;">
-              <div class="svc-card__header">
-                <span class="svc-card__icon">{s.icon}</span>
-                <span class="svc-card__badge">{s.badge}</span>
-              </div>
-              <h3 class="svc-card__title">{s.title}</h3>
-              <p class="svc-card__desc">{s.desc}</p>
-              <span class="svc-card__link">Ver servicio →</span>
+          <p class="hero__desc">
+            Castillos, toboganes, barcos pirata y pistas de obstáculos para cumpleaños,
+            kermeses y eventos corporativos. Todo incluido: entrega, instalación y supervisor capacitado.
+          </p>
+
+          <div class="hero__ctas">
+            <a href={waCotizar} class="hero__btn-wa" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Cotizar por WhatsApp
             </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. WHY US -->
-    <WhyUs />
-
-    <!-- 6. PAQUETES -->
-    <section style="padding:var(--spacing-4xl) 0;background:var(--color-accent);" id="paquetes">
-      <div class="container">
-        <SectionHeader
-          title="Paquetes populares"
-          subtitle="Combina inflables y ahorra. Sin sorpresas ni costos ocultos."
-          link={{ text: "Ver todos los paquetes →", href: "/servicios/paquetes" }}
-        />
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-2xl);">
-          {paquetes.map(p => (
-            <PricingCard
-              title={p.title}
-              price={p.price}
-              description={p.description}
-              includes={p.includes}
-              featured={p.featured}
-              badge={p.badge}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. GALERÍA PREVIEW -->
-    <section style="padding:var(--spacing-4xl) 0;" id="galeria">
-      <div class="container">
-        <SectionHeader
-          title="Galería de eventos"
-          subtitle="Momentos de diversión en fiestas y eventos con nuestros inflables."
-          link={{ text: "Ver galería completa →", href: "/galeria" }}
-        />
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--spacing-md);margin-top:var(--spacing-2xl);">
-          {[
-            { emoji: "🎂", label: "Cumpleaños", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)" },
-            { emoji: "🌊", label: "Tobogán acuático", gradient: "linear-gradient(135deg, #0077CC22 0%, #00A5E022 100%)" },
-            { emoji: "🏫", label: "Kermés escolar", gradient: "linear-gradient(135deg, #16a34a18 0%, #16a34a08 100%)" },
-            { emoji: "🏰", label: "Castillo dragón", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E15 100%)" },
-            { emoji: "🏃", label: "Pista obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F12 100%)" },
-            { emoji: "🥊", label: "Ring de boxeo", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)" },
-          ].map(item => (
-            <a href="/galeria" style={`background:${item.gradient};border-radius:var(--border-radius-lg);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;text-decoration:none;transition:transform 0.2s;`}>
-              <span style="font-size:3rem;">{item.emoji}</span>
-              <span style="font-size:var(--font-size-sm);font-weight:700;color:var(--color-secondary);">{item.label}</span>
+            <a href="#catalogo" class="hero__btn-outline">
+              Ver catálogo
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
-          ))}
+          </div>
+
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <span class="hero__stat-num">500+</span>
+              <span class="hero__stat-label">Eventos realizados</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-num">8</span>
+              <span class="hero__stat-label">Modelos disponibles</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-num">4.9★</span>
+              <span class="hero__stat-label">Calificación promedio</span>
+            </div>
+            <div class="hero__stat-divider" aria-hidden="true"></div>
+            <div class="hero__stat">
+              <span class="hero__stat-num">100%</span>
+              <span class="hero__stat-label">Seguro incluido</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna derecha: imagen flotante -->
+        <div class="hero__right" aria-hidden="true">
+          <div class="hero__img-wrap">
+            <img
+              src="/img/inflables/castillo-princesas/thumb.avif"
+              alt="Castillo inflable para fiestas en CDMX"
+              width="560"
+              height="420"
+              loading="eager"
+              class="hero__img"
+            />
+            <div class="hero__img-badge hero__img-badge--price">
+              <span>Desde</span>
+              <strong>$800 MXN</strong>
+            </div>
+            <div class="hero__img-badge hero__img-badge--avail">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10" stroke="#fff" stroke-width="2.5" fill="none"/></svg>
+              Disponible hoy
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════ CATÁLOGO ════════════════════════════ -->
+    <section class="seccion seccion--alt" id="catalogo">
+      <div class="container">
+        <div class="section-header-premium">
+          <span class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Catálogo completo
+          </span>
+          <h2 class="section-title">Elige tu inflable perfecto</h2>
+          <p class="section-subtitle">8 modelos disponibles para todos los presupuestos y tipos de evento. Entrega e instalación siempre incluidas.</p>
+        </div>
+
+        {inflables.length > 0 ? (
+          <div class="inflables-grid">
+            {inflables.map(i => (
+              <InflableCard
+                title={i.data.title}
+                descripcion={i.data.descripcion}
+                categoria={i.data.categoria}
+                precio_desde={i.data.precio_desde}
+                capacidad={i.data.capacidad}
+                medidas={i.data.medidas}
+                tiempo_instalacion={i.data.tiempo_instalacion}
+                slug={i.slug}
+                imagen={i.data.imagen}
+                disponible={i.data.disponible}
+                featured={i.data.featured}
+              />
+            ))}
+          </div>
+        ) : (
+          <p style="text-align:center;color:var(--color-text-light);padding:3rem 0;">
+            Catálogo cargando... Contáctanos por WhatsApp para ver disponibilidad.
+          </p>
+        )}
+
+        <div style="text-align:center;margin-top:var(--spacing-2xl);">
+          <a href={waCatalogo} class="btn btn--outline" target="_blank" rel="noopener">
+            Ver todos los inflables por WhatsApp →
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 8. TESTIMONIOS -->
-    <section style="background:var(--color-secondary);padding:var(--spacing-4xl) 0;color:#fff;">
+    <!-- ════════════════════════════ CÓMO FUNCIONA ════════════════════════════ -->
+    <section class="seccion como-funciona">
       <div class="container">
-        <h2 style="font-size:clamp(1.5rem,3vw,2.25rem);text-align:center;font-weight:800;color:#fff;margin-bottom:var(--spacing-sm);">Lo que dicen nuestros clientes</h2>
-        <p style="text-align:center;color:rgba(255,255,255,0.65);margin-bottom:var(--spacing-2xl);font-size:var(--font-size-lg);">Más de 500 eventos exitosos nos respaldan</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--spacing-xl);">
+        <div class="section-header-premium">
+          <span class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Simple y rápido
+          </span>
+          <h2 class="section-title">¿Cómo funciona la renta?</h2>
+          <p class="section-subtitle">En 3 pasos tienes tu inflable listo para la fiesta. Sin complicaciones, sin sorpresas.</p>
+        </div>
+
+        <div class="pasos">
+          <div class="pasos__conector" aria-hidden="true"></div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">01</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <h3 class="paso__title">Cotiza por WhatsApp</h3>
+            <p class="paso__desc">Cuéntanos tu fecha, número de niños y tipo de evento. En minutos te enviamos opciones y disponibilidad.</p>
+            <a href={waCotizar} class="paso__link" target="_blank" rel="noopener">Cotizar ahora →</a>
+          </div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">02</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3 class="paso__title">Agendamos tu fecha</h3>
+            <p class="paso__desc">Confirmas tu reserva con un anticipo del 50%. Tu fecha queda bloqueada y recibes confirmación inmediata.</p>
+          </div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">03</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <h3 class="paso__title">Llegamos y montamos</h3>
+            <p class="paso__desc">El día del evento llegamos 1 hora antes, instalamos todo y supervisamos para que disfrutes sin preocupaciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════ POR QUÉ ELEGIRNOS ════════════════════════════ -->
+    <section class="seccion seccion--alt porquenos">
+      <div class="container">
+        <div class="section-header-premium">
+          <span class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            Confianza comprobada
+          </span>
+          <h2 class="section-title">¿Por qué elegirnos?</h2>
+          <p class="section-subtitle">Más de 500 familias y empresas en CDMX ya confían en INFLABLEE. Aquí está el por qué.</p>
+        </div>
+
+        <div class="razones-grid">
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(255,75,31,0.12);color:#FF4B1F;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>Entrega e instalación incluida</h3>
+              <p>Sin costos ocultos. Llevamos todo, instalamos y recogemos al terminar el evento.</p>
+            </div>
+          </div>
+
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(34,197,94,0.12);color:#16a34a;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>Sanitización antes de cada evento</h3>
+              <p>Limpiamos y desinfectamos cada inflable con productos seguros para niños antes de entregarlo.</p>
+            </div>
+          </div>
+
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(0,119,204,0.12);color:#0077CC;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>Supervisor capacitado incluido</h3>
+              <p>Un profesional estará presente durante todo el evento para garantizar la seguridad de los niños.</p>
+            </div>
+          </div>
+
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(124,58,237,0.12);color:#7C3AED;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>Seguro de responsabilidad civil</h3>
+              <p>Todos nuestros eventos están cubiertos por seguro. Tu tranquilidad y la de tus invitados está protegida.</p>
+            </div>
+          </div>
+
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(217,119,6,0.12);color:#D97706;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><path d="M12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>Garantía si llueve</h3>
+              <p>Si el clima impide el evento, reagendamos sin costo o te devolvemos tu anticipo completo.</p>
+            </div>
+          </div>
+
+          <div class="razon">
+            <div class="razon__icon" style="background:rgba(236,72,153,0.12);color:#DB2777;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div class="razon__content">
+              <h3>+500 eventos exitosos</h3>
+              <p>Años de experiencia en fiestas infantiles, corporativas y eventos masivos en toda la ZMVM.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════ TESTIMONIOS ════════════════════════════ -->
+    <section class="seccion seccion--dark testimonios-sec">
+      <div class="container">
+        <div class="section-header-premium section-header-premium--dark">
+          <span class="section-badge section-badge--dark">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Reseñas reales
+          </span>
+          <h2 class="section-title section-title--white">Lo que dicen nuestros clientes</h2>
+          <p class="section-subtitle section-subtitle--muted">+500 eventos exitosos nos respaldan. Opiniones verificadas de familias reales de CDMX.</p>
+        </div>
+
+        <div class="testimonios-grid">
           {testimonios.map(t => (
-            <TestimonialCard
-              name={t.name}
-              text={t.text}
-              event={t.event}
-              stars={t.stars}
-            />
+            <div class="testimonio">
+              <div class="testimonio__quote" aria-hidden="true">"</div>
+              <div class="testimonio__stars" aria-label={`${t.stars} estrellas`}>
+                {Array.from({ length: t.stars }).map(() => (
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                ))}
+              </div>
+              <p class="testimonio__text">{t.text}</p>
+              <div class="testimonio__author">
+                <div class="testimonio__avatar" style={`background:${t.color};`}>{t.inicial}</div>
+                <div>
+                  <div class="testimonio__name">{t.name}</div>
+                  <div class="testimonio__event">{t.event}</div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- 9. ZONAS DE COBERTURA -->
-    <section class="home-zonas">
+    <!-- ════════════════════════════ ZONAS ════════════════════════════ -->
+    <section class="seccion seccion--alt zonas-sec">
       <div class="container">
-        <div class="home-zonas__header">
-          <h2 class="home-zonas__title">📍 Zonas de cobertura</h2>
-          <p class="home-zonas__subtitle">Entregamos en toda la zona metropolitana de la Ciudad de México y Estado de México.</p>
+        <div class="section-header-premium">
+          <span class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Cobertura
+          </span>
+          <h2 class="section-title">Entregamos en toda la ZMVM</h2>
+          <p class="section-subtitle">Cubrimos CDMX y Estado de México sin costo adicional de envío.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--spacing-md);">
-          <ZonaCard nombre="Coyoacán" tipo="cdmx" colonias={["Del Carmen","Pedregal","Xotepingo","Copilco"]} href="/zonas/cdmx" />
-          <ZonaCard nombre="Iztapalapa" tipo="cdmx" colonias={["Santa Cruz","Cuatro Árboles","Los Reyes","Jardín Balbuena"]} href="/zonas/cdmx" destacada={true} />
-          <ZonaCard nombre="Benito Juárez" tipo="cdmx" colonias={["Del Valle","Narvarte","Nápoles","Insurgentes"]} href="/zonas/cdmx" />
-          <ZonaCard nombre="Ecatepec" tipo="edomex" colonias={["Las Américas","Ciudad Azteca","Jardines de Morelos"]} href="/zonas/estado-de-mexico" destacada={true} />
-          <ZonaCard nombre="Naucalpan" tipo="edomex" colonias={["Satélite","Lomas Verdes","San Bartolo"]} href="/zonas/estado-de-mexico" />
-          <ZonaCard nombre="Nezahualcóyotl" tipo="edomex" colonias={["Ciudad Lago","Jardines","Metropolitana"]} href="/zonas/estado-de-mexico" />
+
+        <div class="zonas-chips">
+          {zonas.map(z => (
+            <span class="zona-chip">{z}</span>
+          ))}
+          <span class="zona-chip zona-chip--more">+ muchas más</span>
         </div>
-        <div style="text-align:center;margin-top:var(--spacing-xl);">
-          <a href="/zonas" class="btn btn--outline" style="border-color:var(--color-primary);color:var(--color-primary);">Ver todas las zonas de cobertura →</a>
+
+        <p style="text-align:center;margin-top:var(--spacing-xl);color:var(--color-text-light);font-size:var(--font-size-sm);">
+          ¿Tu colonia no aparece? <a href={waCotizar} style="color:var(--color-primary);font-weight:700;" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y verificamos cobertura al instante.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════ FAQ ════════════════════════════ -->
+    <section class="seccion">
+      <div class="container" style="max-width:800px;">
+        <div class="section-header-premium">
+          <span class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+            Preguntas frecuentes
+          </span>
+          <h2 class="section-title">Todo lo que necesitas saber</h2>
+          <p class="section-subtitle">Respuestas a las dudas más comunes sobre la renta de inflables.</p>
+        </div>
+        <div style="margin-top:var(--spacing-2xl);">
+          {faqs.map(faq => (
+            <FaqItem id={faq.id} question={faq.question} answer={faq.answer} />
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- 10. BLOG PREVIEW -->
+    <!-- ════════════════════════════ BLOG ════════════════════════════ -->
     {blogPosts.length > 0 && (
-      <section style="padding:var(--spacing-4xl) 0;">
+      <section class="seccion seccion--alt">
         <div class="container">
           <SectionHeader
-            title="Blog: guías y consejos"
+            title="Guías y consejos"
             subtitle="Tips para elegir inflables, precios, seguridad y más."
             link={{ text: "Ver todos los artículos →", href: "/blog" }}
           />
@@ -265,30 +405,579 @@ const faqs = [
       </section>
     )}
 
-    <!-- 11. CTA BANNER -->
+    <!-- ════════════════════════════ CTA FINAL ════════════════════════════ -->
     <CTABanner
-      eyebrow="🎉 Reserva tu fecha hoy"
-      title="¿Listo para hacer tu fiesta inolvidable?"
-      subtitle="Reserva hoy con disponibilidad garantizada. Entrega e instalación incluida en CDMX y Estado de México."
+      eyebrow="¿Todo listo para la fiesta?"
+      title="Reserva tu inflable hoy"
+      subtitle="Disponibilidad limitada en fines de semana. Asegura tu fecha ahora y recibe confirmación inmediata."
     />
-
-    <!-- FAQ -->
-    <section style="padding:var(--spacing-4xl) 0;">
-      <div class="container" style="max-width:800px;">
-        <SectionHeader
-          title="Preguntas frecuentes"
-          subtitle="Todo lo que necesitas saber sobre la renta de inflables."
-        />
-        <div style="margin-top:var(--spacing-2xl);">
-          {faqs.map(faq => (
-            <FaqItem id={faq.id} question={faq.question} answer={faq.answer} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 12. LEAD CAPTURE -->
-    <LeadCapture />
 
   </main>
 </PageLayout>
+
+<style>
+/* ─── Smooth scroll ─── */
+html { scroll-behavior: smooth; }
+
+/* ─── Animaciones globales ─── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.5; }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50%       { transform: translateY(-14px) rotate(1deg); }
+}
+@keyframes particleDrift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+  50%  { transform: translateY(-40px) translateX(20px) scale(1.3); opacity: 0.3; }
+  100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
+}
+
+/* ─────────────────── HERO ─────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #1A1A2E, #2D1A0E, #FF4B1F, #1A1A2E);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  padding: 5rem 0 4rem;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 968px) {
+  .hero { min-height: 85vh; padding: 6rem 0 5rem; }
+}
+
+/* Partículas con pseudo-elementos */
+.hero__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero__particles::before,
+.hero__particles::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  animation: particleDrift 6s ease-in-out infinite;
+}
+.hero__particles::before {
+  width: 300px; height: 300px;
+  top: -80px; right: 10%;
+  background: radial-gradient(circle, rgba(255,75,31,0.25) 0%, transparent 70%);
+  animation-duration: 8s;
+}
+.hero__particles::after {
+  width: 200px; height: 200px;
+  bottom: 10%; left: 5%;
+  background: radial-gradient(circle, rgba(255,215,0,0.18) 0%, transparent 70%);
+  animation-duration: 10s;
+  animation-delay: -3s;
+}
+
+.hero__container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 968px) {
+  .hero__container { grid-template-columns: 1.1fr 1fr; }
+}
+
+/* Badge */
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+.hero__badge-dot {
+  width: 8px; height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Title */
+.hero__title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
+}
+.hero__title-highlight {
+  background: linear-gradient(135deg, #FF4B1F 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero__desc {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+  margin: 0 0 2rem;
+  max-width: 520px;
+}
+
+/* CTAs */
+.hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.hero__btn-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.75rem;
+  background: #25D366;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+}
+.hero__btn-wa:hover {
+  background: #1da851;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+}
+.hero__btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.75rem;
+  border: 2px solid rgba(255,255,255,0.5);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+.hero__btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+/* Stats */
+.hero__stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  row-gap: 0.75rem;
+}
+.hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0 1.5rem;
+}
+.hero__stat:first-child { padding-left: 0; }
+.hero__stat-num {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.hero__stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.hero__stat-divider {
+  width: 1px;
+  height: 36px;
+  background: rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+/* Imagen derecha */
+.hero__right {
+  display: none;
+}
+@media (min-width: 968px) {
+  .hero__right { display: block; }
+}
+.hero__img-wrap {
+  position: relative;
+  animation: floatY 5s ease-in-out infinite;
+}
+.hero__img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.3);
+  display: block;
+  object-fit: cover;
+}
+.hero__img-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(12px);
+}
+.hero__img-badge--price {
+  bottom: 1.5rem;
+  left: -1.5rem;
+  background: rgba(255,75,31,0.9);
+  color: #fff;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.hero__img-badge--price span { font-size: 0.65rem; font-weight: 500; opacity: 0.85; }
+.hero__img-badge--price strong { font-size: 1.2rem; font-weight: 900; line-height: 1; }
+.hero__img-badge--avail {
+  top: 1.5rem;
+  right: -1rem;
+  background: rgba(255,255,255,0.95);
+  color: #1A1A2E;
+}
+.hero__img-badge--avail svg { color: #22C55E; }
+
+/* ─────────────────── SECCIONES GENÉRICAS ─────────────────── */
+.seccion {
+  padding: 5rem 0;
+}
+.seccion--alt {
+  background: var(--color-accent, #FFF8F5);
+}
+.seccion--dark {
+  background: var(--color-secondary, #1A1A2E);
+}
+@media (min-width: 968px) {
+  .seccion { padding: 6rem 0; }
+}
+
+.section-header-premium {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto var(--spacing-2xl, 3rem);
+  animation: fadeInUp 0.5s ease both;
+}
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,75,31,0.1);
+  color: var(--color-primary, #FF4B1F);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+.section-badge--dark {
+  background: rgba(255,75,31,0.2);
+  color: #FF7B57;
+}
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--color-secondary, #1A1A2E);
+  line-height: 1.1;
+  margin: 0 0 0.875rem;
+  letter-spacing: -0.02em;
+}
+.section-title--white { color: #fff; }
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-light, #718096);
+  line-height: 1.7;
+  margin: 0;
+}
+.section-subtitle--muted { color: rgba(255,255,255,0.6); }
+
+/* ─────────────────── CATÁLOGO ─────────────────── */
+.inflables-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+@media (min-width: 640px) {
+  .inflables-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .inflables-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ─────────────────── CÓMO FUNCIONA ─────────────────── */
+.pasos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .pasos { grid-template-columns: repeat(3, 1fr); }
+  .pasos__conector {
+    display: block;
+    position: absolute;
+    top: 68px;
+    left: calc(33.33% + 1rem);
+    right: calc(33.33% + 1rem);
+    height: 2px;
+    border-top: 2px dashed rgba(255,75,31,0.3);
+    z-index: 0;
+  }
+}
+.pasos__conector { display: none; }
+
+.paso {
+  position: relative;
+  background: var(--color-white, #fff);
+  border: 1.5px solid var(--color-border, #E2E8F0);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+  z-index: 1;
+}
+.paso:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(255,75,31,0.12);
+  border-color: var(--color-primary, #FF4B1F);
+}
+.paso__num {
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--color-primary, #FF4B1F);
+  opacity: 0.08;
+  line-height: 1;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+.paso__icon-wrap {
+  width: 64px; height: 64px;
+  background: rgba(255,75,31,0.08);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  color: var(--color-primary, #FF4B1F);
+}
+.paso__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 0 0 0.625rem;
+}
+.paso__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-light, #718096);
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+.paso__link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary, #FF4B1F);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.paso__link:hover { opacity: 0.75; }
+
+/* ─────────────────── POR QUÉ ─────────────────── */
+.razones-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) {
+  .razones-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 968px) {
+  .razones-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.razon {
+  display: flex;
+  gap: 1rem;
+  background: var(--color-white, #fff);
+  border: 1.5px solid var(--color-border, #E2E8F0);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.razon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.razon__icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.razon__content h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-secondary, #1A1A2E);
+  margin: 0 0 0.375rem;
+  line-height: 1.3;
+}
+.razon__content p {
+  font-size: 0.875rem;
+  color: var(--color-text-light, #718096);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─────────────────── TESTIMONIOS ─────────────────── */
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) { .testimonios-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .testimonios-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.testimonio {
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  overflow: hidden;
+  transition: transform 0.2s, background 0.2s;
+}
+.testimonio:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.08);
+}
+.testimonio__quote {
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.07);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-family: Georgia, serif;
+}
+.testimonio__stars {
+  display: flex;
+  gap: 0.2rem;
+}
+.testimonio__text {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.7;
+  margin: 0;
+  flex: 1;
+}
+.testimonio__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+.testimonio__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+}
+.testimonio__name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #fff;
+}
+.testimonio__event {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ─────────────────── ZONAS ─────────────────── */
+.zonas-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.zona-chip {
+  padding: 0.45rem 1rem;
+  background: var(--color-white, #fff);
+  border: 1.5px solid var(--color-border, #E2E8F0);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-secondary, #1A1A2E);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  cursor: default;
+}
+.zona-chip:hover {
+  border-color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary, #FF4B1F);
+  background: rgba(255,75,31,0.04);
+}
+.zona-chip--more {
+  background: rgba(255,75,31,0.08);
+  border-color: rgba(255,75,31,0.3);
+  color: var(--color-primary, #FF4B1F);
+  font-weight: 700;
+}
+</style>

@@ -10,16 +10,21 @@
 :root {
   /* Colores */
   --color-primary:       #FF4B1F;
-  --color-primary-dark:  #E03A10;
+  --color-primary-dark:  #CC3A16;
   --color-primary-light: #FF7B57;
   --color-secondary:     #1A1A2E;
   --color-secondary-light: #2D2D4A;
   --color-accent:        #FFF8F5;
+  --color-accent-warm:   #FFE8E0;
+  --color-accent-gold:   #FFD700;
   --color-white:         #FFFFFF;
-  --color-text:          #2D3748;
-  --color-text-light:    #718096;
+  --color-bg:            #FFFFFF;
+  --color-bg-alt:        #FFF8F5;
+  --color-bg-dark:       #0F0F1A;
+  --color-text:          #1A1A2E;
+  --color-text-light:    #666680;
   --color-border:        #E2E8F0;
-  --color-success:       #38A169;
+  --color-success:       #22C55E;
 
   /* Tipografía */
   --font-family:         'Inter', system-ui, -apple-system, sans-serif;
