@@ -111,24 +111,20 @@ const zonas = [
           </div>
         </div>
 
-        <!-- Columna derecha: imagen flotante -->
-        <div class="hero__right" aria-hidden="true">
-          <div class="hero__img-wrap">
-            <img
-              src="/img/inflables/castillo-princesas/thumb.avif"
-              alt="Castillo inflable para fiestas en CDMX"
-              width="560"
-              height="420"
-              loading="eager"
-              class="hero__img"
-            />
-            <div class="hero__img-badge hero__img-badge--price">
-              <span>Desde</span>
-              <strong>$800 MXN</strong>
+        <!-- Columna derecha: SEO content -->
+        <div class="hero__right">
+          <div class="hero__seo">
+            <div class="hero__seo-block">
+              <h2 class="hero__seo-title">Líderes en Renta de Inflables para Fiestas en CDMX y Estado de México</h2>
+              <p class="hero__seo-text">
+                En <strong>INFLABLEE</strong> somos especialistas en <strong>renta de inflables para fiestas infantiles</strong> en Ciudad de México y Estado de México. Contamos con el catálogo más completo de <strong>castillos inflables</strong>, <strong>toboganes acuáticos</strong>, <strong>pistas de obstáculos</strong> y juegos interactivos para niños. Cada inflable incluye entrega, instalación, supervisor capacitado y retiro sin costo adicional. Trabajamos con los estándares más altos de limpieza y seguridad para que tú solo te preocupes por disfrutar la fiesta.
+              </p>
             </div>
-            <div class="hero__img-badge hero__img-badge--avail">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10" stroke="#fff" stroke-width="2.5" fill="none"/></svg>
-              Disponible hoy
+            <div class="hero__seo-block">
+              <h2 class="hero__seo-title">Más de 500 Eventos Exitosos · Garantía de Satisfacción Total</h2>
+              <p class="hero__seo-text">
+                Con más de <strong>500 eventos realizados</strong> en alcaldías como Benito Juárez, Coyoacán, Tlalpan, Xochimilco, Iztapalapa y municipios del Estado de México como Nezahualcóyotl, Ecatepec, Naucalpan y Toluca, somos la opción de confianza para <strong>fiestas de cumpleaños infantiles</strong>, eventos escolares, kermesses y celebraciones corporativas. Reserva con anticipación y recibe un <strong>10% de descuento</strong>. Contáctanos por WhatsApp y cotiza sin compromiso en menos de 5 minutos.
+              </p>
             </div>
           </div>
         </div>
@@ -632,19 +628,38 @@ html { scroll-behavior: smooth; }
   display: none;
 }
 @media (min-width: 968px) {
-  .hero__right { display: block; }
+  .hero__right { display: flex; align-items: center; }
 }
-.hero__img-wrap {
-  position: relative;
-  animation: floatY 5s ease-in-out infinite;
+.hero__seo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
 }
-.hero__img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.45), 0 8px 24px rgba(0,0,0,0.3);
-  display: block;
-  object-fit: cover;
+.hero__seo-block {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  backdrop-filter: blur(8px);
 }
+.hero__seo-title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 var(--space-sm) 0;
+  line-height: 1.4;
+}
+.hero__seo-text {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.82);
+  line-height: 1.75;
+  margin: 0;
+}
+.hero__seo-text strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+/* legacy — kept for compatibility */
 .hero__img-badge {
   position: absolute;
   display: flex;
