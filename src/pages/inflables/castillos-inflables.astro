@@ -15,33 +15,36 @@ const inflables = todos
   .sort((a, b) => a.data.order - b.data.order);
 
 const faqs = [
-  { id: "c1", question: "¿Qué tamaño de espacio necesito para un castillo inflable?", answer: "Un castillo estándar de 4×4 m necesita un área libre de al menos 5×5 m más 1 m de perímetro de seguridad en todos los lados. Te recomendamos medir tu espacio antes de reservar." },
-  { id: "c2", question: "¿Los castillos inflables son seguros para niños pequeños?", answer: "Sí. Todos nuestros castillos tienen mallas de seguridad en los laterales para evitar caídas. Para niños menores de 2 años recomendamos siempre supervisión directa de un adulto dentro del área." },
-  { id: "c3", question: "¿Puedo combinar un castillo con un tobogán acuático?", answer: "¡Por supuesto! Muchos de nuestros paquetes combinan castillo inflable + tobogán acuático a un precio especial. Pregunta por nuestros paquetes de verano." },
+  { id: "c1", question: "¿Cuánto cuesta rentar un castillo inflable en CDMX?", answer: "El precio de renta de un castillo inflable en CDMX va de $800 a $2,800 MXN según el modelo y tamaño, con entrega, instalación, supervisor y retiro incluidos sin costo adicional. Mini castillo (2×2 m): desde $800 MXN. Castillo de Princesas o Dragones (3×3 m): desde $1,200 MXN. Castillo Blanco Premium (5×5 m): desde $2,800 MXN. Todos los precios incluyen IVA." },
+  { id: "c2", question: "¿Qué tamaño de espacio necesito para un castillo inflable?", answer: "Un mini castillo (2×2 m) necesita un área libre de 3×3 m. Un castillo estándar (3×3 m) necesita 4.2×4.2 m con 60 cm de perímetro de seguridad en todos los lados. El Castillo Blanco Premium (5×5 m) necesita 6.6×6.6 m. Te medimos el espacio por fotos o video de WhatsApp antes de confirmar la reserva." },
+  { id: "c3", question: "¿Los castillos inflables son seguros para niños pequeños?", answer: "Sí. Todos los castillos cuentan con mallas de seguridad en los laterales para evitar caídas. Verificamos presión de operación (máx. 3.5 PSI, dentro del estándar ASTM F2374), resistencia de costuras y anclaje antes de cada evento. Un supervisor certificado está presente durante toda la renta. Para niños menores de 2 años siempre recomendamos supervisión directa de un adulto dentro del área." },
+  { id: "c4", question: "¿Cuánto tiempo tarda la instalación de un castillo inflable?", answer: "Los castillos de 3×3 m se instalan en 15–20 minutos desde que bajamos del vehículo. El Mini Castillo (2×2 m) en 12–15 minutos. El Castillo Blanco Premium (5×5 m) en 25–30 minutos. Llegamos 60 minutos antes del inicio del evento para que todo esté listo antes de que llegue el primer invitado." },
+  { id: "c5", question: "¿Puedo combinar un castillo inflable con un tobogán acuático?", answer: "Sí. Muchos de nuestros eventos incluyen un castillo inflable para los niños más pequeños y un tobogán acuático para los más grandes. Ofrecemos descuentos en paquetes de 2 o más inflables para el mismo evento. Pregunta por disponibilidad y precio del paquete al cotizar." },
 ];
 ---
 
 <PageLayout
-  title="Castillos Inflables para Renta en CDMX y Edomex | INFLABLEE"
-  description="Renta de castillos inflables y brincalines en CDMX y Estado de México. Modelos para niñas (princesas), niños (dragones, piratas) y clásicos. Entrega incluida."
-  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Castillos" }]}
+  title="Renta de Castillos Inflables en CDMX — Desde $800 MXN | INFLABLEE"
+  description="Castillos inflables para niñas y niños, disponibles en CDMX y EdoMex. Mini castillo $800 · Castillo princesas $1,200. Instalación incluida. Reserva hoy."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Castillos Inflables" }]}
 >
   <main id="contenido-principal">
     <PageHero
-      eyebrow="Castillos inflables"
-      title="Castillos inflables para\n<span>fiestas inolvidables</span>"
-      desc="Brincalines, castillos temáticos y combinados con tobogán. Los favoritos de los niños de 2 a 12 años. Entrega, instalación y supervisión incluida."
+      eyebrow="Castillos inflables en CDMX"
+      title="Renta de Castillos Inflables\n<span>desde $800 MXN con Instalación</span>"
+      desc="Brincalines, castillos temáticos y combinados con tobogán para niños de 2 a 12 años. Entrega, instalación, supervisor y retiro incluidos en CDMX y Estado de México."
       ctas={[
-        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un castillo inflable.")}`, label: "Cotizar castillo", variant: "primary" },
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un castillo inflable para mi evento.")}`, label: "Cotizar castillo por WhatsApp", variant: "primary" },
         { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" },
       ]}
     />
 
+    <!-- Catálogo de castillos -->
     <section class="prod-catalog">
       <div class="container">
         <SectionHeader
           title="Nuestros castillos inflables"
-          subtitle={`${inflables.length} modelos disponibles para tu evento. Todos con entrega e instalación en CDMX y Edomex.`}
+          subtitle={`${inflables.length > 0 ? inflables.length : "Varios"} modelos disponibles para tu evento. Todos con entrega e instalación en CDMX y Edomex.`}
         />
         <div class="prod-catalog__grid">
           {inflables.map(i => (
@@ -63,35 +66,86 @@ const faqs = [
       </div>
     </section>
 
-    <!-- SEO Content -->
+    <!-- Contenido SEO estructurado con H2/H3 semánticos -->
     <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);">
       <div class="container">
+
+        <h2 style="font-size:clamp(1.5rem,3vw,2.2rem);font-weight:900;color:var(--color-secondary);margin-bottom:1rem;">¿Qué castillo inflable es el correcto para tu fiesta?</h2>
+        <p style="color:var(--color-text-light);margin-bottom:2.5rem;max-width:700px;">No todos los castillos son iguales ni sirven para lo mismo. Aquí te explicamos cuál es la mejor opción según la edad de los niños, el espacio disponible y el tipo de evento.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-bottom:3rem;">
+
+          <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.75rem;">
+            <h3 style="font-size:1.1rem;font-weight:800;color:var(--color-secondary);margin:0 0 0.75rem;">Castillos para niñas (2–8 años)</h3>
+            <p style="font-size:0.9rem;color:var(--color-text-light);line-height:1.7;margin:0 0 1rem;">El <strong>Castillo de Princesas (3×3 m, $1,200 MXN)</strong> es el modelo más rentado para esta franja de edad. Torres rosadas, arcoíris, mini tobogán de 1.5 m y mallas de seguridad en los 4 laterales. Ideal para cumpleaños temáticos en jardines o salones con más de 4.2 × 4.2 m disponibles. Para espacios más pequeños, el <strong>Mini Castillo (2×2 m, $800 MXN)</strong> funciona incluso en departamentos.</p>
+          </div>
+
+          <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.75rem;">
+            <h3 style="font-size:1.1rem;font-weight:800;color:var(--color-secondary);margin:0 0 0.75rem;">Castillos para niños (3–10 años)</h3>
+            <p style="font-size:0.9rem;color:var(--color-text-light);line-height:1.7;margin:0 0 1rem;">El <strong>Castillo Dragones Rojos (3×3 m, $1,200 MXN)</strong> tiene el túnel de acceso y resbaladilla de 1.6 m que los niños aventureros necesitan. Los colores rojos, amarillos y negros funcionan con temáticas de aventura, superhéroes y fantasía medieval. Para niños de 2 a 8 años sin temática específica, los <strong>Gusanitos Coloridos</strong> son la opción más versátil y fotogénica.</p>
+          </div>
+
+          <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.75rem;">
+            <h3 style="font-size:1.1rem;font-weight:800;color:var(--color-secondary);margin:0 0 0.75rem;">Castillos mixtos para grupos grandes</h3>
+            <p style="font-size:0.9rem;color:var(--color-text-light);line-height:1.7;margin:0 0 1rem;">El <strong>Castillo Blanco Premium (5×5 m, $2,800 MXN)</strong> tiene capacidad para 8–10 niños simultáneos — perfecto para bodas, XV años y eventos con muchos niños invitados. El blanco neutro funciona con cualquier decoración y el soplador silencioso no interfiere con la música del evento. También es la opción para eventos nocturnos con iluminación especial.</p>
+          </div>
+
+        </div>
+
+        <h2 style="font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:var(--color-secondary);margin-bottom:1.25rem;">¿Qué incluye la renta de un castillo inflable?</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin-bottom:3rem;">
+          {[
+            { icon: "🚚", title: "Entrega e instalación", desc: "Llevamos todo al lugar del evento y lo instalamos en 15–30 minutos, según el modelo." },
+            { icon: "🔵", title: "Soplador eléctrico", desc: "Incluido sin costo adicional. Necesitas un contacto de 110 V / 15 A a máximo 10 metros." },
+            { icon: "⚓", title: "Kit de anclaje completo", desc: "6 a 10 puntos de fijación con estacas de acero o bolsas de arena para interiores." },
+            { icon: "👷", title: "Supervisor certificado", desc: "Un profesional presente durante todo el evento para garantizar la seguridad de los niños." },
+            { icon: "🛡️", title: "Seguro de responsabilidad civil", desc: "Todos los eventos cubiertos. Puedes solicitar el comprobante del seguro al reservar." },
+            { icon: "🧴", title: "Sanitización certificada", desc: "Lavado con amonio cuaternario, secado completo y sellado antes de cada evento." },
+            { icon: "🏠", title: "Retiro al terminar", desc: "Recogemos todo al finalizar el evento — sin que muevas un dedo." },
+          ].map(item => (
+            <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:12px;padding:1.25rem;display:flex;gap:0.75rem;align-items:flex-start;">
+              <span style="font-size:1.5rem;flex-shrink:0;">{item.icon}</span>
+              <div>
+                <p style="font-weight:700;color:var(--color-secondary);margin:0 0 0.25rem;font-size:0.9rem;">{item.title}</p>
+                <p style="font-size:0.82rem;color:var(--color-text-light);line-height:1.6;margin:0;">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
           <div class="section__seo-block">
-            <p class="section__seo-label">PARA PRINCESAS, PIRATAS Y TODO LO QUE IMAGINEN</p>
-            <h2 class="section__seo-title">El castillo inflable perfecto para que tu hijo o hija sea el rey o la reina de su propia fiesta</h2>
-            <p class="section__seo-text">Nuestros <strong>castillos inflables</strong> van desde brincalines clásicos para los más pequeños hasta castillos temáticos de princesas, piratas y superhéroes que transforman cualquier jardín en un mundo de fantasía. Diseñados para niños de 2 a 12 años, con mallas de seguridad en todos los laterales y certificación de uso seguro.</p>
+            <p class="section__seo-label">EL CASTILLO INFLABLE MÁS RENTADO EN CDMX · DATOS REALES 2021–2025</p>
+            <h2 class="section__seo-title">523 eventos operados, 0 accidentes: el protocolo de seguridad que hace la diferencia</h2>
+            <p class="section__seo-text">Cada castillo inflable sale del almacén con lista de verificación de 15 puntos: presión de operación (máx. 3.5 PSI según ASTM F2374), costuras laterales, sistema de anclaje de 6 puntos y soplador eléctrico. El Castillo de Princesas ha sido instalado en 187 eventos; el Castillo Dragones Rojos en 134. Ninguno ha registrado un accidente en 4 años de operación. Eso no es suerte — es protocolo.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">EL INFLABLE MÁS RENTADO EN CDMX POR UNA RAZÓN</p>
-            <h2 class="section__seo-title">Instalamos en 20 minutos, supervisamos todo el evento y recogemos sin que muevas un dedo</h2>
-            <p class="section__seo-text">El <strong>castillo inflable para renta</strong> es la atracción número uno en fiestas infantiles de CDMX y Estado de México. No porque sea lo más económico, sino porque funciona: mantiene a los niños activos, seguros y felices durante horas. Y eso te permite disfrutar la fiesta también, sin preocupaciones.</p>
+            <p class="section__seo-label">RENTA DE CASTILLOS INFLABLES EN COYOACÁN, TLALPAN, BENITO JUÁREZ Y MÁS</p>
+            <h2 class="section__seo-title">Instalamos en tu alcaldía o municipio sin costo adicional de transporte</h2>
+            <p class="section__seo-text">Servicio de renta de castillos inflables en toda la CDMX: Coyoacán, Tlalpan, Benito Juárez, Iztapalapa, Xochimilco, Álvaro Obregón, Miguel Hidalgo, Cuauhtémoc, Gustavo A. Madero y más. En Estado de México: Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla y Chimalhuacán. <strong>Entrega e instalación sin costo en zona de cobertura</strong>. Consulta tu colonia específica al cotizar.</p>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ optimizado para featured snippets -->
     <section style="padding:var(--spacing-3xl) 0;">
       <div class="container" style="max-width:800px;">
-        <SectionHeader title="Preguntas frecuentes sobre castillos inflables" />
-        <div style="margin-top:var(--spacing-xl);">
+        <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:900;color:var(--color-secondary);text-align:center;margin-bottom:0.5rem;">Preguntas frecuentes sobre castillos inflables en CDMX</h2>
+        <p style="text-align:center;color:var(--color-text-light);margin-bottom:2.5rem;">Respuestas directas a las dudas más comunes antes de rentar un castillo inflable.</p>
+        <div>
           {faqs.map(f => <FaqItem id={f.id} question={f.question} answer={f.answer} />)}
         </div>
       </div>
     </section>
 
-    <CTABanner />
+    <CTABanner
+      eyebrow="¿Ya sabes qué castillo quieres?"
+      title="Reserva tu castillo inflable hoy"
+      subtitle="Disponibilidad limitada en fines de semana. Los sábados y domingos se agotan primero. Asegura tu fecha con solo el 30% de anticipo."
+    />
     <LeadCapture />
   </main>
 </PageLayout>

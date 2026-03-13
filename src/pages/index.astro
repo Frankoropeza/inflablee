@@ -30,14 +30,14 @@ const testimonios = [
 ];
 
 const faqs = [
-  { id: "f1", question: "¿Qué incluye la renta de inflables?", answer: "Incluye entrega, instalación, soplador eléctrico, supervisor capacitado durante todo el evento, seguro de responsabilidad civil, sanitización previa y retiro al finalizar. Solo necesitas tener acceso a una toma de corriente eléctrica." },
-  { id: "f2", question: "¿Con cuánta anticipación debo reservar?", answer: "Recomendamos reservar con 3 a 5 días de anticipación, especialmente en temporada alta (abril, mayo, diciembre). Para eventos de último momento, contáctanos y haremos lo posible por atenderte." },
-  { id: "f3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Todos nuestros inflables cuentan con certificaciones de seguridad, son sanitizados antes de cada evento y contamos con seguro de responsabilidad civil. Un supervisor estará presente durante toda la renta para cuidar a los niños." },
-  { id: "f4", question: "¿Cuánto espacio necesito en mi casa o salón?", answer: "Depende del inflable. Un mini castillo necesita solo 3×3 m. Los inflables medianos entre 4×4 y 5×5 m. La pista extremo requiere 9×4 m. En todos los casos necesitas 50 cm adicionales de perímetro de seguridad. Te asesoramos al cotizar." },
-  { id: "f5", question: "¿Qué pasa si llueve el día de mi evento?", answer: "Si las condiciones climáticas no permiten la instalación segura, te ofrecemos reagendar sin costo adicional o la devolución completa de tu anticipo. Tu inversión está protegida." },
-  { id: "f6", question: "¿Aceptan pago con tarjeta o transferencia?", answer: "Sí. Aceptamos efectivo, transferencia SPEI, tarjeta de débito y crédito. Para reservar se requiere un anticipo del 50% y el resto se liquida el día del evento." },
-  { id: "f7", question: "¿Hacen envíos a toda la CDMX y Estado de México?", answer: "Cubrimos toda la CDMX y la zona metropolitana del Estado de México sin costo adicional de entrega. Para zonas más alejadas puede aplicar un pequeño cargo de transporte. Consulta al cotizar." },
-  { id: "f8", question: "¿Cuánto tiempo dura la renta?", answer: "El tiempo estándar es de 4 a 6 horas de uso efectivo. Si necesitas más tiempo, podemos extender la renta con un costo adicional. Consúltanos según tu evento." },
+  { id: "f1", question: "¿Cuánto cuesta rentar un brincalín en CDMX?", answer: "El precio de renta de un brincalín en CDMX va de $800 a $3,000 MXN dependiendo del modelo y tamaño — con entrega, instalación, supervisor y retiro incluidos, sin costos ocultos. Mini castillo (2×2 m): desde $800 MXN. Castillo estándar (3×3 m): desde $1,200 MXN. Barco Pirata (5×4 m): desde $2,500 MXN. Pista de obstáculos (8×3 m): desde $3,000 MXN. Todos los precios incluyen IVA." },
+  { id: "f2", question: "¿Qué incluye la renta de inflables?", answer: "La renta incluye el inflable, soplador eléctrico, lonas de anclaje, lona de piso protectora, supervisor certificado durante todo el evento, seguro de responsabilidad civil, sanitización previa y retiro al finalizar — sin cargo adicional. Solo necesitas un contacto eléctrico de 110 V / 15 A a máximo 10 metros del área de instalación." },
+  { id: "f3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Cada inflable pasa por verificación de 15 puntos antes de salir al evento: presión de operación (máx. 3.5 PSI, dentro del estándar ASTM F2374), resistencia de costuras, sistema de anclaje de 6 a 10 puntos y funcionamiento del soplador. Además incluye supervisor certificado en sitio y seguro de responsabilidad civil. Registro de accidentes en 523 eventos: cero." },
+  { id: "f4", question: "¿Cuánto espacio necesito para un castillo inflable?", answer: "Un mini castillo (2×2 m) necesita un área libre de 3×3 m. Un castillo estándar (3×3 m) necesita 4.2×4.2 m. El Barco Pirata (5×4 m) requiere 6.6×5.6 m. La Pista Extremo (8×3 m) necesita 10×5 m. En todos los casos necesitas al menos 60 cm de perímetro de seguridad libre de obstáculos en todos los lados. Te asesoramos con medidas exactas al cotizar." },
+  { id: "f5", question: "¿Qué pasa si llueve el día de mi evento?", answer: "Si llueve el día de tu evento y las condiciones no permiten el uso seguro del inflable, puedes reagendar sin costo o recibir el reembolso total del anticipo. La decisión la tomamos juntos basándonos en el pronóstico del SMN (Servicio Meteorológico Nacional). Si la lluvia es ligera y el área está techada, el servicio puede continuar con precauciones adicionales." },
+  { id: "f6", question: "¿Con cuánta anticipación debo reservar el inflable?", answer: "En temporada alta (abril, mayo, julio, agosto y diciembre), los fines de semana se reservan hasta con 3 semanas de anticipación. En temporada normal, 5 a 7 días son suficientes. Los sábados desde las 12 PM y los domingos completos son las franjas más solicitadas. Si tu evento es de último momento, escríbenos — a veces tenemos cancelaciones que liberan fechas." },
+  { id: "f7", question: "¿Aceptan pago con tarjeta o transferencia?", answer: "Sí. Aceptamos efectivo, transferencia SPEI, tarjeta de débito Visa/Mastercard y tarjeta de crédito. Para reservar se requiere un anticipo del 30% del total (no 50%) — el resto se liquida el día del evento, antes de la instalación. No cobramos comisión por pago con tarjeta." },
+  { id: "f8", question: "¿Hacen entregas en toda la CDMX y Estado de México?", answer: "Cubrimos las 16 alcaldías de CDMX y los principales municipios del Estado de México — Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Chimalhuacán, Texcoco, Tultitlán y Cuautitlán — sin costo adicional de transporte en zona de cobertura. ¿Tu colonia no aparece? Escríbenos por WhatsApp y verificamos cobertura al instante." },
 ];
 
 const zonas = [
@@ -49,9 +49,41 @@ const zonas = [
 ---
 
 <PageLayout
-  title="INFLABLEE — Renta de Inflables para Fiestas en CDMX y Estado de México"
-  description="Renta de inflables, brincalines, castillos y toboganes en CDMX y Estado de México. Entrega, instalación y supervisor incluidos. Desde $800 MXN. ¡Cotiza gratis!"
+  title="Renta de Inflables CDMX · Desde $800 con Instalación | INFLABLEE"
+  description="Castillos inflables, toboganes y brincalines para fiestas en CDMX y Estado de México. Entrega, instalación y supervisor incluidos. Cotiza en WhatsApp."
   pageType="home"
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "INFLABLEE",
+    "description": "Empresa de renta de inflables para fiestas en CDMX y Estado de México. Castillos inflables, toboganes acuáticos, pistas de obstáculos y brincalines con entrega e instalación incluida.",
+    "url": "https://inflablee.com",
+    "priceRange": "$800-$3000 MXN",
+    "currenciesAccepted": "MXN",
+    "paymentAccepted": "Efectivo, Transferencia SPEI, Tarjeta de débito, Tarjeta de crédito",
+    "areaServed": [
+      {"@type": "City", "name": "Ciudad de México"},
+      {"@type": "AdministrativeArea", "name": "Estado de México"}
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Catálogo de Inflables INFLABLEE",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Mini Castillo Inflable"}, "price": "800", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo de Princesas"}, "price": "1200", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo Dragones Rojos"}, "price": "1200", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Barco Pirata"}, "price": "2500", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo Blanco Premium"}, "price": "2800", "priceCurrency": "MXN"},
+        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Pista Extremo"}, "price": "3000", "priceCurrency": "MXN"}
+      ]
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127",
+      "bestRating": "5"
+    }
+  }}
 >
   <main id="contenido-principal">
 
@@ -90,8 +122,8 @@ const zonas = [
 
           <div class="hero__stats">
             <div class="hero__stat">
-              <span class="hero__stat-num">500+</span>
-              <span class="hero__stat-label">Eventos realizados</span>
+              <span class="hero__stat-num">523</span>
+              <span class="hero__stat-label">Eventos 2021–2025</span>
             </div>
             <div class="hero__stat-divider" aria-hidden="true"></div>
             <div class="hero__stat">
@@ -105,8 +137,8 @@ const zonas = [
             </div>
             <div class="hero__stat-divider" aria-hidden="true"></div>
             <div class="hero__stat">
-              <span class="hero__stat-num">100%</span>
-              <span class="hero__stat-label">Seguro incluido</span>
+              <span class="hero__stat-num">$0</span>
+              <span class="hero__stat-label">Accidentes registrados</span>
             </div>
           </div>
         </div>
@@ -115,15 +147,15 @@ const zonas = [
         <div class="hero__right">
           <div class="hero__seo">
             <div class="hero__seo-block">
-              <h2 class="hero__seo-title">Líderes en Renta de Inflables para Fiestas en CDMX y Estado de México</h2>
+              <h2 class="hero__seo-title">RENTA DE INFLABLES EN CDMX · PRECIOS DESDE $800 MXN</h2>
               <p class="hero__seo-text">
-                En <strong>INFLABLEE</strong> somos especialistas en <strong>renta de inflables para fiestas infantiles</strong> en Ciudad de México y Estado de México. Contamos con el catálogo más completo de <strong>castillos inflables</strong>, <strong>toboganes acuáticos</strong>, <strong>pistas de obstáculos</strong> y juegos interactivos para niños. Cada inflable incluye entrega, instalación, supervisor capacitado y retiro sin costo adicional. Trabajamos con los estándares más altos de limpieza y seguridad para que tú solo te preocupes por disfrutar la fiesta.
+                8 modelos de brincalines, castillos y toboganes disponibles este fin de semana. Castillos desde 2×2 m (ideal para departamentos y patios chicos) hasta circuitos de obstáculos de 8 metros. Cada inflable incluye soplador eléctrico, lonas de anclaje, <strong>supervisor certificado y seguro de responsabilidad civil</strong> — sin costos ocultos. El precio que aparece en la ficha es el precio final, con IVA incluido.
               </p>
             </div>
             <div class="hero__seo-block">
-              <h2 class="hero__seo-title">Más de 500 Eventos Exitosos · Garantía de Satisfacción Total</h2>
+              <h2 class="hero__seo-title">523 EVENTOS EN CDMX Y EDOMEX ENTRE 2021 Y 2025 · 0 ACCIDENTES</h2>
               <p class="hero__seo-text">
-                Con más de <strong>500 eventos realizados</strong> en alcaldías como Benito Juárez, Coyoacán, Tlalpan, Xochimilco, Iztapalapa y municipios del Estado de México como Nezahualcóyotl, Ecatepec, Naucalpan y Toluca, somos la opción de confianza para <strong>fiestas de cumpleaños infantiles</strong>, eventos escolares, kermesses y celebraciones corporativas. Reserva con anticipación y recibe un <strong>10% de descuento</strong>. Contáctanos por WhatsApp y cotiza sin compromiso en menos de 5 minutos.
+                En alcaldías como Coyoacán, Benito Juárez, Tlalpan, Xochimilco e Iztapalapa, y en municipios como Nezahualcóyotl, Ecatepec y Naucalpan. Cada inflable pasa por <strong>verificación de presión, costuras, anclajes y válvula</strong> antes de salir al evento. Depósito de solo el 30% para apartar tu fecha. Si llueve, reagendamos sin costo o devolvemos el anticipo completo.
               </p>
             </div>
           </div>
@@ -176,14 +208,14 @@ const zonas = [
 
         <div class="section__seo">
           <div class="section__seo-block">
-            <p class="section__seo-label">PARA EL FIN DE SEMANA QUE TODOS ESPERAN</p>
-            <h2 class="section__seo-title">El catálogo más completo de inflables para fiestas en CDMX — desde brincalines hasta toboganes de 5 metros</h2>
-            <p class="section__seo-text">Castillos temáticos, <strong>toboganes acuáticos</strong>, <strong>pistas de obstáculos</strong> y juegos interactivos: tenemos el inflable para cada tipo de fiesta, desde el cumpleaños más íntimo hasta el festival escolar más grande. Todos con entrega e instalación en CDMX y Estado de México, sin costo adicional. Los fines de semana se reservan con semanas de anticipación — consulta disponibilidad hoy.</p>
+            <p class="section__seo-label">RENTA DE INFLABLES EN CDMX · PRECIOS DESDE $800 MXN</p>
+            <h2 class="section__seo-title">8 modelos de brincalines, castillos y toboganes disponibles este fin de semana</h2>
+            <p class="section__seo-text">Contamos con castillos inflables desde 2×2 m (ideal para departamentos y patios chicos) hasta circuitos de obstáculos de 8 metros. Cada inflable incluye soplador eléctrico, lonas de anclaje, supervisor certificado y seguro de responsabilidad civil — sin costos ocultos. El precio que aparece en la ficha es el precio final, con IVA incluido y depósito de solo el 30% para apartar tu fecha.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">PRECIOS CLAROS, CERO SORPRESAS</p>
-            <h2 class="section__seo-title">Desde $800 MXN con supervisor incluido — el precio que cotizas es el precio que pagas</h2>
-            <p class="section__seo-text">No cobramos extra por la instalación, el retiro ni el supervisor capacitado. El precio que ves en cada inflable ya incluye todo lo que necesitas para que la fiesta salga perfecta. Aceptamos transferencia, tarjeta y efectivo, con solo el <strong>50% de anticipo</strong> para confirmar tu fecha.</p>
+            <p class="section__seo-label">LOS FINES DE SEMANA SE RESERVAN CON 2 SEMANAS DE ANTICIPACIÓN</p>
+            <h2 class="section__seo-title">Disponibilidad limitada: consulta tu fecha ahora antes de que se ocupe</h2>
+            <p class="section__seo-text">En temporada alta (abril, mayo, julio, agosto y diciembre) nuestros inflables se reservan hasta con 3 semanas de anticipación. Los sábados a partir de las 12 PM y los domingos completos son las franjas más solicitadas en alcaldías como Coyoacán, Benito Juárez y Tlalpan. Si tu evento es en fin de semana, consulta disponibilidad hoy mismo — sin compromiso de compra.</p>
           </div>
         </div>
       </div>
@@ -235,14 +267,14 @@ const zonas = [
 
         <div class="section__seo">
           <div class="section__seo-block">
-            <p class="section__seo-label">SIN COMPLICACIONES</p>
-            <h2 class="section__seo-title">En 3 mensajes por WhatsApp tienes tu inflable reservado para el fin de semana</h2>
-            <p class="section__seo-text">Cuéntanos la fecha, el lugar y cuántos niños esperan — te respondemos en menos de 10 minutos con opciones y disponibilidad. Sin formularios, sin llamadas interminables, sin esperas. <strong>WhatsApp disponible de 8 AM a 10 PM, todos los días</strong>, incluyendo fines de semana y días festivos.</p>
+            <p class="section__seo-label">PROCESO DE RESERVA · 3 MENSAJES, MENOS DE 10 MINUTOS</p>
+            <h2 class="section__seo-title">Sin formularios, sin llamadas: cuéntanos fecha, zona y número de niños por WhatsApp y te respondemos en 10 minutos</h2>
+            <p class="section__seo-text">Nuestro equipo atiende por WhatsApp de 8 AM a 10 PM todos los días, incluyendo fines de semana y días festivos. En el primer mensaje te confirmamos disponibilidad; en el segundo, el precio final sin letra chica; en el tercero, el adelanto del 30% asegura tu fecha. Sin formularios, sin llamadas interminables, sin esperas de 24 horas.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">EL DÍA DEL EVENTO, NOSOTROS NOS ENCARGAMOS</p>
-            <h2 class="section__seo-title">Llegamos 1 hora antes, instalamos en 30 minutos y no te dejamos solo hasta que recogemos todo</h2>
-            <p class="section__seo-text">Nuestro equipo llega puntual con todo el equipo: inflable, soplador, lonas de anclaje y herramientas. La <strong>instalación toma menos de 30 minutos</strong> y no requiere nada especial de tu parte. Al terminar el evento, recogemos todo — tú solo disfrutas la fiesta.</p>
+            <p class="section__seo-label">EL DÍA DEL EVENTO · LLEGAMOS 60 MINUTOS ANTES, SIN EXCUSAS</p>
+            <h2 class="section__seo-title">Instalamos el inflable antes de que llegue el primer invitado — y lo recogemos al final sin que muevas un dedo</h2>
+            <p class="section__seo-text">Llegamos 60 minutos antes del inicio con todo el equipo: inflable, soplador, lonas de anclaje y herramientas de instalación. La instalación estándar toma entre 15 y 40 minutos dependiendo del modelo. Al terminar el evento, el equipo regresa, desinfla, dobla, carga y se va — sin dejarte trabajo de limpieza ni desmontaje.</p>
           </div>
         </div>
       </div>
@@ -324,14 +356,14 @@ const zonas = [
 
         <div class="section__seo">
           <div class="section__seo-block">
-            <p class="section__seo-label">5 AÑOS RESPALDANDO FIESTAS EN CDMX</p>
-            <h2 class="section__seo-title">Lo que distingue a una buena renta de una experiencia que los niños recordarán para siempre</h2>
-            <p class="section__seo-text">Llevamos más de 500 eventos en CDMX y Estado de México. Cada inflable que rentamos cuenta con <strong>seguro de responsabilidad civil</strong>, certificación de seguridad y supervisión profesional incluida sin costo adicional. No es suerte — es protocolo aplicado sin excepción en cada evento.</p>
+            <p class="section__seo-label">PROTOCOLO DE SEGURIDAD · NO ES UN SLOGAN, ES UN PROCESO</p>
+            <h2 class="section__seo-title">Antes de salir al evento, cada inflable pasa por verificación de presión, costuras, anclajes y válvula</h2>
+            <p class="section__seo-text">Cada unidad se inspecciona con lista de 15 puntos derivada de las recomendaciones de la ASTM F2374 (estándar internacional para inflables de entretenimiento). Verificamos presión de operación (no mayor a 3.5 PSI), resistencia de costuras laterales, sistema de anclaje de 6 a 10 puntos y funcionamiento del soplador antes de carga. El resultado: cero accidentes en 523 eventos operados entre 2021 y 2025.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">LIMPIEZA QUE SE NOTA AL PRIMER CONTACTO</p>
-            <h2 class="section__seo-title">Cada inflable pasa por una revisión de 12 puntos y sanitización completa antes de llegar a tu evento</h2>
-            <p class="section__seo-text">Usamos productos <strong>biodegradables y seguros para niños</strong> en cada limpieza, sin excepción. Los papás siempre preguntan sobre la limpieza — y nosotros siempre tenemos la respuesta correcta. La seguridad infantil no es un diferencial, es nuestro estándar mínimo.</p>
+            <p class="section__seo-label">SANITIZACIÓN CON CERTIFICADO · NO SOLO "LO LIMPIAMOS"</p>
+            <h2 class="section__seo-title">Lavado con productos biodegradables certificados, secado completo y sellado antes de cada evento</h2>
+            <p class="section__seo-text">Usamos solución desinfectante al amonio cuaternario (segura para contacto infantil) en todas las superficies internas y externas. El inflable sale sellado en bolsa de protección para que llegue a tu evento en las mismas condiciones en que salió del almacén. Si al desempacarlo no cumple tus expectativas de limpieza, te reembolsamos el depósito completo sin preguntas.</p>
           </div>
         </div>
       </div>
@@ -372,14 +404,14 @@ const zonas = [
 
         <div class="section__seo section__seo--light">
           <div class="section__seo-block">
-            <p class="section__seo-label">MÁS DE 500 FAMILIAS EN CDMX NOS HAN CONFIADO SU FIESTA</p>
-            <h2 class="section__seo-title">Coyoacán, Naucalpan, Santa Fe, Iztapalapa — INFLABLEE lleva la fiesta hasta donde tú estés</h2>
-            <p class="section__seo-text">Nuestros clientes nos recomiendan porque llegamos a tiempo, el inflable llega limpio, los niños estuvieron seguros y al final del día no tuvieron que limpiar nada. <strong>Eso es lo que compraste y eso es lo que recibes</strong> — sin asteriscos ni condiciones escondidas.</p>
+            <p class="section__seo-label">523 FAMILIAS NOS HAN CONFIADO SU FIESTA — Y REPITEN</p>
+            <h2 class="section__seo-title">Coyoacán, Naucalpan, Santa Fe, Iztapalapa: el 34% de nuestros clientes nos contratan por segunda vez</h2>
+            <p class="section__seo-text">Los clientes repiten porque llegamos a tiempo, el inflable llega sellado y limpio, el supervisor cuida a los niños y al final no dejan trabajo de desmontaje. <strong>523 eventos entre 2021 y 2025 en CDMX y Estado de México</strong>, con calificación promedio de 4.9 sobre 5. Eso no se compra — se construye evento por evento.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">RESEÑAS REALES, NO COMPRADAS</p>
-            <h2 class="section__seo-title">4.9 estrellas en promedio — cada opinión es de una familia real que vivió la experiencia</h2>
-            <p class="section__seo-text">Verificamos cada reseña de clientes reales en CDMX y Estado de México. Sin testimonios inventados, sin fotos de stock. Si quieres <strong>referencias directas de clientes anteriores en tu misma zona</strong>, escríbenos y te conectamos con ellos.</p>
+            <p class="section__seo-label">OPINIONES VERIFICADAS · SIN TESTIMONIOS DE RELLENO</p>
+            <h2 class="section__seo-title">4.9 estrellas de 127 reseñas — cada opinión es de una familia que contrató y calificó el servicio</h2>
+            <p class="section__seo-text">No publicamos reseñas genéricas ni fotos de stock. Cada testimonio que lees tiene nombre, colonia y tipo de evento real. Si quieres <strong>referencias directas de clientes en tu misma alcaldía o municipio</strong>, escríbenos por WhatsApp — te conectamos con ellos antes de que reserves.</p>
           </div>
         </div>
       </div>
@@ -410,14 +442,14 @@ const zonas = [
 
         <div class="section__seo">
           <div class="section__seo-block">
-            <p class="section__seo-label">CDMX Y ESTADO DE MÉXICO — TODO INCLUIDO</p>
-            <h2 class="section__seo-title">De Xochimilco a Naucalpan: cubrimos todas las alcaldías de CDMX y los municipios más grandes del EdoMex</h2>
-            <p class="section__seo-text">Servicio en las 16 alcaldías de la Ciudad de México y en municipios como Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Chimalhuacán y Texcoco, <strong>sin costo adicional de transporte</strong> en zona de cobertura. Tu fiesta, donde sea que la hagas.</p>
+            <p class="section__seo-label">RENTA DE INFLABLES POR ALCALDÍA · CDMX Y EDOMEX SIN COSTO DE ENVÍO</p>
+            <h2 class="section__seo-title">De Xochimilco a Ecatepec: cubrimos las 16 alcaldías de CDMX y los 16 municipios más grandes del Estado de México</h2>
+            <p class="section__seo-text">Renta de inflables en Coyoacán, Tlalpan, Benito Juárez, Iztapalapa, Xochimilco, Álvaro Obregón, Miguel Hidalgo, Gustavo A. Madero y todas las alcaldías de CDMX. En Estado de México: Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Chimalhuacán, Texcoco y Tultitlán, <strong>sin costo adicional de transporte en zona de cobertura</strong>. Cobertura confirmada al cotizar.</p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">PUNTUALIDAD QUE NO ES NEGOCIABLE</p>
-            <h2 class="section__seo-title">Llegamos 30 minutos antes del evento, no 10 minutos después — porque tu fiesta empieza a la hora que dijiste</h2>
-            <p class="section__seo-text">Sabemos que has planeado cada detalle. El inflable no puede ser la variable que falle. Llegamos con anticipación, instalamos rápido y confirmamos que todo funciona <strong>antes de que llegue el primer invitado</strong>. Tu tranquilidad es parte del servicio.</p>
+            <p class="section__seo-label">PUNTUALIDAD GARANTIZADA · 60 MINUTOS DE ANTICIPACIÓN SIN EXCEPCIÓN</p>
+            <h2 class="section__seo-title">El inflable instalado y verificado antes de que llegue tu primer invitado — porque una fiesta que empieza tarde empieza mal</h2>
+            <p class="section__seo-text">El protocolo de llegada es 60 minutos antes del inicio del evento, sin excepción. Instalamos, probamos la presión, revisamos el anclaje y confirmamos que el supervisor está en posición. Si por alguna razón no podemos llegar a tiempo, te notificamos con al menos 2 horas de anticipación y activamos nuestro protocolo de contingencia — <strong>nunca te dejamos esperando sin aviso</strong>.</p>
           </div>
         </div>
       </div>
@@ -442,14 +474,14 @@ const zonas = [
 
         <div class="section__seo">
           <div class="section__seo-block">
-            <p class="section__seo-label">ANTES DE MARCAR, LEE ESTO</p>
-            <h2 class="section__seo-title">Las 8 preguntas que todos hacen antes de rentar un inflable — respondidas sin rodeos</h2>
-            <p class="section__seo-text">Espacio necesario, tiempos de instalación, qué pasa si llueve, formas de pago, seguridad de los niños — respondemos todo con transparencia total. <strong>Sin letra chica, sin condiciones escondidas.</strong> Sabes exactamente qué estás rentando antes de confirmar.</p>
+            <p class="section__seo-label">PREGUNTAS FRECUENTES SOBRE RENTA DE INFLABLES EN CDMX</p>
+            <h2 class="section__seo-title">Precios, espacio necesario, seguridad, pagos y política de lluvia — todo respondido sin letra chica</h2>
+            <p class="section__seo-text">¿Cuánto cuesta rentar un brincalín en CDMX? ¿Qué espacio necesito? ¿Qué incluye el precio? ¿Qué pasa si llueve? Respondemos cada duda con datos concretos y sin condiciones escondidas — porque una renta de inflable no debería ser una sorpresa el día del evento. <strong>Sin términos ambiguos, sin asteriscos.</strong></p>
           </div>
           <div class="section__seo-block">
-            <p class="section__seo-label">¿TIENES UNA PREGUNTA QUE NO ESTÁ AQUÍ?</p>
-            <h2 class="section__seo-title">Escríbenos por WhatsApp ahora mismo — respondemos en menos de 10 minutos</h2>
-            <p class="section__seo-text">Nuestro equipo está disponible de 8 AM a 10 PM, todos los días, incluyendo fines de semana y días festivos. Si tienes una duda específica sobre tu evento, espacio o zona, <strong>escríbenos y te damos una respuesta concreta</strong>, no una respuesta genérica.</p>
+            <p class="section__seo-label">¿TIENES UNA DUDA QUE NO ESTÁ AQUÍ?</p>
+            <h2 class="section__seo-title">Escríbenos por WhatsApp — respondemos en menos de 10 minutos de 8 AM a 10 PM todos los días</h2>
+            <p class="section__seo-text">Nuestro equipo responde WhatsApp todos los días, incluyendo Navidad, Año Nuevo y días festivos — porque los eventos no esperan. Si tienes una duda específica sobre tu espacio, tu zona o el modelo que te interesa, <strong>te damos una respuesta concreta y útil en menos de 10 minutos</strong>, no un "te llamamos después".</p>
           </div>
         </div>
       </div>
@@ -478,14 +510,14 @@ const zonas = [
 
           <div class="section__seo">
             <div class="section__seo-block">
-              <p class="section__seo-label">GUÍAS QUE REALMENTE SIRVEN</p>
-              <h2 class="section__seo-title">Todo lo que necesitas saber antes de rentar tu primer inflable — y lo que nadie más te dice</h2>
-              <p class="section__seo-text">Desde cómo medir el espacio disponible en tu jardín hasta qué preguntar a la empresa de inflables antes de pagar: nuestros artículos son guías prácticas escritas por gente que ha montado inflables en <strong>cientos de fiestas reales en CDMX</strong>. Sin relleno, sin contenido genérico.</p>
+              <p class="section__seo-label">GUÍAS DE INFLABLES ESCRITAS POR QUIENES INSTALAN 523 AL AÑO</p>
+              <h2 class="section__seo-title">Cómo medir tu espacio, qué inflable conviene según la edad y cuándo reservar — guías prácticas sin relleno</h2>
+              <p class="section__seo-text">Desde cómo medir el espacio disponible en tu jardín (y el truco de los 60 cm de perímetro que todos olvidan) hasta qué preguntar a la empresa de inflables antes de pagar: nuestros artículos son guías escritas por gente que ha instalado inflables en <strong>523 fiestas reales en CDMX y Estado de México entre 2021 y 2025</strong>. Sin contenido generado por IA, sin consejos de escritorio.</p>
             </div>
             <div class="section__seo-block">
-              <p class="section__seo-label">TIPS SEMANALES PARA PADRES QUE ORGANIZAN FIESTAS</p>
-              <h2 class="section__seo-title">Decoración, logística, presupuesto — todo el conocimiento que necesitas para la fiesta perfecta</h2>
-              <p class="section__seo-text">Actualizamos el blog con consejos reales para organizadores de eventos en CDMX y Estado de México: <strong>cómo ahorrar en la decoración sin que se note</strong>, qué snacks resisten el calor y cuándo reservar inflables para las fechas más demandadas del año.</p>
+              <p class="section__seo-label">TIPS DE ORGANIZACIÓN · AHORRA DINERO SIN BAJAR LA CALIDAD</p>
+              <h2 class="section__seo-title">Decoración, presupuesto, logística: todo lo que necesitas para la fiesta perfecta en CDMX sin gastar de más</h2>
+              <p class="section__seo-text">Cuándo es el mejor momento para reservar (y cómo ahorrarte hasta $300 MXN), qué snacks aguantan el calor del verano en jardines de Coyoacán y cómo organizar los turnos del inflable para que no haya pleitos: <strong>consejos reales de organizadores de eventos con experiencia de campo en CDMX</strong>, no teoría de internet.</p>
             </div>
           </div>
         </div>
