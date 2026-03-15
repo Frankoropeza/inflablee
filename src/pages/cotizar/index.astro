@@ -154,7 +154,7 @@ import { SITE } from "@/data/site";
   </main>
 </PageLayout>
 
-<script>
+<script is:inline>
   const form = document.getElementById('cotizar-form') as HTMLFormElement;
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
