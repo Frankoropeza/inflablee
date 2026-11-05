@@ -126,7 +126,7 @@ const schema = inflables.map(i => ({
           subtitle="¿Buscas algo específico? Explora cada categoría para ver todos los modelos disponibles."
         />
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
-          {categorias.map(c => (
+          {[...categorias, { slug: "inflables-gigantes", label: "Inflables gigantes", emoji: "🎪" }].map(c => (
             <a href={`/inflables/${c.slug}`} class="cat-link-card">
               <span class="cat-link-card__emoji">{c.emoji}</span>
               <div>
