@@ -1,5 +1,6 @@
 ---
 title: "Paquetes de inflables para eventos escolares: todo lo que necesitas saber"
+seoTitle: "Paquetes de Inflables para Eventos Escolares"
 description: "Guía completa para organizar kermeses, días del niño y festivales escolares con inflables. Qué incluir, cuántos inflables necesitas y cómo presupuestar."
 pubDate: 2026-02-10
 author: "Equipo INFLABLEE"

@@ -22,7 +22,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-MX", {
 ---
 
 <PageLayout
-  title={`${post.data.title} | Blog INFLABLEE`}
+  title={`${post.data.seoTitle ?? post.data.title} | INFLABLEE`}
   description={post.data.description}
   breadcrumbs={[
     { name: "Inicio", href: "/" },
