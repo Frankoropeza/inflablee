@@ -45,6 +45,11 @@ const imagenes: string[] = inflable.data.imagenes ?? [];
 const mainImage = inflable.data.imagen ?? (imagenes.length > 0 ? imagenes[0] : null);
 const galleryImages = imagenes.length > 0 ? imagenes : (mainImage ? [mainImage] : []);
 
+// Meta description ≤155: nombre + CDMX + precio + instalación; añade la primera oración si cabe
+const descBase = `Renta de ${inflable.data.title} en CDMX desde $${inflable.data.precio_desde.toLocaleString()} MXN, instalación incluida.`;
+const descPrimera = inflable.data.descripcion.split(/(?<=\.)\s/)[0];
+const metaDescription = `${descBase} ${descPrimera}`.length <= 155 ? `${descBase} ${descPrimera}` : `${descBase} Cotiza hoy por WhatsApp.`;
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -63,7 +68,7 @@ const schema = {
 
 <PageLayout
   title={`Renta ${inflable.data.title} CDMX — $${inflable.data.precio_desde.toLocaleString()} MXN | INFLABLEE`}
-  description={`${inflable.data.descripcion.slice(0, 140)}. Entrega e instalación incluida en CDMX y Edomex.`}
+  description={metaDescription}
   breadcrumbs={[
     { name: "Inicio", href: "/" },
     { name: "Inflables", href: "/inflables" },
