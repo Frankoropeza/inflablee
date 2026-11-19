@@ -1,5 +1,6 @@
 ---
 title: "¿Cuánto cuesta rentar un inflable en México? Precios 2026"
+seoTitle: "¿Cuánto cuesta rentar un inflable? Precios 2026"
 description: "Guía completa de precios de renta de inflables en México: castillos, toboganes, pistas de obstáculos y paquetes. Todo lo que necesitas saber antes de contratar."
 pubDate: 2026-03-05
 author: "Equipo INFLABLEE"

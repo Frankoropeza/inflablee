@@ -1,5 +1,6 @@
 ---
 title: "Cómo elegir el inflable perfecto para tu fiesta infantil"
+seoTitle: "Cómo elegir inflable para tu fiesta infantil"
 description: "Guía completa para elegir el inflable ideal según la edad de los niños, el espacio disponible y el tipo de evento que organizas."
 pubDate: 2026-03-01
 author: "Equipo INFLABLEE"
