@@ -7,22 +7,12 @@ import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
 import { SITE } from "@/data/site";
 import { getCollection } from "astro:content";
+import { CATEGORIAS, categoriaGradient } from "@/data/categorias";
 
 const inflables = (await getCollection("inflables")).sort((a, b) => a.data.order - b.data.order);
 
-const categorias = [
-  { slug: "castillos-inflables", label: "Castillos", emoji: "🏰" },
-  { slug: "toboganes-acuaticos", label: "Toboganes acuáticos", emoji: "🌊" },
-  { slug: "pistas-obstaculos", label: "Pistas de obstáculos", emoji: "🏃" },
-  { slug: "juegos-interactivos", label: "Juegos interactivos", emoji: "🥊" },
-];
+const categorias = CATEGORIAS;
 
-const gradients: Record<string, string> = {
-  "castillos-inflables": "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
-  "toboganes-acuaticos": "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
-  "pistas-obstaculos":   "linear-gradient(135deg, #FF4B1F22 0%, #FF4B1F11 100%)",
-  "juegos-interactivos": "linear-gradient(135deg, #FFD70022 0%, #FF4B1F22 100%)",
-};
 
 const schema = inflables.map(i => ({
   "@context": "https://schema.org",
@@ -90,10 +80,11 @@ const schema = inflables.map(i => ({
               capacidad={i.data.capacidad}
               medidas={i.data.medidas}
               tiempo_instalacion={i.data.tiempo_instalacion}
-              slug={i.data.slug}
+              slug={i.slug}
+              imagen={i.data.imagen}
               disponible={i.data.disponible}
               featured={i.data.featured}
-              gradient={gradients[i.data.categoria] ?? "linear-gradient(135deg, #FF4B1F22 0%, #1A1A2E11 100%)"}
+              gradient={categoriaGradient(i.data.categoria)}
             />
           ))}
         </div>

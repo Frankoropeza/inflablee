@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+import { CATEGORIA_KEYS } from "../data/categorias";
 
 const blog = defineCollection({
   type: "content",
@@ -11,7 +12,7 @@ const blog = defineCollection({
     image: z.string().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
-  }),
+  }).strict(),
 });
 
 const servicios = defineCollection({
@@ -22,7 +23,7 @@ const servicios = defineCollection({
     icon: z.string().optional(),
     featured: z.boolean().default(false),
     order: z.number().default(99),
-  }),
+  }).strict(),
 });
 
 const paquetes = defineCollection({
@@ -34,14 +35,14 @@ const paquetes = defineCollection({
     featured: z.boolean().default(false),
     includes: z.array(z.string()).default([]),
     order: z.number().default(99),
-  }),
+  }).strict(),
 });
 
 const inflables = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    categoria: z.string(),
+    categoria: z.enum(CATEGORIA_KEYS),
     precio_desde: z.number(),
     capacidad: z.string(),
     medidas: z.string(),
@@ -52,7 +53,7 @@ const inflables = defineCollection({
     disponible: z.boolean().default(true),
     featured: z.boolean().default(false),
     order: z.number().default(99),
-  }),
+  }).strict(),
 });
 
 export const collections = { blog, servicios, paquetes, inflables };

@@ -12,7 +12,8 @@ export interface Props {
   canonical?: string;
   ogImage?: string;
   schema?: object | object[];
-  pageType?: "home" | "page";
+  pageType?: "home" | "page" | "article";
+  noindex?: boolean;
   breadcrumbs?: Array<{ name: string; href?: string }>;
 }
 
@@ -23,6 +24,7 @@ const {
   ogImage,
   schema,
   pageType,
+  noindex,
   breadcrumbs,
 } = Astro.props;
 ---
@@ -34,6 +36,7 @@ const {
   ogImage={ogImage}
   schema={schema}
   pageType={pageType}
+  noindex={noindex}
   breadcrumbs={breadcrumbs}
 >
   <Topbar phone={SITE.tel} whatsapp={SITE.whatsapp} />

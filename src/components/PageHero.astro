@@ -10,7 +10,6 @@ export interface StatItem { value: string; label: string; }
 export interface Props {
  eyebrow?:  string;
  title:  string;
- titleHtml?: boolean;
  desc:  string;
  desc2?:  string;
  chips?:  Chip[];
@@ -22,7 +21,6 @@ export interface Props {
 const {
  eyebrow,
  title,
- titleHtml = false,
  desc,
  desc2,
  chips,
@@ -30,6 +28,12 @@ const {
  ctas,
  size = "normal",
 } = Astro.props;
+
+// El título admite "\n" como salto de línea y <span>…</span> para la palabra acentuada.
+// Se parsea a nodos reales: nada de set:html (antes imprimía &lt;span&gt; literal).
+const titleLines = title.split(/\\n|\n/).map(line =>
+ line.split(/<span>(.*?)<\/span>/g).map((text, i) => ({ text, accent: i % 2 === 1 }))
+);
 
 // Métricas: primero stats, si no hay stats usa chips
 const metrics = (stats && stats.length > 0)
@@ -47,10 +51,14 @@ const metrics = (stats && stats.length > 0)
  <div class="page-hero-std__left">
  {eyebrow && <span class="page-hero-std__eyebrow">{eyebrow}</span>}
 
- {titleHtml
- ? <h1 class="page-hero-std__title" set:html={title} />
- : <h1 class="page-hero-std__title">{title}</h1>
- }
+ <h1 class="page-hero-std__title">
+ {titleLines.map((segments, li) => (
+ <Fragment>
+ {li > 0 && <br />}
+ {segments.map(s => (s.accent ? <span>{s.text}</span> : s.text))}
+ </Fragment>
+ ))}
+ </h1>
 
  <p class="page-hero-std__desc">{desc}</p>
 
@@ -58,6 +66,17 @@ const metrics = (stats && stats.length > 0)
  <div class="page-hero-std__ctas">
  {ctas.map(c => (
  <a href={c.href} class={`btn btn--${c.variant}`}>{c.label}</a>
+ ))}
+ </div>
+ )}
+
+ {metrics.length > 0 && (
+ <div class="page-hero-std__metrics">
+ {metrics.map(m => (
+ <div class="page-hero-std__metric">
+ <span class="page-hero-std__metric-value">{m.value}</span>
+ {m.label && <span class="page-hero-std__metric-label">{m.label}</span>}
+ </div>
  ))}
  </div>
  )}

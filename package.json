@@ -4,14 +4,19 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:mdx && astro build",
+    "build": "npm run validate:mdx && astro check && astro build",
     "preview": "astro preview",
     "validate:mdx": "node scripts/validate-mdx.mjs",
-    "install:hooks": "bash scripts/install-hooks.sh"
+    "install:hooks": "bash scripts/install-hooks.sh",
+    "check": "astro check"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.0",
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^5.9.3"
   }
 }

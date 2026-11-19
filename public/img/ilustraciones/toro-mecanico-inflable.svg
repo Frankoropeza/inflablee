@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img">
+  <title>Toro mecánico inflable de perfil</title>
+  <rect width="1200" height="675" fill="#FFF8F5"/>
+  <path d="M230 370h740l65 42-50 68H215l-50-68z" fill="#1A1A2E"/>
+  <path d="M245 378h710l54 35-42 57H233l-42-57z" fill="#FF4B1F"/>
+  <path d="M276 389h648l43 28-33 44H266l-33-44z" fill="#FF7B57"/>
+  <path d="M312 400h576l35 22-27 30H304l-27-30z" fill="#FFE8E0"/>
+  <path d="M355 410h490l25 16-19 17H349l-19-17z" fill="#FFD700"/>
+  <path d="M401 418h398l20 13-15 10H396l-15-10z" fill="#FFF8F5"/>
+  <path d="M867 218c32-28 68-25 91-3-26 2-42 15-49 35l-27 8z" fill="#1A1A2E"/>
+  <path d="M911 247c21-2 38 8 44 24l-25 14-25-14z" fill="#2D2D4A"/>
+  <path d="M381 210c-16-44-42-79-79-106 48 9 84 35 102 68 11 21 2 35-23 38z" fill="#FFD700"/>
+  <path d="M421 205l43-31 12 54z" fill="#2D2D4A"/>
+  <path d="M388 187c-29 6-50 24-59 50l-14 33v29c0 17 10 28 23 29l38 1 15-20c27-6 46-18 59-34l27 7-1 77 51 7 16-63c48 29 101 39 157 29l22 53 54 5 7-56 45 6 22 55 53 4-5-64c28-15 40-42 31-70-8-25-27-43-57-53-43-37-111-54-196-46-69-13-134 1-180 36-21 15-37 17-52 7-7-5-15-7-23-5z" fill="#1A1A2E"/>
+  <path d="M668 157h31l18 178-34 1z" fill="#FFD700"/>
+  <path d="M559 170c42-22 100-22 145 0l-15 81-121-5z" fill="#FF4B1F"/>
+  <path d="M579 182c33-14 76-14 105 1l-10 48-87-4z" fill="#FF7B57"/>
+  <path d="M559 170l-18 20 27 56 12-64z" fill="#CC3A16"/>
+  <path d="M704 170l18 21-33 60-5-67z" fill="#CC3A16"/>
+  <path d="M432 294c18 1 33-5 45-19l-1 77-22 22-27-4z" fill="#1A1A2E"/>
+  <path d="M458 363l21 3-8 20-28-3z" fill="#FFD700"/>
+  <path d="M690 328l33 4-2 55-24-2z" fill="#1A1A2E"/>
+  <path d="M713 378l25 3-7 18-29-3z" fill="#FFD700"/>
+  <path d="M817 329l32 5-2 52-24-2z" fill="#1A1A2E"/>
+  <path d="M839 377l25 3-8 18-29-3z" fill="#FFD700"/>
+  <ellipse cx="355" cy="281" rx="31" ry="24" fill="#FF7B57"/>
+  <ellipse cx="345" cy="284" rx="7" ry="6" fill="#CC3A16"/>
+  <circle cx="371" cy="235" r="13" fill="#FFF8F5"/>
+  <circle cx="371" cy="235" r="6" fill="#1A1A2E"/>
+</svg>

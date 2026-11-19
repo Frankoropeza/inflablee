@@ -1,0 +1,304 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { getCollection } from "astro:content";
+import { SITE } from "@/data/site";
+import { CATEGORIAS, categoriaLabel } from "@/data/categorias";
+import { faqSchema, FAQS_GENERALES } from "@/data/faq";
+
+const inflables = (await getCollection("inflables")).sort(
+  (a, b) => a.data.precio_desde - b.data.precio_desde
+);
+const paquetes = (await getCollection("paquetes")).sort((a, b) => a.data.order - b.data.order);
+
+const precioMin = Math.min(...inflables.map(i => i.data.precio_desde));
+const precioMax = Math.max(...inflables.map(i => i.data.precio_desde));
+
+const mxn = (n: number) => `$${n.toLocaleString("es-MX")} MXN`;
+
+// Lista de precios en schema.org, construida desde el mismo catálogo que ve el visitante.
+const listaSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Precios de renta de inflables INFLABLEE",
+  "itemListElement": inflables.map((i, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "Product",
+      "name": i.data.title,
+      "category": categoriaLabel(i.data.categoria),
+      "url": new URL(`/inflables/${i.slug}`, SITE.url).href,
+      ...(i.data.imagen ? { "image": new URL(i.data.imagen, SITE.url).href } : {}),
+      "offers": {
+        "@type": "Offer",
+        "price": String(i.data.precio_desde),
+        "priceCurrency": "MXN",
+        "availability": i.data.disponible
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        "url": new URL(`/inflables/${i.slug}`, SITE.url).href,
+      },
+    },
+  })),
+};
+---
+
+<PageLayout
+  title={`Precios de Renta de Inflables en CDMX — Desde ${mxn(precioMin)} | INFLABLEE`}
+  description={`Lista de precios de renta de inflables en CDMX y Edomex: de ${mxn(precioMin)} a ${mxn(precioMax)} por modelo, con entrega, instalación, supervisor y retiro incluidos.`}
+  schema={[listaSchema, faqSchema(FAQS_GENERALES)]}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Precios" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Lista de precios"
+      title="Precios de renta de inflables\n<span>sin costos escondidos</span>"
+      desc={`De ${mxn(precioMin)} a ${mxn(precioMax)} según el modelo. El precio ya incluye entrega, instalación, supervisor durante el evento, seguro de responsabilidad civil y retiro.`}
+      ctas={[
+        { href: "#tabla-precios", label: "Ver la tabla", variant: "primary" },
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero confirmar el precio para mi fecha.")}`, label: "Confirmar mi fecha", variant: "outline" },
+      ]}
+    />
+
+    <section class="seccion" id="tabla-precios">
+      <div class="container">
+        <SectionHeader
+          title="Precio por modelo"
+          subtitle="Ordenados de menor a mayor. El precio mostrado es el punto de partida del modelo; la tarifa final depende de la duración y la zona de entrega."
+        />
+
+        <div class="precios-tabla-wrap">
+          <table class="precios-tabla">
+            <caption class="precios-tabla__caption">
+              Renta de inflables en CDMX y Estado de México — precios con IVA, entrega e instalación incluidas.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Inflable</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Medidas</th>
+                <th scope="col">Capacidad</th>
+                <th scope="col">Instalación</th>
+                <th scope="col">Desde</th>
+              </tr>
+            </thead>
+            <tbody>
+              {inflables.map(i => (
+                <tr>
+                  <th scope="row">
+                    <a href={`/inflables/${i.slug}`}>{i.data.title}</a>
+                    {!i.data.disponible && <span class="precios-tabla__nota">No disponible</span>}
+                  </th>
+                  <td>{categoriaLabel(i.data.categoria)}</td>
+                  <td>{i.data.medidas}</td>
+                  <td>{i.data.capacidad}</td>
+                  <td>{i.data.tiempo_instalacion}</td>
+                  <td class="precios-tabla__precio">{mxn(i.data.precio_desde)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="precios-incluye">
+          <li>Entrega, instalación y retiro en CDMX y Estado de México</li>
+          <li>Supervisor durante todo el evento</li>
+          <li>Seguro de responsabilidad civil</li>
+          <li>Sanitización previa y lona de piso</li>
+          <li>Soplador y anclajes</li>
+        </ul>
+        <p class="precios-nota">
+          Lo único que necesitas tú: un contacto eléctrico de 110 V / 15 A a menos de 10 metros del área de montaje.
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion seccion--alt">
+      <div class="container">
+        <SectionHeader
+          title="Paquetes"
+          subtitle="Combinaciones armadas para los eventos que más nos piden."
+        />
+        <div class="precios-paquetes">
+          {paquetes.map(p => (
+            <article class="precios-paquete">
+              <h3 class="precios-paquete__title">{p.data.title}</h3>
+              {p.data.price && <p class="precios-paquete__price">{p.data.price}</p>}
+              <p class="precios-paquete__desc">{p.data.description}</p>
+              {p.data.includes.length > 0 && (
+                <ul class="precios-paquete__list">
+                  {p.data.includes.map(item => <li>{item}</li>)}
+                </ul>
+              )}
+              <a
+                href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, me interesa el ${p.data.title}. ¿Está disponible?`)}`}
+                class="btn btn--primary btn--sm"
+                target="_blank"
+                rel="noopener"
+              >
+                Consultar disponibilidad
+              </a>
+            </article>
+          ))}
+        </div>
+        <p class="precios-nota">
+          <a href="/servicios/paquetes">Ver el detalle de cada paquete &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="container">
+        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
+          <div class="section__seo-block">
+            <p class="section__seo-label">QUÉ MUEVE EL PRECIO</p>
+            <h2 class="section__seo-title">Tres cosas cambian la tarifa: el modelo, la duración y la zona</h2>
+            <p class="section__seo-text">
+              El modelo manda: un mini castillo de 2×2 m no cuesta lo mismo que un circuito de obstáculos
+              de 8×3 m, porque cambia el equipo, el transporte y el tiempo de montaje. La duración estándar
+              cubre la fiesta completa; si tu evento se extiende, se cotiza aparte. Y la zona: dentro de
+              CDMX y los municipios conurbados de Edomex la entrega va incluida — más lejos, se calcula
+              el traslado antes de que confirmes, nunca después.
+            </p>
+            <p class="section__seo-text">
+              Lo que no cambia: el supervisor, el seguro y el retiro ya vienen en el precio que ves arriba.
+              Si quieres el número exacto para tu fecha, <a href="/cotizar">manda los datos de tu evento</a>
+              o revisa primero las <a href="/preguntas-frecuentes">preguntas frecuentes</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LeadCapture />
+
+    <CTABanner
+      title="¿Te confirmamos el precio de tu fecha?"
+      subtitle="Mándanos la fecha, la zona y el espacio que tienes. Te devolvemos el precio cerrado."
+      secondaryText="Ver preguntas frecuentes"
+      secondaryHref="/preguntas-frecuentes"
+    />
+  </main>
+</PageLayout>
+
+<style>
+  .precios-tabla-wrap {
+    overflow-x: auto;
+    margin-top: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+  }
+  .precios-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    min-width: 46rem;
+  }
+  .precios-tabla__caption {
+    caption-side: bottom;
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    text-align: left;
+  }
+  .precios-tabla th,
+  .precios-tabla td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .precios-tabla thead th {
+    background: var(--color-accent);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-light);
+  }
+  .precios-tabla tbody th {
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .precios-tabla tbody tr:last-child th,
+  .precios-tabla tbody tr:last-child td { border-bottom: none; }
+  .precios-tabla tbody tr:hover { background: var(--color-accent); }
+  .precios-tabla__precio {
+    font-weight: 800;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+  .precios-tabla__nota {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-light);
+  }
+
+  .precios-incluye {
+    display: grid;
+    gap: 0.5rem;
+    margin: var(--spacing-xl) 0 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 768px) {
+    .precios-incluye { grid-template-columns: repeat(2, 1fr); }
+  }
+  .precios-incluye li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--color-text);
+  }
+  .precios-incluye li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-success, #16a34a);
+    font-weight: 800;
+  }
+  .precios-nota {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  .precios-paquetes {
+    display: grid;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+  @media (min-width: 768px) {
+    .precios-paquetes { grid-template-columns: repeat(3, 1fr); }
+  }
+  .precios-paquete {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .precios-paquete__title {
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    color: var(--color-secondary);
+  }
+  .precios-paquete__price {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+  .precios-paquete__desc { color: var(--color-text-light); }
+  .precios-paquete__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    display: grid;
+    gap: 0.25rem;
+  }
+  .precios-paquete .btn { margin-top: auto; align-self: flex-start; }
+</style>

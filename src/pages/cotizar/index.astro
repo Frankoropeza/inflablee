@@ -26,7 +26,7 @@ import { SITE } from "@/data/site";
         <div class="cotizar-layout">
           <div class="cotizar-form-wrap">
             <h2 class="cotizar-form-wrap__title">📋 Datos de tu evento</h2>
-            <form class="cotizar-form" id="cotizar-form">
+            <form class="cotizar-form" id="cotizar-form" data-whatsapp={SITE.whatsapp}>
               <!-- Paso 1: Datos personales -->
               <div class="cotizar-form__group">
                 <label class="cotizar-form__label" for="nombre">Tu nombre *</label>
@@ -119,6 +119,8 @@ import { SITE } from "@/data/site";
               </button>
               <p class="cotizar-form__nota">
                 Al enviar, se abrirá WhatsApp con tu solicitud ya redactada. Respondemos en menos de 2 horas.
+                Usamos tus datos solo para atender esta cotización; consulta el
+                <a href="/aviso-de-privacidad">aviso de privacidad</a>.
               </p>
             </form>
           </div>
@@ -154,29 +156,32 @@ import { SITE } from "@/data/site";
   </main>
 </PageLayout>
 
-<script is:inline>
-  const form = document.getElementById('cotizar-form') as HTMLFormElement;
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const nombre = (document.getElementById('nombre') as HTMLInputElement).value;
-    const telefono = (document.getElementById('telefono') as HTMLInputElement).value;
-    const tipoEvento = (document.getElementById('tipo-evento') as HTMLSelectElement).value;
-    const fecha = (document.getElementById('fecha') as HTMLInputElement).value;
-    const invitados = (document.getElementById('invitados') as HTMLSelectElement).value;
-    const inflable = (document.getElementById('inflable') as HTMLSelectElement).value;
-    const zona = (document.getElementById('zona') as HTMLSelectElement).value;
-    const comentarios = (document.getElementById('comentarios') as HTMLTextAreaElement).value;
+<script>
+  const form = document.getElementById('cotizar-form') as HTMLFormElement | null;
 
-    let msg = `Hola INFLABLEE, quiero cotizar inflables para mi evento:\n\n`;
-    msg += `👤 Nombre: ${nombre}\n`;
-    msg += `📱 Tel: ${telefono}\n`;
-    msg += `🎉 Evento: ${tipoEvento}\n`;
-    msg += `📅 Fecha: ${fecha}\n`;
-    if (invitados) msg += `👥 Niños aprox: ${invitados}\n`;
-    if (inflable) msg += `🎪 Inflable: ${inflable}\n`;
-    msg += `📍 Zona: ${zona}\n`;
-    if (comentarios) msg += `\n💬 Comentarios: ${comentarios}`;
+  if (form) {
+    const wa = form.dataset.whatsapp ?? '';
+    const val = (id: string) =>
+      (form.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('#' + id)?.value ?? '').trim();
 
-    window.open(`https://wa.me/521XXXXXXXXXX?text=${encodeURIComponent(msg)}`, '_blank');
-  });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const lineas = [
+        'Hola INFLABLEE, quiero cotizar inflables para mi evento:',
+        '',
+        `\u{1F464} Nombre: ${val('nombre')}`,
+        `\u{1F4F1} Tel: ${val('telefono')}`,
+        val('email') ? `\u{2709}\u{FE0F} Correo: ${val('email')}` : '',
+        `\u{1F389} Evento: ${val('tipo-evento')}`,
+        `\u{1F4C5} Fecha: ${val('fecha')}`,
+        val('invitados') ? `\u{1F465} Ni\u00f1os aprox: ${val('invitados')}` : '',
+        val('inflable') ? `\u{1F3AA} Inflable: ${val('inflable')}` : '',
+        `\u{1F4CD} Zona: ${val('zona')}`,
+        val('comentarios') ? `\n\u{1F4AC} Comentarios: ${val('comentarios')}` : '',
+      ].filter(Boolean);
+
+      window.open(`https://wa.me/${wa}?text=${encodeURIComponent(lineas.join('\n'))}`, '_blank');
+    });
+  }
 </script>

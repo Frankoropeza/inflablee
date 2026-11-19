@@ -2,6 +2,7 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import "@/styles/blog.css";
 import { getCollection } from "astro:content";
+import { SITE } from "@/data/site";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -19,11 +20,25 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-MX", {
   month: "long",
   year: "numeric",
 });
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.pubDate.toISOString(),
+  "author": { "@type": "Organization", "name": post.data.author },
+  "publisher": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": new URL(`/blog/${post.slug}`, SITE.url).href },
+  ...(post.data.image ? { "image": new URL(post.data.image, SITE.url).href } : {}),
+};
 ---
 
 <PageLayout
   title={`${post.data.title} | Blog INFLABLEE`}
   description={post.data.description}
+  pageType="article"
+  schema={articleSchema}
   breadcrumbs={[
     { name: "Inicio", href: "/" },
     { name: "Blog", href: "/blog" },

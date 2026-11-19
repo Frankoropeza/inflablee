@@ -5,6 +5,8 @@ import CTABanner from "@/components/CTABanner.astro";
 import FaqItem from "@/components/FaqItem.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import { SITE } from "@/data/site";
+import { TESTIMONIOS } from "@/data/testimonios";
+import { faqSchema, FAQS_GENERALES } from "@/data/faq";
 import { getCollection } from "astro:content";
 
 const allInflables = await getCollection("inflables");
@@ -21,23 +23,10 @@ const waBase = `https://wa.me/${SITE.whatsapp}`;
 const waCotizar = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento 🎈")}`;
 const waCatalogo = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, me gustaría ver el catálogo completo de inflables.")}`;
 
-const testimonios = [
-  { name: "Laura Martínez", inicial: "L", color: "#FF4B1F", text: "El castillo inflable llegó puntual, limpio y los niños la pasaron increíble. Totalmente recomendados. El supervisor fue super atento con los niños todo el tiempo.", event: "Cumpleaños infantil · Coyoacán", stars: 5 },
-  { name: "Carlos Ramírez", inicial: "C", color: "#0077CC", text: "Rentamos el barco pirata para el cumpleaños de mi hijo. Instalación rapidísima, personal muy amable y el inflable en perfectas condiciones. Ya los contratamos por tercera vez.", event: "Fiesta temática pirata · Naucalpan", stars: 5 },
-  { name: "Ana García", inicial: "A", color: "#7C3AED", text: "Contratamos la pista extremo para el día del niño en la empresa. Los niños felices, los papás tranquilos y el personal muy profesional. Los recomendaría 100%.", event: "Evento corporativo · Santa Fe", stars: 5 },
-  { name: "Roberto Sánchez", inicial: "R", color: "#059669", text: "La pista de obstáculos fue el hit de la kermés escolar. 200 niños la disfrutaron todo el día sin ningún problema. Precio justo y servicio de primera.", event: "Kermés escolar · Iztapalapa", stars: 5 },
-];
+const testimonios = TESTIMONIOS;
 
-const faqs = [
-  { id: "f1", question: "¿Cuánto cuesta rentar un brincalín en CDMX?", answer: "El precio de renta de un brincalín en CDMX va de $800 a $3,000 MXN dependiendo del modelo y tamaño — con entrega, instalación, supervisor y retiro incluidos, sin costos ocultos. Mini castillo (2×2 m): desde $800 MXN. Castillo estándar (3×3 m): desde $1,200 MXN. Barco Pirata (5×4 m): desde $2,500 MXN. Pista de obstáculos (8×3 m): desde $3,000 MXN. Todos los precios incluyen IVA." },
-  { id: "f2", question: "¿Qué incluye la renta de inflables?", answer: "La renta incluye el inflable, soplador eléctrico, lonas de anclaje, lona de piso protectora, supervisor certificado durante todo el evento, seguro de responsabilidad civil, sanitización previa y retiro al finalizar — sin cargo adicional. Solo necesitas un contacto eléctrico de 110 V / 15 A a máximo 10 metros del área de instalación." },
-  { id: "f3", question: "¿Los inflables son seguros para los niños?", answer: "Sí. Cada inflable pasa por verificación de 15 puntos antes de salir al evento: presión de operación (máx. 3.5 PSI, dentro del estándar ASTM F2374), resistencia de costuras, sistema de anclaje de 6 a 10 puntos y funcionamiento del soplador. Además incluye supervisor certificado en sitio y seguro de responsabilidad civil. Registro de accidentes en 523 eventos: cero." },
-  { id: "f4", question: "¿Cuánto espacio necesito para un castillo inflable?", answer: "Un mini castillo (2×2 m) necesita un área libre de 3×3 m. Un castillo estándar (3×3 m) necesita 4.2×4.2 m. El Barco Pirata (5×4 m) requiere 6.6×5.6 m. La Pista Extremo (8×3 m) necesita 10×5 m. En todos los casos necesitas al menos 60 cm de perímetro de seguridad libre de obstáculos en todos los lados. Te asesoramos con medidas exactas al cotizar." },
-  { id: "f5", question: "¿Qué pasa si llueve el día de mi evento?", answer: "Si llueve el día de tu evento y las condiciones no permiten el uso seguro del inflable, puedes reagendar sin costo o recibir el reembolso total del anticipo. La decisión la tomamos juntos basándonos en el pronóstico del SMN (Servicio Meteorológico Nacional). Si la lluvia es ligera y el área está techada, el servicio puede continuar con precauciones adicionales." },
-  { id: "f6", question: "¿Con cuánta anticipación debo reservar el inflable?", answer: "En temporada alta (abril, mayo, julio, agosto y diciembre), los fines de semana se reservan hasta con 3 semanas de anticipación. En temporada normal, 5 a 7 días son suficientes. Los sábados desde las 12 PM y los domingos completos son las franjas más solicitadas. Si tu evento es de último momento, escríbenos — a veces tenemos cancelaciones que liberan fechas." },
-  { id: "f7", question: "¿Aceptan pago con tarjeta o transferencia?", answer: "Sí. Aceptamos efectivo, transferencia SPEI, tarjeta de débito Visa/Mastercard y tarjeta de crédito. Para reservar se requiere un anticipo del 30% del total (no 50%) — el resto se liquida el día del evento, antes de la instalación. No cobramos comisión por pago con tarjeta." },
-  { id: "f8", question: "¿Hacen entregas en toda la CDMX y Estado de México?", answer: "Cubrimos las 16 alcaldías de CDMX y los principales municipios del Estado de México — Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Chimalhuacán, Texcoco, Tultitlán y Cuautitlán — sin costo adicional de transporte en zona de cobertura. ¿Tu colonia no aparece? Escríbenos por WhatsApp y verificamos cobertura al instante." },
-];
+const faqs = FAQS_GENERALES;
+
 
 const zonas = [
   "Coyoacán", "Iztapalapa", "Benito Juárez", "Gustavo A. Madero",
@@ -51,7 +40,7 @@ const zonas = [
   title="Renta de Inflables CDMX · Desde $800 con Instalación | INFLABLEE"
   description="Castillos inflables, toboganes y brincalines para fiestas en CDMX y Estado de México. Entrega, instalación y supervisor incluidos. Cotiza en WhatsApp."
   pageType="home"
-  schema={{
+  schema={[{
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "INFLABLEE",
@@ -78,11 +67,11 @@ const zonas = [
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "127",
+      "ratingValue": String(SITE.resenas.rating),
+      "reviewCount": String(SITE.resenas.count),
       "bestRating": "5"
     }
-  }}
+  }, faqSchema(faqs)]}
 >
   <main id="contenido-principal">
 
@@ -130,7 +119,7 @@ const zonas = [
               </p>
             </div>
             <div class="hero__seo-block">
-              <p class="hero__seo-title"><strong>523 EVENTOS EN CDMX Y EDOMEX ENTRE 2021 Y 2025 · 0 ACCIDENTES</strong></p>
+              <p class="hero__seo-title"><strong>{SITE.trayectoria.eventos} EVENTOS EN CDMX Y EDOMEX ENTRE {SITE.trayectoria.desde} Y {SITE.trayectoria.hasta} · {SITE.trayectoria.accidentes} ACCIDENTES</strong></p>
               <p class="hero__seo-text">
                 En alcaldías como Coyoacán, Benito Juárez, Tlalpan, Xochimilco e Iztapalapa, y en municipios como Nezahualcóyotl, Ecatepec y Naucalpan. Cada inflable pasa por <strong>verificación de presión, costuras, anclajes y válvula</strong> antes de salir al evento. Depósito de solo el 30% para apartar tu fecha. Si llueve, reagendamos sin costo o devolvemos el anticipo completo.
               </p>
@@ -150,7 +139,7 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Catálogo completo
             </span>
-            <h2 class="section-title">Elige tu inflable perfecto</strong></p>
+            <h2 class="section-title">Elige tu inflable perfecto</h2>
             <p class="section-subtitle">8 modelos disponibles para todos los presupuestos y tipos de evento. Entrega e instalación siempre incluidas.</p>
           </div>
           <div class="section-header-split__right">
@@ -201,7 +190,7 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
               Simple y rápido
             </span>
-            <h2 class="section-title">¿Cómo funciona la renta?</strong></p>
+            <h2 class="section-title">¿Cómo funciona la renta?</h2>
             <p class="section-subtitle">En 3 pasos tienes tu inflable listo para la fiesta. Sin complicaciones, sin sorpresas.</p>
           </div>
           <div class="section-header-split__right">
@@ -254,8 +243,8 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
               Confianza comprobada
             </span>
-            <h2 class="section-title">¿Por qué elegirnos?</strong></p>
-            <p class="section-subtitle">Más de 500 familias y empresas en CDMX ya confían en INFLABLEE. Aquí está el por qué.</p>
+            <h2 class="section-title">¿Por qué elegirnos?</h2>
+            <p class="section-subtitle">{SITE.trayectoria.eventos} eventos operados en CDMX y Edomex entre {SITE.trayectoria.desde} y {SITE.trayectoria.hasta}. Aquí está el por qué repiten.</p>
           </div>
           <div class="section-header-split__right">
             <p class="section__seo-text">Cada unidad se inspecciona con lista de 15 puntos derivada de las recomendaciones de la ASTM F2374 (estándar internacional para inflables de entretenimiento). Verificamos presión de operación (no mayor a 3.5 PSI), resistencia de costuras laterales, sistema de anclaje de 6 a 10 puntos y funcionamiento del soplador antes de carga. El resultado: cero accidentes en 523 eventos operados entre 2021 y 2025.</p>
@@ -319,7 +308,7 @@ const zonas = [
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
             <div class="razon__content">
-              <h3>+500 eventos exitosos</h3>
+              <h3>{SITE.trayectoria.eventos} eventos operados</h3>
               <p>Años de experiencia en fiestas infantiles, corporativas y eventos masivos en toda la ZMVM.</p>
             </div>
           </div>
@@ -337,8 +326,8 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               Reseñas reales
             </span>
-            <h2 class="section-title section-title--white">Lo que dicen nuestros clientes</strong></p>
-            <p class="section-subtitle section-subtitle--muted">+500 eventos exitosos nos respaldan. Opiniones verificadas de familias reales de CDMX.</p>
+            <h2 class="section-title section-title--white">Lo que dicen nuestros clientes</h2>
+            <p class="section-subtitle section-subtitle--muted">{SITE.trayectoria.eventos} eventos entre {SITE.trayectoria.desde} y {SITE.trayectoria.hasta} nos respaldan. Opiniones de familias reales de CDMX.</p>
           </div>
           <div class="section-header-split__right">
             <p class="section__seo-text section__seo-text--light">Los clientes repiten porque llegamos a tiempo, el inflable llega sellado y limpio, el supervisor cuida a los niños y al final no dejan trabajo de desmontaje. <strong>523 eventos entre 2021 y 2025 en CDMX y Estado de México</strong>, con calificación promedio de 4.9 sobre 5. Eso no se compra — se construye evento por evento.</p>
@@ -379,7 +368,7 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
               Cobertura
             </span>
-            <h2 class="section-title">Entregamos en toda la ZMVM</strong></p>
+            <h2 class="section-title">Entregamos en toda la ZMVM</h2>
             <p class="section-subtitle">Cubrimos CDMX y Estado de México sin costo adicional de envío.</p>
           </div>
           <div class="section-header-split__right">
@@ -411,7 +400,7 @@ const zonas = [
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
               Preguntas frecuentes
             </span>
-            <h2 class="section-title">Todo lo que necesitas saber</strong></p>
+            <h2 class="section-title">Todo lo que necesitas saber</h2>
             <p class="section-subtitle">Respuestas a las dudas más comunes sobre la renta de inflables.</p>
           </div>
           <div class="section-header-split__right">
@@ -438,7 +427,7 @@ const zonas = [
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
                 Guías y consejos
               </span>
-              <h2 class="section-title">Guías y consejos</strong></p>
+              <h2 class="section-title">Guías y consejos</h2>
               <p class="section-subtitle">Tips para elegir inflables, precios, seguridad y más. <a href="/blog" style="color:var(--color-primary);font-weight:700;">Ver todos los artículos →</a></p>
             </div>
             <div class="section-header-split__right">

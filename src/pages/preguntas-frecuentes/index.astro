@@ -1,0 +1,76 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import FaqItem from "@/components/FaqItem.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import { SITE } from "@/data/site";
+import { faqSchema, FAQS_GENERALES, FAQS_CASTILLOS, FAQS_TODAS } from "@/data/faq";
+
+const grupos = [
+  {
+    titulo: "Precios, reserva y entrega",
+    subtitulo: "Lo que preguntan casi todos antes de apartar fecha.",
+    faqs: FAQS_GENERALES,
+  },
+  {
+    titulo: "Castillos inflables y brincolines",
+    subtitulo: "Dudas específicas del inflable más rentado del catálogo.",
+    faqs: FAQS_CASTILLOS,
+  },
+];
+---
+
+<PageLayout
+  title="Preguntas Frecuentes sobre Renta de Inflables | INFLABLEE"
+  description="Precios, espacio necesario, qué incluye la renta, qué pasa si llueve y cómo se reserva. Todas las dudas de la renta de inflables en CDMX y Estado de México."
+  schema={faqSchema(FAQS_TODAS)}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Preguntas frecuentes" }]}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Preguntas frecuentes"
+      title="Todo lo que preguntan\nantes de <span>apartar fecha</span>"
+      desc="Precio, espacio, instalación, lluvia y formas de pago. Si tu duda no está aquí, mándanos un mensaje y te contestamos directo."
+      ctas={[
+        { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, tengo una duda sobre la renta de inflables.")}`, label: "Preguntar por WhatsApp", variant: "primary" },
+        { href: "/cotizar", label: "Cotizar mi evento", variant: "outline" },
+      ]}
+    />
+
+    {grupos.map(g => (
+      <section class="faq">
+        <div class="container">
+          <SectionHeader title={g.titulo} subtitle={g.subtitulo} />
+          <div class="faq__list">
+            {g.faqs.map(f => <FaqItem id={f.id} question={f.question} answer={f.answer} />)}
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="seccion">
+      <div class="container">
+        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
+          <div class="section__seo-block">
+            <p class="section__seo-label">SI TU DUDA NO ESTÁ AQUÍ</p>
+            <h2 class="section__seo-title">Cada evento tiene su detalle: el espacio, la toma de corriente, el acceso</h2>
+            <p class="section__seo-text">
+              Lo más rápido es mandarnos una foto o un video del lugar por WhatsApp. Con eso te decimos
+              qué inflable cabe, cuánto cuesta y a qué hora llegaría el equipo el día de tu evento.
+              También puedes revisar las <a href="/zonas">zonas donde entregamos</a>, los
+              <a href="/precios">precios por modelo</a> o el <a href="/inflables">catálogo completo</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title="¿Resolvemos tu duda por WhatsApp?"
+      subtitle="Contestamos con precio, disponibilidad y espacio necesario para tu fecha."
+      secondaryText="Ver precios"
+      secondaryHref="/precios"
+    />
+  </main>
+</PageLayout>

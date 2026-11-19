@@ -10,11 +10,12 @@ import { getCollection } from "astro:content";
 
 const todos = await getCollection("inflables");
 const inflables = todos
-  .filter(i => i.data.categoria === "juegos-interactivos")
+  .filter(i => i.data.categoria === "interactivos")
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <PageLayout
+  noindex={inflables.length === 0}
   title="Juegos Interactivos Inflables para Renta CDMX — Ring, Toro | INFLABLEE"
   description="Juegos interactivos inflables para eventos corporativos, XV años y kermeses en CDMX y EdoMex. Ring de boxeo, toro mecánico y más. Instalación incluida. Cotiza."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: "Juegos Interactivos" }]}
@@ -36,6 +37,12 @@ const inflables = todos
           title="Juegos interactivos disponibles"
           subtitle="Actividades que combinan diversión, deporte y competencia sana para toda la familia."
         />
+        {inflables.length === 0 && (
+          <p class="prod-catalog__vacio">
+            Todavía no tenemos juegos interactivos publicados en el catálogo. Escríbenos por WhatsApp
+            y te decimos qué hay disponible para la fecha de tu evento.
+          </p>
+        )}
         <div class="prod-catalog__grid">
           {inflables.map(i => (
             <InflableCard
@@ -46,7 +53,8 @@ const inflables = todos
               capacidad={i.data.capacidad}
               medidas={i.data.medidas}
               tiempo_instalacion={i.data.tiempo_instalacion}
-              slug={i.data.slug}
+              slug={i.slug}
+              imagen={i.data.imagen}
               disponible={i.data.disponible}
               featured={i.data.featured}
               gradient="linear-gradient(135deg, #FFD70018 0%, #FF4B1F18 100%)"

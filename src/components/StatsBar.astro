@@ -1,4 +1,5 @@
 ---
+import { SITE } from "@/data/site";
 export interface Stat {
   value: string;
   label: string;
@@ -12,7 +13,7 @@ export interface Props {
 
 const { 
   stats = [
-    { value: "500+", label: "Eventos realizados", icon: "🎉" },
+    { value: String(SITE.trayectoria.eventos), label: "Eventos realizados", icon: "🎉" },
     { value: "15+", label: "Tipos de inflables", icon: "🎪" },
     { value: "24/7", label: "Atención al cliente", icon: "📲" },
     { value: "CDMX+Edomex", label: "Zonas de cobertura", icon: "📍" },

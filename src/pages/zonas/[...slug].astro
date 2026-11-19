@@ -1,50 +1,229 @@
 ---
-// Catch-all for zone pages that don't have dedicated pages
-// Redirects to the main zonas page
-
-export function getStaticPaths() {
-  return [
-    { params: { slug: "zona-norte" }, props: { zona: "Zona Norte" } },
-    { params: { slug: "zona-sur" }, props: { zona: "Zona Sur" } },
-    { params: { slug: "zona-oriente" }, props: { zona: "Zona Oriente" } },
-    { params: { slug: "zona-poniente" }, props: { zona: "Zona Poniente" } },
-  ];
-}
-
-const { zona } = Astro.props;
-
 import PageLayout from "@/layouts/PageLayout.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
 import { SITE } from "@/data/site";
+import { ZONAS_GEO } from "@/data/zonas";
+import { CATEGORIAS } from "@/data/categorias";
+
+export function getStaticPaths() {
+  return ZONAS_GEO.map(z => ({ params: { slug: z.slug }, props: { zonaGeo: z } }));
+}
+
+const { zonaGeo } = Astro.props;
+const zona = zonaGeo.nombre;
+const cubre = [...zonaGeo.alcaldias, ...zonaGeo.municipios];
+
+const areaSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": `Renta de inflables en ${zona}`,
+  "serviceType": "Renta de inflables para eventos",
+  "provider": { "@type": "LocalBusiness", "name": SITE.name, "@id": `${SITE.url}/negocio` },
+  "areaServed": cubre.map(nombre => ({ "@type": "Place", "name": nombre })),
+};
 ---
 
 <PageLayout
-  title={`Renta de Inflables en ${zona} CDMX y Edomex | INFLABLEE`}
-  description={`INFLABLEE entrega inflables en ${zona} de la Ciudad de México y Estado de México. Consulta disponibilidad y cotiza sin compromiso.`}
+  title={`Renta de Inflables en ${zona} — CDMX y Edomex | INFLABLEE`}
+  description={`Entrega de inflables en ${zona}: ${cubre.slice(0, 4).join(", ")} y más. Instalación, supervisor y retiro incluidos. Cotiza tu fecha.`}
+  schema={areaSchema}
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: zona }]}
 >
   <main id="contenido-principal">
-    <section style="padding:var(--spacing-4xl) 0;text-align:center;">
-      <div class="container" style="max-width:680px;">
-        <span style="font-size:3rem;">📍</span>
-        <h1 style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:800;color:var(--color-secondary);margin:1rem 0;">
-          Renta de inflables en {zona}
-        </h1>
-        <p style="color:var(--color-text-light);font-size:var(--font-size-lg);line-height:1.7;margin-bottom:var(--spacing-xl);">
-          INFLABLEE cubre {zona} de CDMX y Estado de México. Escríbenos por WhatsApp para verificar disponibilidad en tu zona específica y recibir cotización personalizada.
+    <section class="zona-hero">
+      <div class="container">
+        <span class="zona-hero__eyebrow">📍 Cobertura {zona}</span>
+        <h1 class="zona-hero__title">Renta de inflables en {zona}</h1>
+        <p class="zona-hero__desc">
+          Entregamos, instalamos y retiramos en {cubre.length} {zonaGeo.municipios.length > 0 ? "alcaldías y municipios" : "alcaldías"} de
+          la {zona} de la Zona Metropolitana. El montaje toma entre 15 y 40 minutos según el modelo,
+          y el supervisor se queda durante todo el evento.
         </p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-          <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero cotizar inflables en ${zona}.`)}`}
-            class="btn btn--primary" target="_blank" rel="noopener">
+        <div class="zona-hero__ctas">
+          <a
+            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero cotizar inflables en ${zona}.`)}`}
+            class="btn btn--primary"
+            target="_blank"
+            rel="noopener"
+          >
             Cotizar por WhatsApp
           </a>
-          <a href="/zonas" class="btn btn--outline">Ver todas las zonas</a>
+          <a href="/precios" class="btn btn--white">Ver precios</a>
         </div>
       </div>
     </section>
 
-    <CTABanner />
+    <section class="seccion">
+      <div class="container">
+        <SectionHeader
+          title={`Dónde entregamos en la ${zona}`}
+          subtitle="Si tu colonia no aparece, escríbenos: casi siempre llegamos igual, solo confirmamos el traslado antes de que reserves."
+        />
+
+        {zonaGeo.alcaldias.length > 0 && (
+          <div class="zona-bloque">
+            <h3 class="zona-bloque__title">Ciudad de México</h3>
+            <ul class="zona-bloque__list">
+              {zonaGeo.alcaldias.map(a => (
+                <li><a href="/zonas/cdmx" class="zona-bloque__link">{a}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {zonaGeo.municipios.length > 0 && (
+          <div class="zona-bloque">
+            <h3 class="zona-bloque__title">Estado de México</h3>
+            <ul class="zona-bloque__list">
+              {zonaGeo.municipios.map(m => (
+                <li><a href="/zonas/estado-de-mexico" class="zona-bloque__link">{m}</a></li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="seccion seccion--alt">
+      <div class="container">
+        <SectionHeader
+          title={`Qué se renta más en la ${zona}`}
+          subtitle="El catálogo completo entrega en toda la zona; estas son las categorías por las que más preguntan."
+        />
+        <div class="zona-cats">
+          {CATEGORIAS.map(c => (
+            <a href={`/inflables/${c.slug}`} class="zona-cat">
+              <span class="zona-cat__emoji" aria-hidden="true">{c.emoji}</span>
+              <span class="zona-cat__label">{c.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="seccion">
+      <div class="container">
+        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
+          <div class="section__seo-block">
+            <p class="section__seo-label">CÓMO FUNCIONA LA ENTREGA EN ESTA ZONA</p>
+            <h2 class="section__seo-title">Llegamos antes de la hora de inicio, montamos y nos quedamos</h2>
+            <p class="section__seo-text">
+              Acordamos una hora de montaje previa al inicio de tu evento para que el inflable esté
+              listo cuando lleguen los invitados. Necesitamos acceso para trasladar el equipo y un
+              contacto de 110 V a menos de 10 metros del área. Si el lugar es un patio interior,
+              una azotea o un salón, mándanos una foto por WhatsApp y te confirmamos qué modelo cabe.
+            </p>
+            <p class="section__seo-text">
+              ¿Tu evento es en otra parte? Revisa la cobertura completa en
+              <a href="/zonas/cdmx">Ciudad de México</a> y
+              <a href="/zonas/estado-de-mexico">Estado de México</a>, o consulta las
+              <a href="/preguntas-frecuentes">preguntas frecuentes</a> antes de apartar fecha.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner
+      title={`¿Entregamos en tu colonia de la ${zona}?`}
+      subtitle="Dinos la dirección y la fecha; confirmamos disponibilidad y precio cerrado."
+      secondaryText="Ver todas las zonas"
+      secondaryHref="/zonas"
+    />
     <LeadCapture />
   </main>
 </PageLayout>
+
+<style>
+  .zona-hero {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light, #2A2A4E) 100%);
+    color: #fff;
+    padding: var(--spacing-4xl) 0;
+    text-align: center;
+  }
+  .zona-hero .container { max-width: 46rem; }
+  .zona-hero__eyebrow {
+    display: inline-block;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary-light, #FF8C42);
+    margin-bottom: 0.75rem;
+  }
+  .zona-hero__title {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .zona-hero__desc {
+    color: rgba(255,255,255,0.8);
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    margin-bottom: var(--spacing-xl);
+  }
+  .zona-hero__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .zona-bloque { margin-top: var(--spacing-xl); }
+  .zona-bloque__title {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-light);
+    margin-bottom: 0.75rem;
+  }
+  .zona-bloque__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .zona-bloque__link {
+    display: inline-block;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-secondary);
+    transition: all var(--transition-fast);
+  }
+  .zona-bloque__link:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .zona-cats {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: var(--spacing-xl);
+  }
+  @media (min-width: 768px) {
+    .zona-cats { grid-template-columns: repeat(4, 1fr); }
+  }
+  .zona-cat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: var(--spacing-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    transition: all var(--transition-fast);
+  }
+  .zona-cat:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+  }
+  .zona-cat__emoji { font-size: 1.75rem; }
+  .zona-cat__label { font-weight: 700; color: var(--color-secondary); font-size: var(--font-size-sm); }
+</style>

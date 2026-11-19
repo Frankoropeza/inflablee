@@ -10,7 +10,7 @@ import { getCollection } from "astro:content";
 
 const todos = await getCollection("inflables");
 const inflables = todos
-  .filter(i => i.data.categoria === "toboganes-acuaticos")
+  .filter(i => i.data.categoria === "toboganes")
   .sort((a, b) => a.data.order - b.data.order);
 ---
 
@@ -51,7 +51,8 @@ const inflables = todos
               capacidad={i.data.capacidad}
               medidas={i.data.medidas}
               tiempo_instalacion={i.data.tiempo_instalacion}
-              slug={i.data.slug}
+              slug={i.slug}
+              imagen={i.data.imagen}
               disponible={i.data.disponible}
               featured={i.data.featured}
               gradient="linear-gradient(135deg, #1A1A2E18 0%, #0077CC18 100%)"

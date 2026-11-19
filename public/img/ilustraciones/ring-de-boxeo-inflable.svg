@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img">
+  <title>Ring de boxeo inflable con guante</title>
+  <rect width="1200" height="675" fill="#FFFFFF"/>
+  <path d="M0 505h1200v170H0z" fill="#FFE8E0"/>
+  <path d="m214 377 173-91h426l173 91-72 105H286z" fill="#1A1A2E"/>
+  <path d="m238 378 155-79h414l155 79-64 88H302z" fill="#FF4B1F"/>
+  <path d="m274 377 130-65h392l130 65-52 70H326z" fill="#FF7B57"/>
+  <path d="m315 377 98-49h374l98 49-40 54H355z" fill="#FFE8E0"/>
+  <path d="M355 431h490l-22 21H377z" fill="#FFFFFF"/>
+  <path d="M318 216 417 166h366l99 50-7 16-99-47H422l-99 47zM318 268l99-44h366l99 44-7 16-99-41H422l-99 41zM318 319l99-38h366l99 38-7 16-99-35H422l-99 35z" fill="#CC3A16"/>
+  <path d="M318 210 417 160h366l99 50-3 8-99-47H420l-99 47zM318 262l99-44h366l99 44-3 8-99-41H420l-99 41zM318 313l99-38h366l99 38-3 8-99-35H420l-99 35z" fill="#FFF8F5"/>
+  <path d="M291 186h54v192h-54z" fill="#FF4B1F"/>
+  <path d="M302 197h29v162h-29z" fill="#FF7B57"/>
+  <path d="M282 177h72v24h-72z" fill="#FFD700"/>
+  <path d="M855 186h54v192h-54z" fill="#FF4B1F"/>
+  <path d="M869 197h28v162h-28z" fill="#FF7B57"/>
+  <path d="M846 177h72v24h-72z" fill="#FFD700"/>
+  <path d="M398 144h38v153h-38z" fill="#FF4B1F"/>
+  <path d="M407 154h17v133h-17z" fill="#FF7B57"/>
+  <path d="M393 136h48v18h-48z" fill="#FFD700"/>
+  <path d="M764 144h38v153h-38z" fill="#FF4B1F"/>
+  <path d="M774 154h16v133h-16z" fill="#FF7B57"/>
+  <path d="M759 136h48v18h-48z" fill="#FFD700"/>
+  <path d="M793 321c35-26 86-19 111 13 24 30 18 72-12 94l-47 35-92-5-20-41 20-54z" fill="#CC3A16"/>
+  <path d="M781 312c36-28 87-22 113 10 26 33 19 77-16 99l-45 29-79-6-15-34 15-52z" fill="#FF4B1F"/>
+  <path d="M791 329c27-20 63-17 82 5 15 18 16 40 6 58-11-30-37-44-70-37l-41 9c4-14 12-26 23-35z" fill="#FF7B57"/>
+  <path d="m746 408 89-19 20 58-93 12c-15-13-20-31-16-51z" fill="#FFD700"/>
+  <path d="M758 414l73-16 10 32-75 11z" fill="#FFF8F5"/>
+</svg>

@@ -1,11 +1,15 @@
 ---
+import { SITE } from "@/data/site";
+import { CATEGORIAS } from "@/data/categorias";
+import { ALCALDIAS_DESTACADAS, MUNICIPIOS_DESTACADOS } from "@/data/zonas";
+
 export interface Props {
   whatsapp?: string;
   currentPath?: string;
 }
 
 const {
-  whatsapp = "521XXXXXXXXXX",
+  whatsapp = SITE.whatsapp,
   currentPath = Astro.url.pathname,
 } = Astro.props;
 
@@ -29,13 +33,69 @@ const isSection = (prefix: string) =>
           <a href="/" class={`nav-desktop__link ${isActive("/")}`}>Inicio</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/servicios" class={`nav-desktop__link ${isSection("/servicios")}`}>Inflables</a>
+          <a href="/inflables" class={`nav-desktop__link ${isSection("/inflables")}`}>Inflables</a>
+          <div class="mega-menu">
+            <div class="mega-menu__category">
+              <p class="mega-menu__title">Por categoría</p>
+              <ul class="mega-menu__list">
+                {CATEGORIAS.map(c => (
+                  <li><a href={`/inflables/${c.slug}`} class="mega-menu__link">{c.emoji} {c.label}</a></li>
+                ))}
+                <li><a href="/inflables/inflables-gigantes" class="mega-menu__link">🎪 Inflables gigantes</a></li>
+              </ul>
+              <a href="/inflables" class="mega-menu__view-all">Ver catálogo completo &rarr;</a>
+            </div>
+            <div class="mega-menu__category">
+              <p class="mega-menu__title">Por tipo de evento</p>
+              <ul class="mega-menu__list">
+                <li><a href="/servicios/fiestas-infantiles" class="mega-menu__link">Fiestas infantiles</a></li>
+                <li><a href="/servicios/eventos-escolares" class="mega-menu__link">Eventos escolares</a></li>
+                <li><a href="/servicios/eventos-corporativos" class="mega-menu__link">Eventos corporativos</a></li>
+                <li><a href="/servicios/paquetes" class="mega-menu__link">Paquetes</a></li>
+              </ul>
+              <a href="/servicios" class="mega-menu__view-all">Todos los servicios &rarr;</a>
+            </div>
+            <div class="mega-menu__category mega-menu__category--cta">
+              <p class="mega-menu__title">¿No sabes cuál elegir?</p>
+              <p class="mega-menu__desc">Dinos el espacio que tienes y la edad de los niños; te decimos cuál cabe y cuánto cuesta.</p>
+              <a href="/cotizar" class="btn btn--primary btn--sm">Cotizar mi evento</a>
+              <a href={`https://wa.me/${whatsapp}`} class="mega-menu__whatsapp" target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
+            </div>
+          </div>
         </li>
         <li class="nav-desktop__item">
-          <a href="/servicios#paquetes" class={`nav-desktop__link`}>Paquetes</a>
+          <a href="/servicios/paquetes" class={`nav-desktop__link ${isActive("/servicios/paquetes/")}`}>Paquetes</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/#galeria" class={`nav-desktop__link`}>Galería</a>
+          <a href="/zonas" class={`nav-desktop__link ${isSection("/zonas")}`}>Zonas</a>
+          <div class="mega-menu">
+            <div class="mega-menu__category">
+              <p class="mega-menu__title">Ciudad de México</p>
+              <ul class="mega-menu__list">
+                {ALCALDIAS_DESTACADAS.map(a => (
+                  <li><a href="/zonas/cdmx" class="mega-menu__link">{a}</a></li>
+                ))}
+              </ul>
+              <a href="/zonas/cdmx" class="mega-menu__view-all">Las 16 alcaldías &rarr;</a>
+            </div>
+            <div class="mega-menu__category">
+              <p class="mega-menu__title">Estado de México</p>
+              <ul class="mega-menu__list">
+                {MUNICIPIOS_DESTACADOS.map(m => (
+                  <li><a href="/zonas/estado-de-mexico" class="mega-menu__link">{m}</a></li>
+                ))}
+              </ul>
+              <a href="/zonas/estado-de-mexico" class="mega-menu__view-all">Ver municipios &rarr;</a>
+            </div>
+            <div class="mega-menu__category mega-menu__category--cta">
+              <p class="mega-menu__title">¿Entregamos en tu zona?</p>
+              <p class="mega-menu__desc">Entrega, instalación y retiro incluidos en CDMX y Estado de México, sin cargo extra.</p>
+              <a href="/zonas" class="btn btn--outline btn--sm">Ver cobertura</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-desktop__item">
+          <a href="/galeria" class={`nav-desktop__link ${isActive("/galeria/")}`}>Galería</a>
         </li>
         <li class="nav-desktop__item">
           <a href="/blog" class={`nav-desktop__link ${isSection("/blog")}`}>Blog</a>
@@ -67,9 +127,12 @@ const isSection = (prefix: string) =>
   role="navigation" aria-label="Navegación móvil" aria-hidden="true">
   <ul>
     <li class="mobile-nav__item"><a href="/" class="mobile-nav__link">Inicio</a></li>
-    <li class="mobile-nav__item"><a href="/servicios" class="mobile-nav__link">Inflables</a></li>
-    <li class="mobile-nav__item"><a href="/servicios#paquetes" class="mobile-nav__link">Paquetes</a></li>
-    <li class="mobile-nav__item"><a href="/#galeria" class="mobile-nav__link">Galería</a></li>
+    <li class="mobile-nav__item"><a href="/inflables" class="mobile-nav__link">Inflables</a></li>
+    <li class="mobile-nav__item"><a href="/servicios/paquetes" class="mobile-nav__link">Paquetes</a></li>
+    <li class="mobile-nav__item"><a href="/zonas" class="mobile-nav__link">Zonas de entrega</a></li>
+    <li class="mobile-nav__item"><a href="/galeria" class="mobile-nav__link">Galería</a></li>
+    <li class="mobile-nav__item"><a href="/precios" class="mobile-nav__link">Precios</a></li>
+    <li class="mobile-nav__item"><a href="/preguntas-frecuentes" class="mobile-nav__link">Preguntas frecuentes</a></li>
     <li class="mobile-nav__item"><a href="/blog" class="mobile-nav__link">Blog</a></li>
     <li class="mobile-nav__item"><a href="/nosotros" class="mobile-nav__link">Nosotros</a></li>
     <li class="mobile-nav__item"><a href="/contacto" class="mobile-nav__link">Contacto</a></li>
@@ -78,6 +141,9 @@ const isSection = (prefix: string) =>
     <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`}
       class="btn btn--primary" target="_blank" rel="noopener">
       Cotiza tu evento
+    </a>
+    <a href={`tel:${SITE.telHref}`} class="btn btn--outline" aria-label={`Llamar al ${SITE.tel}`}>
+      Llamar {SITE.tel}
     </a>
   </div>
 </nav>

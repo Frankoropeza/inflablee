@@ -2,6 +2,7 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import PageHero from "@/components/PageHero.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
+import { ZONAS_GEO } from "@/data/zonas";
 import ZonaCard from "@/components/ZonaCard.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
@@ -93,6 +94,27 @@ const zonasEdomex = [
       </div>
     </section>
 
+    <!-- Rutas de entrega: las 4 páginas de zona estaban sin enlazar desde ningún lado -->
+    <section class="seccion seccion--alt">
+      <div class="container">
+        <SectionHeader
+          title="Rutas de entrega"
+          subtitle="Agrupamos la Zona Metropolitana en cuatro rutas. Entra a la tuya para ver qué alcaldías y municipios cubre."
+        />
+        <div class="zonas-rutas">
+          {ZONAS_GEO.map(z => (
+            <a href={`/zonas/${z.slug}`} class="zonas-ruta">
+              <span class="zonas-ruta__nombre">{z.nombre}</span>
+              <span class="zonas-ruta__detalle">
+                {[...z.alcaldias, ...z.municipios].slice(0, 3).join(" · ")}
+                {[...z.alcaldias, ...z.municipios].length > 3 && " y más"}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
     <!-- Nota -->
     <section style="padding:var(--spacing-2xl) 0;border-top:1px solid var(--color-border);">
       <div class="container" style="max-width:720px;text-align:center;">
@@ -114,3 +136,25 @@ const zonasEdomex = [
     <LeadCapture />
   </main>
 </PageLayout>
+
+<style>
+  .zonas-rutas {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    margin-top: var(--spacing-xl);
+  }
+  .zonas-ruta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: var(--spacing-lg);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    transition: all var(--transition-fast);
+  }
+  .zonas-ruta:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+  .zonas-ruta__nombre { font-weight: 800; color: var(--color-secondary); }
+  .zonas-ruta__detalle { font-size: var(--font-size-sm); color: var(--color-text-light); line-height: 1.5; }
+</style>

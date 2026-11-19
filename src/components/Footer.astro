@@ -1,5 +1,7 @@
 ---
 import { SITE } from "@/data/site";
+import { CATEGORIAS } from "@/data/categorias";
+import { ZONAS_PRINCIPALES } from "@/data/zonas";
 
 export interface Props {
   phone?: string;
@@ -58,7 +60,7 @@ const {
           </p>
           <ul class="footer__contact-list">
             <li>
-              <a href={`tel:+${whatsapp}`} class="footer__contact-item">
+              <a href={`tel:${SITE.telHref}`} class="footer__contact-item">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
@@ -86,12 +88,11 @@ const {
         <div class="footer__col">
           <h3 class="footer__col-title">Inflables</h3>
           <ul class="footer__list">
-            <li><a href="/servicios" class="footer__link">Castillos inflables</a></li>
-            <li><a href="/servicios" class="footer__link">Toboganes inflables</a></li>
-            <li><a href="/servicios" class="footer__link">Albercas de pelotas</a></li>
-            <li><a href="/servicios" class="footer__link">Juegos interactivos</a></li>
-            <li><a href="/servicios" class="footer__link">Inflables acuáticos</a></li>
-            <li><a href="/servicios" class="footer__link footer__link--cta">Ver todos &rarr;</a></li>
+            {CATEGORIAS.map(c => (
+              <li><a href={`/inflables/${c.slug}`} class="footer__link">{c.label}</a></li>
+            ))}
+            <li><a href="/inflables/inflables-gigantes" class="footer__link">Inflables gigantes</a></li>
+            <li><a href="/inflables" class="footer__link footer__link--cta">Ver catálogo completo &rarr;</a></li>
           </ul>
         </div>
 
@@ -100,6 +101,9 @@ const {
           <ul class="footer__list">
             <li><a href="/nosotros" class="footer__link">Nosotros</a></li>
             <li><a href="/servicios" class="footer__link">Servicios</a></li>
+            <li><a href="/precios" class="footer__link">Precios</a></li>
+            <li><a href="/preguntas-frecuentes" class="footer__link">Preguntas frecuentes</a></li>
+            <li><a href="/galeria" class="footer__link">Galería</a></li>
             <li><a href="/blog" class="footer__link">Blog</a></li>
             <li><a href="/contacto" class="footer__link">Contacto</a></li>
           </ul>
@@ -108,9 +112,11 @@ const {
         <div class="footer__col">
           <h3 class="footer__col-title">Cobertura</h3>
           <ul class="footer__list">
-            <li><span class="footer__link">CDMX y Área Metropolitana</span></li>
-            <li><span class="footer__link">Estado de México</span></li>
-            <li><span class="footer__link">Toda la República (consultar)</span></li>
+            {ZONAS_PRINCIPALES.map(z => (
+              <li><a href={z.href} class="footer__link">{z.label}</a></li>
+            ))}
+            <li><a href="/zonas" class="footer__link">Ver todas las zonas</a></li>
+            <li><a href="/cotizar" class="footer__link footer__link--cta">Cotizar mi evento &rarr;</a></li>
           </ul>
         </div>
       </div>
@@ -122,6 +128,8 @@ const {
       <div class="footer__bottom-inner">
         <p class="footer__copy">&copy; {new Date().getFullYear()} INFLABLEE. Todos los derechos reservados.</p>
         <nav class="footer__legal" aria-label="Legal">
+          <a href="/aviso-de-privacidad">Aviso de privacidad</a>
+          <a href="/terminos-y-condiciones">Términos y condiciones</a>
           <a href="/contacto">Contacto</a>
         </nav>
       </div>

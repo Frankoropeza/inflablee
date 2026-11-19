@@ -1,0 +1,62 @@
+/**
+ * Fuente única de verdad de las categorías de inflables.
+ * `key` es el valor que usa el frontmatter de src/content/inflables (y el z.enum del schema).
+ * `slug` es la ruta de la página de categoría en /inflables/<slug>.
+ */
+export const CATEGORIAS = [
+  {
+    key: "castillos",
+    slug: "castillos-inflables",
+    label: "Castillos",
+    labelSingular: "Castillo Inflable",
+    badge: "Castillo",
+    emoji: "🏰",
+    color: "#FF4B1F",
+    gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
+  },
+  {
+    key: "toboganes",
+    slug: "toboganes-acuaticos",
+    label: "Toboganes acuáticos",
+    labelSingular: "Tobogán",
+    badge: "Tobogán",
+    emoji: "🌊",
+    color: "#0077CC",
+    gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
+  },
+  {
+    key: "pistas",
+    slug: "pistas-obstaculos",
+    label: "Pistas de obstáculos",
+    labelSingular: "Pista de Obstáculos",
+    badge: "Pista",
+    emoji: "🏃",
+    color: "#7C3AED",
+    gradient: "linear-gradient(135deg, #7C3AED22 0%, #FF4B1F22 100%)",
+  },
+  {
+    key: "interactivos",
+    slug: "juegos-interactivos",
+    label: "Juegos interactivos",
+    labelSingular: "Juego Interactivo",
+    badge: "Interactivo",
+    emoji: "🥊",
+    color: "#D97706",
+    gradient: "linear-gradient(135deg, #D9770622 0%, #FFD70022 100%)",
+  },
+] as const;
+
+export type CategoriaKey = (typeof CATEGORIAS)[number]["key"];
+
+export const CATEGORIA_KEYS = CATEGORIAS.map(c => c.key) as unknown as [CategoriaKey, ...CategoriaKey[]];
+
+export const getCategoria = (key: string) => CATEGORIAS.find(c => c.key === key);
+
+export const categoriaLabel = (key: string) => getCategoria(key)?.labelSingular ?? key;
+export const categoriaColor = (key: string) => getCategoria(key)?.color ?? "#6B7280";
+export const categoriaGradient = (key: string) =>
+  getCategoria(key)?.gradient ?? "linear-gradient(135deg, #FF4B1F22 0%, #1A1A2E11 100%)";
+export const categoriaHref = (key: string) => {
+  const slug = getCategoria(key)?.slug;
+  return slug ? `/inflables/${slug}` : "/inflables";
+};

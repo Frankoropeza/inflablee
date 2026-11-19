@@ -6,6 +6,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import InflableCard from "@/components/InflableCard.astro";
 import { SITE } from "@/data/site";
 import { getCollection } from "astro:content";
+import { categoriaColor, categoriaLabel } from "@/data/categorias";
 
 export async function getStaticPaths() {
   const inflables = await getCollection("inflables");
@@ -25,21 +26,8 @@ const relacionados = todosInflables
 
 const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${inflable.data.title}. ¿Cuál es la disponibilidad y precio exacto?`);
 
-const categoriaColors: Record<string, string> = {
-  "castillos":    "#FF4B1F",
-  "toboganes":    "#0077CC",
-  "pistas":       "#7C3AED",
-  "interactivos": "#D97706",
-};
-const categoriaLabels: Record<string, string> = {
-  "castillos":    "Castillo Inflable",
-  "toboganes":    "Tobogán",
-  "pistas":       "Pista de Obstáculos",
-  "interactivos": "Juego Interactivo",
-};
-
-const catColor = categoriaColors[inflable.data.categoria] ?? "#6B7280";
-const catLabel = categoriaLabels[inflable.data.categoria] ?? inflable.data.categoria;
+const catColor = categoriaColor(inflable.data.categoria);
+const catLabel = categoriaLabel(inflable.data.categoria);
 
 const imagenes: string[] = inflable.data.imagenes ?? [];
 const mainImage = inflable.data.imagen ?? (imagenes.length > 0 ? imagenes[0] : null);
