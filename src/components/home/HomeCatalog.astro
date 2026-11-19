@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import InflableCard from "@/components/InflableCard.astro";
+import { SITE } from "@/data/site";
+
+const inflables = (await getCollection("inflables")).filter((inflable) => inflable.data.disponible).sort((a, b) => a.data.order - b.data.order);
+const waCatalogo = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, me gustaría ver el catálogo completo de inflables.")}`;
+---
+
+    <section class="seccion seccion--alt" id="catalogo">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-header-split__left">
+            <span class="section-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Catálogo completo
+            </span>
+            <h2 class="section-title">Elige tu inflable perfecto</h2>
+            <p class="section-subtitle">Explora el catálogo y encuentra una opción para tu tipo de evento.</p>
+          </div>
+          <div class="section-header-split__right">
+            <p class="section__seo-text">Cada ficha incluye precio publicado, medidas, capacidad, tiempo de instalación y requerimientos eléctricos para que puedas comparar opciones antes de cotizar.</p>
+            <p class="section__seo-text">¿Tienes una fecha en mente? Escríbenos por WhatsApp para confirmar disponibilidad y resolver dudas sobre tu espacio.</p>
+          </div>
+        </div>
+
+        {inflables.length > 0 ? (
+          <div class="inflables-grid">
+            {inflables.map(i => (
+              <InflableCard
+                title={i.data.title}
+                descripcion={i.data.descripcion}
+                categoria={i.data.categoria}
+                precio_desde={i.data.precio_desde}
+                capacidad={i.data.capacidad}
+                medidas={i.data.medidas}
+                tiempo_instalacion={i.data.tiempo_instalacion}
+                slug={i.id}
+                imagen={i.data.imagen}
+                disponible={i.data.disponible}
+                featured={i.data.featured}
+              />
+            ))}
+          </div>
+        ) : (
+          <p style="text-align:center;color:var(--color-text-light);padding:3rem 0;">
+            Catálogo cargando... Contáctanos por WhatsApp para ver disponibilidad.
+          </p>
+        )}
+
+        <div style="text-align:center;margin-top:var(--spacing-2xl);">
+          <a href={waCatalogo} class="btn btn--outline" target="_blank" rel="noopener">
+            Ver todos los inflables por WhatsApp →
+          </a>
+        </div>
+
+      </div>
+    </section>

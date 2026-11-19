@@ -5,6 +5,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
 import { SITE } from "@/data/site";
+import "@/styles/galeria.css";
 
 const categorias = [
   "Castillos Inflables",
@@ -127,100 +128,6 @@ const slug = (t: string) =>
   </main>
 </PageLayout>
 
-<style>
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-@media (min-width: 768px) {
-  .galeria-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (min-width: 1200px) {
-  .galeria-grid { grid-template-columns: repeat(4, 1fr); }
-}
-.galeria-item {
-  position: relative;
-  margin: 0;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4/3;
-  cursor: pointer;
-  transition: transform var(--transition-base);
-}
-.galeria-item:hover { transform: scale(1.02); }
-.galeria-item[hidden] { display: none; }
-.galeria-item__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* Las ilustraciones SVG no compiten con las fotos reales: fondo claro de marca
-   para que se lean como lo que son. */
-.galeria-item--ilustracion { background: var(--color-accent-warm, #FFE8E0) !important; }
-/* Con foto, el degradado del overlay tiene que ser más fuerte para que lea el título. */
-.galeria-item:has(.galeria-item__img) .galeria-item__overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-}
-.galeria-filtros {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-bottom: 2px;
-}
-.galeria-vacio {
-  margin-top: var(--spacing-xl);
-  text-align: center;
-  color: var(--color-text-light);
-}
-.galeria-item--wide {
-  grid-column: span 2;
-  aspect-ratio: 16/7;
-}
-.galeria-item__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
-  transition: background var(--transition-base);
-}
-.galeria-item:hover .galeria-item__overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 100%);
-}
-.galeria-item__emoji {
-  font-size: 3rem;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-}
-.galeria-item__info {
-  position: absolute;
-  bottom: 0.875rem;
-  left: 0.875rem;
-  right: 0.875rem;
-}
-.galeria-item__cat {
-  display: block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 0.2rem;
-}
-.galeria-item__title {
-  display: block;
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.3;
-}
-</style>
 
 <script>
   const filtros = document.querySelectorAll<HTMLButtonElement>('.galeria-filtros [data-filtro]');

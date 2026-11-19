@@ -29,7 +29,7 @@ const posts = (await getCollection("blog"))
               <BlogCard
                 title={post.data.title}
                 slug={post.id}
-                description={post.data.description}
+                description={post.data.cardDescription ?? post.data.description}
                 pubDate={post.data.pubDate}
                 category={post.data.category || "General"}
               />

@@ -13,6 +13,8 @@ export const CATEGORIAS = [
     emoji: "🏰",
     color: "#FF4B1F",
     gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
+    title: "Castillos inflables en CDMX | INFLABLEE",
+    description: "Castillos inflables para niñas y niños en CDMX y Edomex. Instalación incluida.",
   },
   {
     key: "toboganes",
@@ -23,6 +25,8 @@ export const CATEGORIAS = [
     emoji: "🌊",
     color: "#0077CC",
     gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
+    title: "Toboganes acuáticos en CDMX | INFLABLEE",
+    description: "Toboganes acuáticos inflables para fiestas en CDMX y Edomex. Instalación incluida.",
   },
   {
     key: "pistas",
@@ -33,6 +37,8 @@ export const CATEGORIAS = [
     emoji: "🏃",
     color: "#7C3AED",
     gradient: "linear-gradient(135deg, #7C3AED22 0%, #FF4B1F22 100%)",
+    title: "Pistas de obstáculos inflables CDMX | INFLABLEE",
+    description: "Pistas de obstáculos para kermeses y eventos en CDMX. Supervisor incluido.",
   },
   {
     key: "interactivos",
@@ -43,6 +49,8 @@ export const CATEGORIAS = [
     emoji: "🥊",
     color: "#D97706",
     gradient: "linear-gradient(135deg, #D9770622 0%, #FFD70022 100%)",
+    title: "Juegos interactivos inflables en CDMX | INFLABLEE",
+    description: "Juegos interactivos para eventos corporativos y fiestas en CDMX y Edomex.",
   },
 ] as const;
 

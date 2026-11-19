@@ -1,0 +1,26 @@
+---
+import "@/styles/home/sections.css";
+import CTABanner from "@/components/CTABanner.astro";
+import HomeHero from "./HomeHero.astro";
+import HomeCatalog from "./HomeCatalog.astro";
+import HomeHowItWorks from "./HomeHowItWorks.astro";
+import HomeReasons from "./HomeReasons.astro";
+import HomeZones from "./HomeZones.astro";
+import HomeFaq from "./HomeFaq.astro";
+import HomeBlog from "./HomeBlog.astro";
+---
+
+<div class="home-sections">
+  <HomeHero />
+  <HomeCatalog />
+  <HomeHowItWorks />
+  <HomeReasons />
+  <HomeZones />
+  <HomeFaq />
+  <HomeBlog />
+  <CTABanner
+    eyebrow="¿Todo listo para la fiesta?"
+    title="Reserva tu inflable hoy"
+    subtitle="Disponibilidad limitada en fines de semana. Asegura tu fecha ahora y recibe confirmación inmediata."
+  />
+</div>

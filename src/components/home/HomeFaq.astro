@@ -1,0 +1,31 @@
+---
+import FaqItem from "@/components/FaqItem.astro";
+import { FAQS_GENERALES } from "@/data/faq";
+
+const faqs = FAQS_GENERALES;
+---
+
+    <section class="seccion">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-header-split__left">
+            <span class="section-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+              Preguntas frecuentes
+            </span>
+            <h2 class="section-title">Todo lo que necesitas saber</h2>
+            <p class="section-subtitle">Respuestas a las dudas más comunes sobre la renta de inflables.</p>
+          </div>
+          <div class="section-header-split__right">
+            <p class="section__seo-text">¿Cuánto cuesta rentar un brincalín en CDMX? ¿Qué espacio necesito? ¿Qué incluye el precio? ¿Qué pasa si llueve? Respondemos cada duda con datos concretos y sin condiciones escondidas — porque una renta de inflable no debería ser una sorpresa el día del evento. <strong>Sin términos ambiguos, sin asteriscos.</strong></p>
+            <p class="section__seo-text">Nuestro equipo responde WhatsApp todos los días, incluyendo Navidad, Año Nuevo y días festivos — porque los eventos no esperan. Si tienes una duda específica sobre tu espacio, tu zona o el modelo que te interesa, <strong>te damos una respuesta concreta y útil en menos de 10 minutos</strong>, no un "te llamamos después".</p>
+          </div>
+        </div>
+        <div style="margin-top:var(--spacing-2xl);">
+          {faqs.map(faq => (
+            <FaqItem id={faq.id} question={faq.question} answer={faq.answer} />
+          ))}
+        </div>
+
+      </div>
+    </section>

@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import InflableCard from "@/components/InflableCard.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import CTABanner from "@/components/CTABanner.astro";
+import LeadCapture from "@/components/LeadCapture.astro";
+import { CATEGORIAS } from "@/data/categorias";
+import { SITE } from "@/data/site";
+import { FAQS_CASTILLOS, faqSchema } from "@/data/faq";
+import FaqItem from "@/components/FaqItem.astro";
+
+const GIGANTES = { slug: "inflables-gigantes", label: "Inflables gigantes", emoji: "🎪", gradient: "linear-gradient(135deg, #7C3AED22 0%, #FF4B1F22 100%)", title: "Inflables gigantes en CDMX | INFLABLEE", description: "Inflables gigantes para kermeses, festivales y eventos corporativos en CDMX." };
+const rutas = [...CATEGORIAS, GIGANTES];
+export function getStaticPaths() { return [...CATEGORIAS, { slug: "inflables-gigantes", label: "Inflables gigantes", emoji: "🎪", gradient: "linear-gradient(135deg, #7C3AED22 0%, #FF4B1F22 100%)", title: "Inflables gigantes en CDMX | INFLABLEE", description: "Inflables gigantes para kermeses, festivales y eventos corporativos en CDMX." }].map((categoria) => ({ params: { categoria: categoria.slug }, props: { categoria } })); }
+const { categoria } = Astro.props as { categoria: (typeof rutas)[number] };
+const pagina = (await getCollection("categorias")).find((entry) => entry.id === categoria.slug);
+if (!pagina) throw new Error(`Falta el contenido de categoría ${categoria.slug}.`);
+const { Content } = await render(pagina);
+const todos = await getCollection("inflables");
+const inflables = todos.filter((inflable) => categoria.slug === GIGANTES.slug ? inflable.data.categoria === "toboganes" || inflable.data.categoria === "pistas" : "key" in categoria && inflable.data.categoria === categoria.key).sort((a, b) => a.data.order - b.data.order);
+const schema = pagina.data.faq === "castillos" ? faqSchema(FAQS_CASTILLOS) : { "@context": "https://schema.org", "@type": "ItemList", name: categoria.label, itemListElement: inflables.map((inflable, index) => ({ "@type": "ListItem", position: index + 1, url: new URL(`/inflables/${inflable.id}`, SITE.url).href })) };
+---
+
+<PageLayout title={pagina.data.title} description={pagina.data.description} schema={schema} breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables", href: "/inflables" }, { name: categoria.label }]}>
+  <main id="contenido-principal">
+    <PageHero eyebrow={pagina.data.eyebrow} title={pagina.data.heroTitle} desc={pagina.data.heroDescription} stats={pagina.data.heroStats} ctas={[{ href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero cotizar ${categoria.label}.`)}`, label: pagina.data.primaryCta, variant: "primary" }, { href: "/inflables", label: "Ver todo el catálogo", variant: "outline" }]} />
+    <section class="prod-catalog"><div class="container"><SectionHeader title={pagina.data.catalogTitle} subtitle={pagina.data.catalogDescription} />{categoria.slug === "juegos-interactivos" && inflables.length === 0 && <p class="prod-catalog__vacio">Todavía no tenemos juegos interactivos publicados en el catálogo. Escríbenos por WhatsApp y te decimos qué hay disponible para la fecha de tu evento.</p>}<div class="prod-catalog__grid">{inflables.map((inflable) => <InflableCard title={inflable.data.title} descripcion={inflable.data.descripcion} categoria={inflable.data.categoria} precio_desde={inflable.data.precio_desde} capacidad={inflable.data.capacidad} medidas={inflable.data.medidas} tiempo_instalacion={inflable.data.tiempo_instalacion} slug={inflable.id} imagen={inflable.data.imagen} disponible={inflable.data.disponible} featured={inflable.data.featured} gradient={categoria.gradient} />)}</div></div></section>
+    <section class="category-copy"><div class="container markdown-seo"><Content /></div></section>
+    {pagina.data.faq === "castillos" && <section class="category-faq"><div class="container"><h2>Preguntas frecuentes sobre castillos inflables en CDMX</h2><p>Respuestas directas a las dudas más comunes antes de rentar un castillo inflable.</p>{FAQS_CASTILLOS.map((faq) => <FaqItem id={faq.id} question={faq.question} answer={faq.answer} />)}</div></section>}
+    <CTABanner eyebrow={pagina.data.ctaEyebrow} title={pagina.data.ctaTitle} subtitle={pagina.data.ctaDescription} /><LeadCapture />
+  </main>
+</PageLayout>
+
+<style>.category-copy{padding:var(--spacing-3xl) 0;background:var(--color-accent)}.markdown-seo :global(h2){font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:var(--color-secondary);margin:1.5rem 0 1rem}.markdown-seo :global(h3){font-size:1.1rem;font-weight:800;color:var(--color-secondary);margin:1.25rem 0 .75rem}.markdown-seo :global(p),.markdown-seo :global(li){color:var(--color-text-light);line-height:1.7}.markdown-seo :global(ul){margin:0 0 2rem;padding-left:1.25rem}.category-faq{padding:var(--spacing-3xl) 0}.category-faq .container{max-width:800px}.category-faq h2{text-align:center;color:var(--color-secondary)}.category-faq h2+p{text-align:center;color:var(--color-text-light);margin-bottom:2.5rem}</style>

@@ -1,5 +1,7 @@
 ---
+import { getCollection, render } from "astro:content";
 import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
@@ -7,228 +9,25 @@ import { SITE } from "@/data/site";
 import { ZONAS_GEO } from "@/data/zonas";
 import { CATEGORIAS } from "@/data/categorias";
 
-type ZonaGeo = (typeof ZONAS_GEO)[number];
-
-export function getStaticPaths() {
-  return ZONAS_GEO.map(z => ({ params: { slug: z.slug }, props: { zonaGeo: z } }));
-}
-
-interface Props {
-  zonaGeo: ZonaGeo;
-}
-
-const { zonaGeo } = Astro.props;
-const zona = zonaGeo.nombre;
-const cubre = [...zonaGeo.alcaldias, ...zonaGeo.municipios];
-
-const areaSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": `Renta de inflables en ${zona}`,
-  "serviceType": "Renta de inflables para eventos",
-  "provider": { "@type": "LocalBusiness", "name": SITE.name, "@id": `${SITE.url}/negocio` },
-  "areaServed": cubre.map(nombre => ({ "@type": "Place", "name": nombre })),
-};
+export function getStaticPaths() { return ZONAS_GEO.map((zona) => ({ params: { slug: zona.slug }, props: { zona } })); }
+type Zona = (typeof ZONAS_GEO)[number];
+const { zona } = Astro.props as { zona: Zona };
+const pagina = (await getCollection("zonasSeo")).find((entry) => entry.id === zona.slug);
+if (!pagina) throw new Error(`Falta el contenido de zona ${zona.slug}.`);
+const { Content } = await render(pagina);
+const detalle = "places" in zona && zona.places.length > 0;
+const places = detalle ? zona.places : [...zona.alcaldias, ...zona.municipios].map((nombre) => ({ nombre, colonias: [], destacada: false }));
+const areaSchema = { "@context": "https://schema.org", "@type": "Service", name: `Renta de inflables en ${zona.nombre}`, serviceType: "Renta de inflables para eventos", provider: { "@id": `${SITE.url}/negocio` }, areaServed: places.map((place) => ({ "@type": "Place", name: place.nombre })) };
 ---
 
-<PageLayout
-  title={`Renta de Inflables en ${zona} — CDMX y Edomex | INFLABLEE`}
-  description={`Entrega de inflables en ${zona}: ${cubre.slice(0, 4).join(", ")} y más. Instalación, supervisor y retiro incluidos. Cotiza tu fecha.`}
-  schema={areaSchema}
-  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: zona }]}
->
+<PageLayout title={pagina.data.title} description={pagina.data.description} schema={areaSchema} breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas", href: "/zonas" }, { name: zona.nombre }]}>
   <main id="contenido-principal">
-    <section class="zona-hero">
-      <div class="container">
-        <span class="zona-hero__eyebrow">📍 Cobertura {zona}</span>
-        <h1 class="zona-hero__title">Renta de inflables en {zona}</h1>
-        <p class="zona-hero__desc">
-          Entregamos, instalamos y retiramos en la {zona} de la Zona Metropolitana. Consulta tu colonia al cotizar para confirmar la cobertura. El montaje toma entre 15 y 40 minutos según el modelo,
-          y el supervisor se queda durante todo el evento.
-        </p>
-        <div class="zona-hero__ctas">
-          <a
-            href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero cotizar inflables en ${zona}.`)}`}
-            class="btn btn--primary"
-            target="_blank"
-            rel="noopener"
-          >
-            Cotizar por WhatsApp
-          </a>
-          <a href="/precios" class="btn btn--white">Ver precios</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion">
-      <div class="container">
-        <SectionHeader
-          title={`Dónde entregamos en la ${zona}`}
-          subtitle="Si tu colonia no aparece, escríbenos: casi siempre llegamos igual, solo confirmamos el traslado antes de que reserves."
-        />
-
-        {zonaGeo.alcaldias.length > 0 && (
-          <div class="zona-bloque">
-            <h3 class="zona-bloque__title">Ciudad de México</h3>
-            <ul class="zona-bloque__list">
-              {zonaGeo.alcaldias.map(a => (
-                <li><a href="/zonas/cdmx" class="zona-bloque__link">{a}</a></li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {zonaGeo.municipios.length > 0 && (
-          <div class="zona-bloque">
-            <h3 class="zona-bloque__title">Estado de México</h3>
-            <ul class="zona-bloque__list">
-              {zonaGeo.municipios.map(m => (
-                <li><a href="/zonas/estado-de-mexico" class="zona-bloque__link">{m}</a></li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </section>
-
-    <section class="seccion seccion--alt">
-      <div class="container">
-        <SectionHeader
-          title={`Qué se renta más en la ${zona}`}
-          subtitle="El catálogo completo entrega en toda la zona; estas son las categorías por las que más preguntan."
-        />
-        <div class="zona-cats">
-          {CATEGORIAS.map(c => (
-            <a href={`/inflables/${c.slug}`} class="zona-cat">
-              <span class="zona-cat__emoji" aria-hidden="true">{c.emoji}</span>
-              <span class="zona-cat__label">{c.label}</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="seccion">
-      <div class="container">
-        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
-          <div class="section__seo-block">
-            <p class="section__seo-label">CÓMO FUNCIONA LA ENTREGA EN ESTA ZONA</p>
-            <h2 class="section__seo-title">Llegamos antes de la hora de inicio, montamos y nos quedamos</h2>
-            <p class="section__seo-text">
-              Acordamos una hora de montaje previa al inicio de tu evento para que el inflable esté
-              listo cuando lleguen los invitados. Necesitamos acceso para trasladar el equipo y un
-              contacto de 110 V a menos de 10 metros del área. Si el lugar es un patio interior,
-              una azotea o un salón, mándanos una foto por WhatsApp y te confirmamos qué modelo cabe.
-            </p>
-            <p class="section__seo-text">
-              ¿Tu evento es en otra parte? Revisa la cobertura completa en
-              <a href="/zonas/cdmx">Ciudad de México</a> y
-              <a href="/zonas/estado-de-mexico">Estado de México</a>, o consulta las
-              <a href="/preguntas-frecuentes">preguntas frecuentes</a> antes de apartar fecha.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <CTABanner
-      title={`¿Entregamos en tu colonia de la ${zona}?`}
-      subtitle="Dinos la dirección y la fecha; confirmamos disponibilidad y precio cerrado."
-      secondaryText="Ver todas las zonas"
-      secondaryHref="/zonas"
-    />
-    <LeadCapture />
+    <PageHero eyebrow={pagina.data.eyebrow} title={pagina.data.heroTitle} desc={pagina.data.heroDescription} stats={pagina.data.heroStats} ctas={[{ href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero rentar inflables en ${zona.nombre}.`)}`, label: pagina.data.primaryCta, variant: "primary" }, { href: pagina.data.secondaryHref, label: pagina.data.secondaryCta, variant: "outline" }]} />
+    {detalle ? <section class="zonas-section"><div class="container"><SectionHeader title={pagina.data.sectionTitle} subtitle={pagina.data.sectionDescription} /><div class="zonas-grid" style="margin-top:var(--spacing-xl);">{places.map((place) => <div class={`zona-card${place.destacada ? " zona-card--destacada" : ""}`}><div class="zona-card__header"><span class="zona-card__nombre">{place.nombre}</span>{place.destacada && <span class="zona-card__prioridad">Zona prioritaria</span>}</div>{place.colonias.length > 0 && <p class="zona-card__alcaldias">{place.colonias.join(" · ")}</p>}<a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(`Hola INFLABLEE, quiero rentar inflables en ${place.nombre}.`)}`} class="zona-card__cta" target="_blank" rel="noopener">Cotizar en {place.nombre} →</a></div>)}</div></div></section> : <section class="seccion"><div class="container"><SectionHeader title={pagina.data.sectionTitle} subtitle={pagina.data.sectionDescription} />{zona.alcaldias.length > 0 && <div class="zona-bloque"><h3 class="zona-bloque__title">Ciudad de México</h3><ul class="zona-bloque__list">{zona.alcaldias.map((alcaldia) => <li><a href="/zonas/cdmx" class="zona-bloque__link">{alcaldia}</a></li>)}</ul></div>}{zona.municipios.length > 0 && <div class="zona-bloque"><h3 class="zona-bloque__title">Estado de México</h3><ul class="zona-bloque__list">{zona.municipios.map((municipio) => <li><a href="/zonas/estado-de-mexico" class="zona-bloque__link">{municipio}</a></li>)}</ul></div>}</div></section>}
+    {!detalle && <section class="seccion seccion--alt"><div class="container"><SectionHeader title={`Qué se renta más en la ${zona.nombre}`} subtitle="El catálogo completo entrega en toda la zona; estas son las categorías por las que más preguntan." /><div class="zona-cats">{CATEGORIAS.map((categoria) => <a href={`/inflables/${categoria.slug}`} class="zona-cat"><span>{categoria.emoji}</span><strong>{categoria.label}</strong></a>)}</div></div></section>}
+    <section class="zone-copy"><div class="container markdown-seo"><Content /></div></section>
+    <CTABanner title={pagina.data.ctaTitle} subtitle={pagina.data.ctaDescription} secondaryText={pagina.data.ctaSecondaryCta} secondaryHref={pagina.data.ctaSecondaryHref} /><LeadCapture />
   </main>
 </PageLayout>
 
-<style>
-  .zona-hero {
-    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light, #2A2A4E) 100%);
-    color: #fff;
-    padding: var(--spacing-4xl) 0;
-    text-align: center;
-  }
-  .zona-hero .container { max-width: 46rem; }
-  .zona-hero__eyebrow {
-    display: inline-block;
-    font-size: var(--font-size-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-primary-light, #FF8C42);
-    margin-bottom: 0.75rem;
-  }
-  .zona-hero__title {
-    font-size: clamp(1.75rem, 4vw, 2.75rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-  }
-  .zona-hero__desc {
-    color: rgba(255,255,255,0.8);
-    font-size: var(--font-size-lg);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-xl);
-  }
-  .zona-hero__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-  .zona-bloque { margin-top: var(--spacing-xl); }
-  .zona-bloque__title {
-    font-size: var(--font-size-sm);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--color-text-light);
-    margin-bottom: 0.75rem;
-  }
-  .zona-bloque__list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .zona-bloque__link {
-    display: inline-block;
-    padding: 0.45rem 0.9rem;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    background: var(--color-white);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: var(--color-secondary);
-    transition: all var(--transition-fast);
-  }
-  .zona-bloque__link:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-  }
-
-  .zona-cats {
-    display: grid;
-    gap: var(--spacing-md);
-    grid-template-columns: repeat(2, 1fr);
-    margin-top: var(--spacing-xl);
-  }
-  @media (min-width: 768px) {
-    .zona-cats { grid-template-columns: repeat(4, 1fr); }
-  }
-  .zona-cat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: var(--spacing-lg);
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius-lg);
-    text-align: center;
-    transition: all var(--transition-fast);
-  }
-  .zona-cat:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
-  }
-  .zona-cat__emoji { font-size: 1.75rem; }
-  .zona-cat__label { font-weight: 700; color: var(--color-secondary); font-size: var(--font-size-sm); }
-</style>
+<style>.zona-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:var(--spacing-xl)}.zona-cat{display:flex;flex-direction:column;gap:.5rem;align-items:center;padding:var(--spacing-lg);background:#fff;border:1px solid var(--color-border);border-radius:var(--border-radius-lg);color:var(--color-secondary);text-align:center}.zona-bloque{margin-top:var(--spacing-xl)}.zona-bloque__title{font-size:var(--font-size-sm);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-light);margin-bottom:.75rem}.zona-bloque__list{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0;margin:0}.zona-bloque__link{display:inline-block;padding:.45rem .9rem;border:1px solid var(--color-border);border-radius:999px;background:var(--color-white);font-size:var(--font-size-sm);font-weight:600;color:var(--color-secondary)}.zona-card__prioridad{font-size:.65rem;font-weight:700;background:#e8f5e9;color:#16a34a;padding:.2rem .5rem;border-radius:50px}.zone-copy{padding:var(--spacing-3xl) 0;background:var(--color-accent)}.markdown-seo :global(h2){font-size:clamp(1.4rem,2.5vw,2rem);font-weight:900;color:var(--color-secondary);margin:1.5rem 0 1rem}.markdown-seo :global(p){color:var(--color-text-light);line-height:1.7}</style>

@@ -5,36 +5,14 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import PricingCard from "@/components/PricingCard.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
+import MarkdownSeo from "@/components/MarkdownSeo.astro";
 import { SITE } from "@/data/site";
-
-const paquetes = [
-  {
-    title: "Cumpleaños Mini",
-    price: "desde $900 MXN",
-    description: "Para fiestas de hasta 20 niños en jardín pequeño.",
-    includes: ["1 castillo inflable temático", "Entrega e instalación", "1 supervisor", "5 horas de renta"],
-    featured: false,
-  },
-  {
-    title: "Cumpleaños Clásico",
-    price: "desde $1,800 MXN",
-    description: "El favorito: castillo + tobogán para fiestas de 20-50 niños.",
-    includes: ["1 castillo + 1 tobogán", "Entrega e instalación", "2 supervisores", "6 horas de renta", "Ahorro de $400 vs precio individual"],
-    featured: true,
-    badge: "Paquete clásico",
-  },
-  {
-    title: "Cumpleaños Grande",
-    price: "desde $2,800 MXN",
-    description: "Para fiestas de 50-80 niños. Máxima diversión.",
-    includes: ["2 castillos + 1 pista obstáculos", "Entrega e instalación", "3 supervisores", "7 horas de renta", "Música ambiente opcional", "Ahorro de $600 vs precio individual"],
-    featured: false,
-  },
-];
+import { getPackageCards } from "@/lib/packages";
+const paquetes = await getPackageCards("fiestas");
 ---
 
 <PageLayout
-  title="Renta de Inflables para Fiestas Infantiles CDMX | INFLABLEE"
+  title="Inflables para fiestas infantiles CDMX | INFLABLEE"
   description="Inflables para fiestas de cumpleaños en CDMX y Estado de México. Castillos temáticos, toboganes y paquetes completos desde $900 MXN. Supervisión incluida."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Fiestas Infantiles" }]}
 >
@@ -96,23 +74,7 @@ const paquetes = [
       </div>
     </section>
 
-    <!-- SEO Content -->
-    <section style="padding:var(--spacing-3xl) 0;background:var(--color-accent);">
-      <div class="container">
-        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
-          <div class="section__seo-block">
-            <p class="section__seo-label">PORQUE EL CUMPLEAÑOS ES DE TU HIJO, NO DEL ESTRÉS</p>
-            <h2 class="section__seo-title">Inflables para fiestas infantiles en CDMX: tú pones el pastel, nosotros ponemos la diversión</h2>
-            <p class="section__seo-text">Sabemos lo que significa organizar el cumpleaños perfecto. Por eso diseñamos un servicio donde tú solo tienes que disfrutar: el inflable llega limpio, instalado a tiempo y con un supervisor que cuida a los niños durante toda la fiesta. <strong>Cero sorpresas, cero estrés.</strong></p>
-          </div>
-          <div class="section__seo-block">
-            <p class="section__seo-label">SEGURIDAD INFANTIL SIN ASTERISCOS</p>
-            <h2 class="section__seo-title">Revisa las especificaciones antes de reservar</h2>
-            <p class="section__seo-text">Consulta las medidas, capacidad, tiempo de instalación y requerimientos eléctricos de cada ficha antes de elegir un inflable para tu fiesta.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <MarkdownSeo id="seo-fiestas-infantiles" accent />
 
     <CTABanner
       title="¿Cuándo es el cumpleaños?"

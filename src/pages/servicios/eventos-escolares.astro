@@ -5,32 +5,10 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import PricingCard from "@/components/PricingCard.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
+import MarkdownSeo from "@/components/MarkdownSeo.astro";
 import { SITE } from "@/data/site";
-
-const paquetes = [
-  {
-    title: "Paquete Básico Escolar",
-    price: "desde $2,800 MXN",
-    description: "Para grupos de hasta 80 niños. Ideal para eventos de un salón.",
-    includes: ["2 castillos inflables", "Entrega e instalación", "2 supervisores", "6 horas de renta", "Factura electrónica"],
-    featured: false,
-  },
-  {
-    title: "Paquete Kermés Completa",
-    price: "desde $5,500 MXN",
-    description: "Para 80-200 niños. Pista de obstáculos + castillos + supervisión completa.",
-    includes: ["1 pista obstáculos 15m + 2 castillos", "Entrega e instalación", "4 supervisores capacitados", "8 horas de renta", "Factura electrónica", "Informe de seguridad incluido"],
-    featured: true,
-    badge: "⭐ El más pedido",
-  },
-  {
-    title: "Paquete Festival Grande",
-    price: "desde $9,000 MXN",
-    description: "Para festivales masivos de 200+ niños. Múltiples inflables y actividades.",
-    includes: ["3+ inflables grandes", "Toro mecánico o ring de boxeo", "5-6 supervisores", "Todo el día (10 horas)", "Generador eléctrico opcional", "Factura electrónica", "Coordinador de evento incluido"],
-    featured: false,
-  },
-];
+import { getPackageCards } from "@/lib/packages";
+const paquetes = await getPackageCards("escolares");
 ---
 
 <PageLayout
@@ -99,23 +77,7 @@ const paquetes = [
       </div>
     </section>
 
-    <!-- SEO Content -->
-    <section style="padding:var(--spacing-3xl) 0;">
-      <div class="container">
-        <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
-          <div class="section__seo-block">
-            <p class="section__seo-label">PARA INSTITUCIONES QUE NO PUEDEN PERMITIRSE ERRORES</p>
-            <h2 class="section__seo-title">Kermeses y festivales escolares con la logística profesional que tu institución merece</h2>
-            <p class="section__seo-text">Trabajamos con escuelas públicas y privadas en CDMX y Estado de México para organizar <strong>kermeses del Día del Niño</strong>, festivales de fin de año y eventos deportivos con inflables. Emitimos CFDI, coordinamos tiempos de rotación y presentamos informe de seguridad al terminar.</p>
-          </div>
-          <div class="section__seo-block">
-            <p class="section__seo-label">EL 30 DE ABRIL SE LLENA DESDE FEBRERO</p>
-            <h2 class="section__seo-title">Las fechas clave del calendario escolar se agotan — reserva tu kermés con al menos 6 semanas de anticipación</h2>
-            <p class="section__seo-text">Las escuelas que esperan a planificar en el último momento quedan sin opciones para las fechas más demandadas. Contáctanos hoy para asegurar la <strong>logística completa de tu kermés escolar</strong>, con paquetes desde 50 hasta 500 niños y factura electrónica garantizada.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <MarkdownSeo id="seo-eventos-escolares" />
 
     <CTABanner
       title="¿Cuándo es tu kermés o festival escolar?"

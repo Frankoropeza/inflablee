@@ -2,9 +2,12 @@
 title: "Paquete Cumpleaños"
 description: "Paquete de inflables ideal para fiestas de cumpleaños infantiles. Incluye castillo y tobogán."
 price: "Desde $2,500 MXN"
-featured: true
+targetAudience: "Fiestas de cumpleaños infantiles"
 includes: ["Castillo inflable mediano", "Tobogán seco", "4 horas de renta", "Entrega e instalación", "Supervisión incluida"]
-order: 1
+duration: "4 horas de renta"
+placements:
+  - page: "paquetes"
+    order: 1
+    variant: "standard"
+    featured: true
 ---
-
-Un paquete para celebrar el cumpleaños de los más pequeños, con servicio de entrega, instalación y supervisión.

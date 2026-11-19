@@ -1,7 +1,8 @@
 ---
 title: "Seguridad en inflables: todo lo que los papás deben saber"
 seoTitle: "Seguridad en inflables: guía para papás"
-description: "Guía completa de seguridad para uso de inflables en fiestas infantiles. Normas, precauciones, qué verificar antes de rentar y cómo supervisar correctamente."
+description: "Guía de seguridad para inflables en fiestas infantiles: normas, precauciones y qué verificar antes de rentar."
+cardDescription: "Guía completa de seguridad para uso de inflables en fiestas infantiles. Normas, precauciones, qué verificar antes de rentar y cómo supervisar correctamente."
 pubDate: 2026-01-25
 author: "Equipo INFLABLEE"
 category: "Seguridad"

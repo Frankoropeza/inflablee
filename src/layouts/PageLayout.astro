@@ -5,6 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import WaBubble from "@/components/WaBubble.astro";
 import { SITE } from "@/data/site";
+import { buildPageMetadata, buildPageSchemas } from "@/lib/seo";
 
 export interface Props {
   title: string;
@@ -27,17 +28,18 @@ const {
   noindex,
   breadcrumbs,
 } = Astro.props;
+const metadata = buildPageMetadata({ title, description, canonical, pathname: Astro.url.pathname });
+const schemas = buildPageSchemas({ breadcrumbs, schema });
 ---
 
 <BaseLayout
-  title={title}
-  description={description}
-  canonical={canonical}
+  title={metadata.title}
+  description={metadata.description}
+  canonical={metadata.canonical}
   ogImage={ogImage}
-  schema={schema}
+  schemas={schemas}
   pageType={pageType}
   noindex={noindex}
-  breadcrumbs={breadcrumbs}
 >
   <Topbar phone={SITE.tel} whatsapp={SITE.whatsapp} />
   <Header whatsapp={SITE.whatsapp} currentPath={Astro.url.pathname} />

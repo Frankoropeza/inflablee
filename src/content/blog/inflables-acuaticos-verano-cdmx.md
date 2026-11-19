@@ -1,7 +1,8 @@
 ---
 title: "Inflables acuáticos para el verano en CDMX: la guía definitiva"
 seoTitle: "Inflables acuáticos para el verano en CDMX"
-description: "Todo sobre toboganes acuáticos, albercas inflables y juegos de agua para fiestas de verano en Ciudad de México y Estado de México. Precios, opciones y consejos."
+description: "Toboganes acuáticos, albercas inflables y juegos de agua para fiestas de verano en Ciudad de México y Estado de México."
+cardDescription: "Todo sobre toboganes acuáticos, albercas inflables y juegos de agua para fiestas de verano en Ciudad de México y Estado de México. Precios, opciones y consejos."
 pubDate: 2026-02-20
 author: "Equipo INFLABLEE"
 category: "Guías"

@@ -2,28 +2,24 @@
 import "@/styles/global.css";
 import { SITE } from "@/data/site";
 
-export interface BreadcrumbItem { name: string; href?: string; }
-
 export interface Props {
   title: string;
   description: string;
-  canonical?: string;
+  canonical: string;
   ogImage?: string;
   pageType?: "home" | "page" | "article";
   noindex?: boolean;
-  breadcrumbs?: BreadcrumbItem[];
-  schema?: object | object[];
+  schemas?: object[];
 }
 
 const {
   title,
   description,
-  canonical = Astro.url.href,
+  canonical,
   ogImage = "/img/og-inflablee.jpg",
   pageType = "page",
   noindex = false,
-  breadcrumbs,
-  schema,
+  schemas = [],
 } = Astro.props;
 
 const schemaOrg = {
@@ -84,23 +80,8 @@ const schemaWebSite = {
   "publisher": { "@id": `${SITE.url}/org` }
 };
 
-const schemaBreadcrumb = breadcrumbs ? {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": breadcrumbs.map((b, i) => ({
-    "@type": "ListItem",
-    "position": i + 1,
-    "name": b.name,
-    ...(b.href ? { "item": `${SITE.url}${b.href}` } : {})
-  }))
-} : null;
-
 const allSchemas: object[] = [schemaOrg, schemaLocal, schemaWebSite];
-if (schemaBreadcrumb) allSchemas.push(schemaBreadcrumb);
-if (schema) {
-  const extra = Array.isArray(schema) ? schema : [schema];
-  allSchemas.push(...extra);
-}
+allSchemas.push(...schemas);
 
 const ogType = pageType === "article" ? "article" : "website";
 ---

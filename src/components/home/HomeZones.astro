@@ -1,0 +1,37 @@
+---
+import { SITE } from "@/data/site";
+
+const waCotizar = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento 🎈")}`;
+const zonas = ["Coyoacán", "Iztapalapa", "Benito Juárez", "Gustavo A. Madero", "Tlalpan", "Xochimilco", "Álvaro Obregón", "Miguel Hidalgo", "Ecatepec", "Naucalpan", "Nezahualcóyotl", "Tlalnepantla", "Chimalhuacán", "Texcoco", "Tultitlán", "Cuautitlán"];
+---
+
+    <section class="seccion seccion--alt zonas-sec">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-header-split__left">
+            <span class="section-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Cobertura
+            </span>
+            <h2 class="section-title">Entregamos en toda la ZMVM</h2>
+            <p class="section-subtitle">Cubrimos CDMX y Estado de México sin costo adicional de envío.</p>
+          </div>
+          <div class="section-header-split__right">
+            <p class="section__seo-text">Renta de inflables en Coyoacán, Tlalpan, Benito Juárez, Iztapalapa, Xochimilco, Álvaro Obregón, Miguel Hidalgo, Gustavo A. Madero y todas las alcaldías de CDMX. En Estado de México: Ecatepec, Nezahualcóyotl, Naucalpan, Tlalnepantla, Chimalhuacán, Texcoco y Tultitlán, <strong>sin costo adicional de transporte en zona de cobertura</strong>. Cobertura confirmada al cotizar.</p>
+            <p class="section__seo-text">El protocolo de llegada es 60 minutos antes del inicio del evento, sin excepción. Instalamos, probamos la presión, revisamos el anclaje y confirmamos que el supervisor está en posición. Si por alguna razón no podemos llegar a tiempo, te notificamos con al menos 2 horas de anticipación y activamos nuestro protocolo de contingencia — <strong>nunca te dejamos esperando sin aviso</strong>.</p>
+          </div>
+        </div>
+
+        <div class="zonas-chips">
+          {zonas.map(z => (
+            <span class="zona-chip">{z}</span>
+          ))}
+          <span class="zona-chip zona-chip--more">+ muchas más</span>
+        </div>
+
+        <p style="text-align:center;margin-top:var(--spacing-xl);color:var(--color-text-light);font-size:var(--font-size-sm);">
+          ¿Tu colonia no aparece? <a href={waCotizar} style="color:var(--color-primary);font-weight:700;" target="_blank" rel="noopener">Escríbenos por WhatsApp</a> y verificamos cobertura al instante.
+        </p>
+
+      </div>
+    </section>

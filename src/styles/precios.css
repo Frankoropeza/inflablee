@@ -1,0 +1,115 @@
+  .precios-tabla-wrap {
+    overflow-x: auto;
+    margin-top: var(--spacing-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+  }
+  .precios-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    min-width: 46rem;
+  }
+  .precios-tabla__caption {
+    caption-side: bottom;
+    padding: 0.75rem 1rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-light);
+    text-align: left;
+  }
+  .precios-tabla th,
+  .precios-tabla td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .precios-tabla thead th {
+    background: var(--color-accent);
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-light);
+  }
+  .precios-tabla tbody th {
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  .precios-tabla tbody tr:last-child th,
+  .precios-tabla tbody tr:last-child td { border-bottom: none; }
+  .precios-tabla tbody tr:hover { background: var(--color-accent); }
+  .precios-tabla__precio {
+    font-weight: 800;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+  .precios-tabla__nota {
+    display: block;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-light);
+  }
+
+  .precios-incluye {
+    display: grid;
+    gap: 0.5rem;
+    margin: var(--spacing-xl) 0 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 768px) {
+    .precios-incluye { grid-template-columns: repeat(2, 1fr); }
+  }
+  .precios-incluye li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--color-text);
+  }
+  .precios-incluye li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-success, #16a34a);
+    font-weight: 800;
+  }
+  .precios-nota {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  .precios-paquetes {
+    display: grid;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+  }
+  @media (min-width: 768px) {
+    .precios-paquetes { grid-template-columns: repeat(3, 1fr); }
+  }
+  .precios-paquete {
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .precios-paquete__title {
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    color: var(--color-secondary);
+  }
+  .precios-paquete__price {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+  .precios-paquete__desc { color: var(--color-text-light); }
+  .precios-paquete__list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    display: grid;
+    gap: 0.25rem;
+  }
+  .precios-paquete .btn { margin-top: auto; align-self: flex-start; }

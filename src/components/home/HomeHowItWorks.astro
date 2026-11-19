@@ -1,0 +1,57 @@
+---
+import { SITE } from "@/data/site";
+
+const waCotizar = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento 🎈")}`;
+---
+
+    <section class="seccion como-funciona">
+      <div class="container">
+        <div class="section-header-split">
+          <div class="section-header-split__left">
+            <span class="section-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Simple y rápido
+            </span>
+            <h2 class="section-title">¿Cómo funciona la renta?</h2>
+            <p class="section-subtitle">En 3 pasos tienes tu inflable listo para la fiesta. Sin complicaciones, sin sorpresas.</p>
+          </div>
+          <div class="section-header-split__right">
+            <p class="section__seo-text">Por WhatsApp puedes compartir la fecha, ubicación y medidas de tu espacio. Te ayudamos a revisar opciones del catálogo y confirmar disponibilidad.</p>
+            <p class="section__seo-text">Llegamos 60 minutos antes del inicio con todo el equipo: inflable, soplador, lonas de anclaje y herramientas de instalación. La instalación estándar toma entre 15 y 40 minutos dependiendo del modelo. Al terminar el evento, el equipo regresa, desinfla, dobla, carga y se va — sin dejarte trabajo de limpieza ni desmontaje.</p>
+          </div>
+        </div>
+
+        <div class="pasos">
+          <div class="pasos__conector" aria-hidden="true"></div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">01</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <h3 class="paso__title">Cotiza por WhatsApp</h3>
+            <p class="paso__desc">Cuéntanos tu fecha, número de niños y tipo de evento. En minutos te enviamos opciones y disponibilidad.</p>
+            <a href={waCotizar} class="paso__link" target="_blank" rel="noopener">Cotizar ahora →</a>
+          </div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">02</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3 class="paso__title">Agendamos tu fecha</h3>
+            <p class="paso__desc">Confirmas tu reserva con un anticipo del {SITE.comercial.anticipoPct}%. Tu fecha queda bloqueada y recibes confirmación.</p>
+          </div>
+
+          <div class="paso">
+            <div class="paso__num" aria-hidden="true">03</div>
+            <div class="paso__icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+            <h3 class="paso__title">Llegamos y montamos</h3>
+            <p class="paso__desc">El día del evento llegamos 1 hora antes, instalamos todo y supervisamos para que disfrutes sin preocupaciones.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
