@@ -5,23 +5,27 @@ import LeadCapture from "@/components/LeadCapture.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
 import InflableCard from "@/components/InflableCard.astro";
 import { SITE } from "@/data/site";
-import { getCollection } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import { categoriaColor, categoriaLabel } from "@/data/categorias";
 
 export async function getStaticPaths() {
   const inflables = await getCollection("inflables");
   return inflables.map(i => ({
-    params: { slug: i.slug },
+    params: { slug: i.id },
     props: { inflable: i },
   }));
 }
 
+interface Props {
+  inflable: CollectionEntry<"inflables">;
+}
+
 const { inflable } = Astro.props;
-const { Content } = await inflable.render();
+const { Content } = await render(inflable);
 
 const todosInflables = await getCollection("inflables");
 const relacionados = todosInflables
-  .filter(i => i.data.categoria === inflable.data.categoria && i.slug !== inflable.slug)
+  .filter(i => i.data.categoria === inflable.data.categoria && i.id !== inflable.id)
   .slice(0, 3);
 
 const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${inflable.data.title}. ¿Cuál es la disponibilidad y precio exacto?`);
@@ -229,7 +233,7 @@ const schema = {
                 capacidad={i.data.capacidad}
                 medidas={i.data.medidas}
                 tiempo_instalacion={i.data.tiempo_instalacion}
-                slug={i.slug}
+                slug={i.id}
                 imagen={i.data.imagen}
                 disponible={i.data.disponible}
                 featured={i.data.featured}

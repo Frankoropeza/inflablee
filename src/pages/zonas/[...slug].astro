@@ -7,8 +7,14 @@ import { SITE } from "@/data/site";
 import { ZONAS_GEO } from "@/data/zonas";
 import { CATEGORIAS } from "@/data/categorias";
 
+type ZonaGeo = (typeof ZONAS_GEO)[number];
+
 export function getStaticPaths() {
   return ZONAS_GEO.map(z => ({ params: { slug: z.slug }, props: { zonaGeo: z } }));
+}
+
+interface Props {
+  zonaGeo: ZonaGeo;
 }
 
 const { zonaGeo } = Astro.props;

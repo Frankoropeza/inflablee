@@ -6,7 +6,7 @@ import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
 import { getCollection } from "astro:content";
 import { SITE } from "@/data/site";
-import { CATEGORIAS, categoriaLabel } from "@/data/categorias";
+import { categoriaLabel } from "@/data/categorias";
 import { faqSchema, FAQS_GENERALES } from "@/data/faq";
 
 const inflables = (await getCollection("inflables")).sort(
@@ -31,7 +31,7 @@ const listaSchema = {
       "@type": "Product",
       "name": i.data.title,
       "category": categoriaLabel(i.data.categoria),
-      "url": new URL(`/inflables/${i.slug}`, SITE.url).href,
+      "url": new URL(`/inflables/${i.id}`, SITE.url).href,
       ...(i.data.imagen ? { "image": new URL(i.data.imagen, SITE.url).href } : {}),
       "offers": {
         "@type": "Offer",
@@ -40,7 +40,7 @@ const listaSchema = {
         "availability": i.data.disponible
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
-        "url": new URL(`/inflables/${i.slug}`, SITE.url).href,
+        "url": new URL(`/inflables/${i.id}`, SITE.url).href,
       },
     },
   })),
@@ -90,7 +90,7 @@ const listaSchema = {
               {inflables.map(i => (
                 <tr>
                   <th scope="row">
-                    <a href={`/inflables/${i.slug}`}>{i.data.title}</a>
+                    <a href={`/inflables/${i.id}`}>{i.data.title}</a>
                     {!i.data.disponible && <span class="precios-tabla__nota">No disponible</span>}
                   </th>
                   <td>{categoriaLabel(i.data.categoria)}</td>

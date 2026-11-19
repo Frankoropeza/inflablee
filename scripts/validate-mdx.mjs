@@ -113,7 +113,7 @@ function validateClosingTags(content, file, errors) {
   }
 }
 
-function validateProps(content, file, errors, warnings) {
+function validateProps(content, file, errors) {
   for (const [comp, requiredProps] of Object.entries(REQUIRED_PROPS)) {
     // Match opening tag of <Component ...>
     const re = new RegExp(`<${comp}\\b([^/>]*?)(?:/>|>)`, 'gs');
@@ -163,7 +163,7 @@ function main() {
     const content = fs.readFileSync(f, 'utf8');
     validateImports(content, rel, componentIdx, errors);
     validateClosingTags(content, rel, errors);
-    validateProps(content, rel, errors, warnings);
+    validateProps(content, rel, errors);
   }
 
   if (warnings.length) {
