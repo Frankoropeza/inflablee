@@ -31,7 +31,7 @@ const schema = inflables.map(i => ({
 
 <PageLayout
   title="Catálogo de Inflables para Renta en CDMX | INFLABLEE"
-  description="Renta de inflables en CDMX y Estado de México. Castillos inflables, toboganes acuáticos, pistas de obstáculos y juegos interactivos. Instalación incluida."
+  description="Renta de inflables en CDMX y Estado de México. Consulta precios, medidas, edades y altura libre por modelo."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Inflables" }]}
   schema={schema}
 >
@@ -39,14 +39,14 @@ const schema = inflables.map(i => ({
     <PageHero
       eyebrow="Catálogo de inflables"
       title={`Inflables para cada\n<span>tipo de evento</span>`}
-      desc="Desde brincalines para los más pequeños hasta toboganes gigantes y juegos interactivos. Todos incluyen entrega, instalación y supervisión."
+      desc="Consulta medidas, edades, altura libre e instalación de cada modelo antes de cotizar."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`, label: "Cotizar ahora", variant: "primary" },
         { href: "#categorias", label: "Ver categorías", variant: "outline" },
       ]}
       stats={[
         { value: "4", label: "Categorías" },
-        { value: "100%", label: "Supervisión incluida" },
+        { value: "8", label: "Modelos publicados" },
       ]}
     />
 
@@ -78,7 +78,10 @@ const schema = inflables.map(i => ({
               precio_desde={i.data.precio_desde}
               capacidad={i.data.capacidad}
               medidas={i.data.medidas}
+              edades={i.data.edades}
               tiempo_instalacion={i.data.tiempo_instalacion}
+              altura_libre={i.data.altura_libre}
+              interiores={i.data.interiores}
               slug={i.id}
               imagen={i.data.imagen}
               disponible={i.data.disponible}
@@ -97,12 +100,12 @@ const schema = inflables.map(i => ({
           <div class="section__seo-block">
             <p class="section__seo-label">EL CATÁLOGO QUE BUSCABAS</p>
             <h2 class="section__seo-title">Inflables para rentar en CDMX según tu evento</h2>
-            <p class="section__seo-text">Castillos para cumpleaños íntimos, <strong>toboganes acuáticos</strong> para el calor del verano, pistas de obstáculos para eventos escolares y juegos interactivos para corporativos: cubrimos todos los casos. Todos con entrega e instalación en CDMX y Estado de México, sin cargo adicional.</p>
+            <p class="section__seo-text">El catálogo publicado reúne castillos, Barco Pirata y la pista Extremo. Consulta cada ficha para revisar medidas, edades, altura libre e interiores antes de cotizar.</p>
           </div>
           <div class="section__seo-block">
             <p class="section__seo-label">DISPONIBILIDAD EN TIEMPO REAL</p>
-            <h2 class="section__seo-title">Los fines de semana se llenan semanas antes — verifica disponibilidad para tu fecha ahora mismo</h2>
-            <p class="section__seo-text">Consulta disponibilidad para tu fecha y asegura tu reserva con un anticipo del {SITE.comercial.anticipoPct}%.</p>
+            <h2 class="section__seo-title">Verifica disponibilidad para tu fecha</h2>
+            <p class="section__seo-text">Consulta disponibilidad para tu fecha. {SITE.comercial.anticipo}</p>
           </div>
         </div>
       </div>

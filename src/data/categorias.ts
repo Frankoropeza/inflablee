@@ -14,7 +14,7 @@ export const CATEGORIAS = [
     color: "#FF4B1F",
     gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)",
     title: "Castillos inflables en CDMX | INFLABLEE",
-    description: "Castillos inflables para niñas y niños en CDMX y Edomex. Instalación incluida.",
+    description: "Castillos inflables para niñas y niños en CDMX y Edomex. Consulta medidas y altura libre.",
   },
   {
     key: "toboganes",
@@ -26,7 +26,7 @@ export const CATEGORIAS = [
     color: "#0077CC",
     gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
     title: "Toboganes acuáticos en CDMX | INFLABLEE",
-    description: "Toboganes acuáticos inflables para fiestas en CDMX y Edomex. Instalación incluida.",
+    description: "Consulta los inflables publicados para fiestas en CDMX y Edomex.",
   },
   {
     key: "pistas",
@@ -38,7 +38,7 @@ export const CATEGORIAS = [
     color: "#7C3AED",
     gradient: "linear-gradient(135deg, #7C3AED22 0%, #FF4B1F22 100%)",
     title: "Pistas de obstáculos inflables CDMX | INFLABLEE",
-    description: "Pistas de obstáculos para kermeses y eventos en CDMX. Supervisor incluido.",
+    description: "Pistas de obstáculos para kermeses y eventos en CDMX. Consulta requisitos de instalación.",
   },
   {
     key: "interactivos",

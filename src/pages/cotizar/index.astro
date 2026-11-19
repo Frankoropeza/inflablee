@@ -7,14 +7,14 @@ import { SITE } from "@/data/site";
 
 <PageLayout
   title="Cotizar Renta de Inflables — Formulario Rápido | INFLABLEE"
-  description="Cotiza la renta de inflables para tu evento en CDMX y Estado de México. Respuesta en menos de 2 horas. Sin compromiso, sin costos ocultos."
+  description="Cotiza la renta de inflables para tu evento en CDMX y Estado de México. Consulta envío por zona, IVA y requisitos del espacio."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Cotizar" }]}
 >
   <main id="contenido-principal">
     <PageHero
       eyebrow="Cotización rápida"
       title="Cotiza tu evento\nen <span>minutos</span>"
-      desc="Llena el formulario y recibe tu cotización personalizada por WhatsApp en menos de 2 horas. Sin compromiso, sin costos ocultos."
+      desc="Llena el formulario para solicitar una cotización personalizada por WhatsApp."
       ctas={[
         { href: "#formulario", label: "Ir al formulario", variant: "primary" },
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero una cotización rápida.")}`, label: "Directo por WhatsApp", variant: "outline" },
@@ -128,20 +128,13 @@ import { SITE } from "@/data/site";
           <aside class="cotizar-sidebar">
             <div class="cotizar-sidebar__card">
               <h3>✅ ¿Qué incluye tu renta?</h3>
-              <p>Todas nuestras rentas incluyen sin costo adicional:</p>
-              <ul class="cotizar-sidebar__list">
-                <li>Entrega y retiro a domicilio</li>
-                <li>Instalación profesional</li>
-                <li>Soplador eléctrico</li>
-                <li>Supervisor capacitado</li>
-                <li>Seguro de responsabilidad civil</li>
-                <li>Sanitización previa</li>
-              </ul>
+              <p>El precio incluye:</p>
+              <ul class="cotizar-sidebar__list">{SITE.comercial.incluye.map((item) => <li>{item}</li>)}</ul>
             </div>
 
             <div class="cotizar-sidebar__card" style="margin-top:1rem;background:var(--color-secondary);color:white;">
               <h3 style="color:#fff;">💡 Tip para cotizar</h3>
-              <p style="color:rgba(255,255,255,0.8);">Si no sabes qué inflable elegir, solo indícanos la edad de los niños, el espacio disponible y tu presupuesto. ¡Te asesoramos gratis!</p>
+              <p style="color:rgba(255,255,255,0.8);">{SITE.comercial.iva} {SITE.comercial.anticipo} El envío se confirma según tu zona.</p>
             </div>
           </aside>
         </div>

@@ -11,22 +11,21 @@ Estas condiciones aplican a la renta de inflables de INFLABLEE en CDMX y Estado 
 
 - Las cotizaciones se emiten para una fecha y un modelo específicos; no apartan la fecha por sí solas.
 - La fecha se considera reservada hasta que se confirma por escrito con INFLABLEE.
-- Los precios publicados en el sitio son el punto de partida de cada modelo e incluyen IVA.
+- Los detalles actualizados de IVA y anticipo se muestran en la [tabla de precios](/precios).
 
 ## 2. Qué incluye el servicio
 
-- Entrega, instalación y retiro del inflable dentro de la zona de cobertura.
-- Soplador, anclajes y lona de piso.
-- Supervisor durante el evento.
-- Sanitización previa de la unidad.
-- Seguro de responsabilidad civil.
+- Entrega a domicilio e instalación de 15 a 30 minutos.
+- Motor inflador y extensión eléctrica.
+- Sanitización antes de cada evento.
+- Recolección al terminar.
+- El envío se confirma por zona; consulta los rangos actualizados en la [tabla de precios](/precios).
 
 ## 3. Requisitos del lugar
 
-- Un contacto eléctrico de 110 V / 15 A a no más de 10 metros del área de montaje.
-- Área libre de obstáculos, con el perímetro de seguridad que corresponda al modelo contratado.
-- Acceso suficiente para trasladar el inflable y el equipo hasta el punto de montaje.
-- Superficie libre de piedras, vidrios, objetos punzantes o desniveles peligrosos.
+- Toma de corriente de 110 V a menos de 20 m del área de instalación.
+- Superficie plana y despejada, sin vidrio ni objetos punzantes.
+- Supervisión de una persona adulta durante todo el evento.
 
 Si al llegar el lugar no cumple estas condiciones y no es posible instalar con seguridad, el servicio no puede ejecutarse. Por eso pedimos fotos o video del espacio antes de confirmar.
 
@@ -34,17 +33,17 @@ Si al llegar el lugar no cumple estas condiciones y no es posible instalar con s
 
 - Prohibido el ingreso con zapatos, objetos punzocortantes, lentes, joyería o mascotas.
 - Prohibidos alimentos, bebidas, dulces, confeti, pintura y serpentinas dentro del inflable.
-- Respetar la capacidad y el rango de edad indicados para cada modelo.
+- Respetar el rango de edad indicado para cada modelo; la capacidad se confirma al cotizar según peso y edad.
 - No se permite el uso bajo efectos de alcohol o de cualquier sustancia.
-- Las instrucciones del supervisor son obligatorias durante todo el evento.
+- La persona adulta responsable debe supervisar durante todo el evento.
 
 ## 5. Responsabilidad
 
-INFLABLEE mantiene las unidades en condiciones de operación y asigna un supervisor para cuidar el uso correcto. La vigilancia de los menores corresponde en todo momento a sus padres o tutores. Los daños al inflable causados por un uso contrario a las reglas anteriores corren por cuenta del cliente, por el monto de la reparación o reposición que corresponda.
+INFLABLEE instala el equipo de acuerdo con las condiciones confirmadas al cotizar. La vigilancia de los menores corresponde en todo momento a sus padres, tutores o la persona adulta responsable. Si requieres un supervisor del proveedor, se confirma por separado al cotizar. Los daños al inflable causados por un uso contrario a las reglas anteriores corren por cuenta del cliente, por el monto de la reparación o reposición que corresponda.
 
 ## 6. Clima
 
-Por seguridad, un inflable no puede operar con lluvia intensa, viento fuerte o tormenta eléctrica. Si las condiciones impiden instalar o exigen suspender el uso, se busca reprogramar la fecha sin costo adicional. La suspensión por clima es una decisión de seguridad y no es negociable durante el evento.
+Si las condiciones climáticas impiden instalar o exigen suspender el uso, las condiciones aplicables se confirman por escrito con INFLABLEE al cotizar.
 
 ## 7. Cancelaciones y cambios de fecha
 

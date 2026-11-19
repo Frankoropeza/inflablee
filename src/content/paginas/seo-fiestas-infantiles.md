@@ -3,14 +3,10 @@ title: "Fiestas infantiles | INFLABLEE"
 description: "Información para rentar inflables en fiestas infantiles en CDMX."
 ---
 
-PORQUE EL CUMPLEAÑOS ES DE TU HIJO, NO DEL ESTRÉS
+## Elige por edad y espacio
 
-## Inflables para fiestas infantiles en CDMX: tú pones el pastel, nosotros ponemos la diversión
+Revisa las edades, medidas y altura libre de cada ficha antes de cotizar. La capacidad se confirma según peso y edad de quienes usarán el inflable.
 
-Sabemos lo que significa organizar el cumpleaños perfecto. Por eso diseñamos un servicio donde tú solo tienes que disfrutar: el inflable llega limpio, instalado a tiempo y con un supervisor que cuida a los niños durante toda la fiesta. **Cero sorpresas, cero estrés.**
+## Requisitos para el evento
 
-SEGURIDAD INFANTIL SIN ASTERISCOS
-
-## Revisa las especificaciones antes de reservar
-
-Consulta las medidas, capacidad, tiempo de instalación y requerimientos eléctricos de cada ficha antes de elegir un inflable para tu fiesta.
+Necesitas una toma de corriente de 110 V a menos de 20 m, una superficie plana y despejada, y supervisión de una persona adulta durante todo el evento.

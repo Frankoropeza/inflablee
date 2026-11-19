@@ -33,7 +33,7 @@ const zonasEdomex = [
 
 <PageLayout
   title="Cobertura de Renta de Inflables en CDMX y Edomex | INFLABLEE"
-  description="INFLABLEE entrega inflables en toda la CDMX y el Estado de México. Consulta tu alcaldía o municipio. Entrega e instalación incluida en zonas principales."
+  description="INFLABLEE entrega inflables en CDMX y Estado de México. Consulta tu alcaldía o municipio y el costo de envío por zona."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Zonas de Cobertura" }]}
 >
   <main id="contenido-principal">
@@ -48,7 +48,6 @@ const zonasEdomex = [
       stats={[
         { value: "16", label: "Alcaldías CDMX" },
         { value: "30+", label: "Municipios Edomex" },
-        { value: "0", label: "Costo de entrega*" },
       ]}
     />
 
@@ -120,10 +119,10 @@ const zonasEdomex = [
       <div class="container" style="max-width:720px;text-align:center;">
         <h2 style="font-size:var(--font-size-xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-md);">*Política de entrega</h2>
         <p style="color:var(--color-text-light);line-height:1.8;margin-bottom:1rem;">
-          La entrega es <strong>sin costo adicional</strong> en la mayoría de las zonas de CDMX y el área conurbada del Estado de México. Para municipios más alejados (Toluca, Ixtapaluca, zonas rurales), puede aplicar un costo de traslado que te indicamos al cotizar.
+          {SITE.comercial.envio.sinCosto} {SITE.comercial.envio.cdmx} {SITE.comercial.envio.edomex}
         </p>
         <p style="color:var(--color-text-light);line-height:1.8;">
-          ¿Tu zona no aparece en la lista? Escríbenos — probablemente podamos llegar. Cubrimos un radio aproximado de 50 km desde el centro de la CDMX.
+          ¿Tu zona no aparece en la lista? Escríbenos para confirmar cobertura y costo de envío.
         </p>
         <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero verificar si tienen cobertura en mi zona.")}`}
           class="btn btn--primary" style="margin-top:var(--spacing-lg);display:inline-flex;" target="_blank" rel="noopener">

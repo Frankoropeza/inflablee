@@ -13,22 +13,17 @@ const paquetes = await getPackageCards("escolares");
 
 <PageLayout
   title="Inflables para Kermeses y Eventos Escolares CDMX | INFLABLEE"
-  description="Inflables para kermeses, días del niño y festivales escolares en CDMX y Estado de México. Paquetes para 50 hasta 500 niños. Factura electrónica disponible."
+  description="Inflables para kermeses, días del niño y festivales escolares en CDMX y Estado de México. Consulta opciones para eventos de gran escala."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Eventos Escolares" }]}
 >
   <main id="contenido-principal">
     <PageHero
       eyebrow="Eventos escolares"
       title="Kermeses y festivales\n<span>con inflables profesionales</span>"
-      desc="Paquetes completos para kermeses, día del niño y festivales escolares. Desde 50 hasta 500 niños. Factura electrónica y coordinación completa incluida."
+      desc="Cotiza un evento personalizado si necesitas cinco o más inflables simultáneos."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para un evento escolar.")}`, label: "Cotizar evento", variant: "primary" },
         { href: "/inflables/pistas-obstaculos", label: "Ver pistas", variant: "outline" },
-      ]}
-      stats={[
-        { value: "150+", label: "Eventos escolares" },
-        { value: "200+", label: "Niños máx. por evento" },
-        { value: "CFDI", label: "Factura incluida" },
       ]}
     />
 
@@ -40,10 +35,10 @@ const paquetes = await getPackageCards("escolares");
         />
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
           {[
-            { icon: "📋", title: "Planeación previa", desc: "Coordinamos el montaje, lay-out y horarios de rotación para maximizar la diversión de todos los niños." },
-            { icon: "🔌", title: "Infraestructura completa", desc: "Llevamos el equipo necesario: sopladores, cables, lonas de piso y herramientas de anclaje." },
-            { icon: "👷", title: "Supervisores certificados", desc: "Todos nuestros supervisores tienen capacitación en primeros auxilios y seguridad en inflables." },
-            { icon: "📄", title: "Factura electrónica", desc: "CFDI para instituciones públicas y privadas. Coordinamos la documentación administrativa." },
+            { icon: "📋", title: "Evento personalizado", desc: "Para cinco o más inflables simultáneos, cotizamos la logística de acuerdo con tu evento." },
+            { icon: "🔌", title: "Requisitos del lugar", desc: "Se requiere corriente de 110 V a menos de 20 m y superficie plana, despejada y sin objetos punzantes." },
+            { icon: "👤", title: "Supervisión adulta", desc: "Una persona adulta debe supervisar durante todo el evento." },
+            { icon: "📄", title: "Facturación disponible", desc: "La facturación está disponible para el evento personalizado." },
           ].map(r => (
             <div class="svc-card">
               <span class="svc-card__icon">{r.icon}</span>

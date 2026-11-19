@@ -13,7 +13,7 @@ import { SITE } from "@/data/site";
 
 const {
   title = "¿Listo para hacer tu fiesta increíble?",
-  subtitle = "Reserva hoy con disponibilidad garantizada. Entrega e instalación incluida en CDMX y Estado de México.",
+  subtitle = "Consulta disponibilidad, requisitos del espacio y costo de envío según tu zona.",
   primaryText = "Cotizar por WhatsApp",
   primaryHref = `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero reservar un inflable para mi evento.")}`,
   secondaryText = "Ver catálogo completo",
@@ -31,9 +31,9 @@ const {
         <h2 class="cta-banner__title">{title}</h2>
         <p class="cta-banner__subtitle">{subtitle}</p>
         <div class="cta-banner__badges">
-          <span class="cta-banner__badge">✅ Sin pagos ocultos</span>
-          <span class="cta-banner__badge">✅ Supervisión incluida</span>
-          <span class="cta-banner__badge">✅ Seguro de responsabilidad civil</span>
+          <span class="cta-banner__badge">✅ {SITE.comercial.anticipo}</span>
+          <span class="cta-banner__badge">✅ {SITE.comercial.iva}</span>
+          <span class="cta-banner__badge">✅ Sanitización antes de cada evento</span>
         </div>
       </div>
       <div class="cta-banner__actions">

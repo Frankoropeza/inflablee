@@ -1,9 +1,9 @@
 ---
 title: "Castillos Inflables"
-description: "Renta de castillos inflables para fiestas infantiles. Diferentes tamaños y diseños para todas las edades."
+description: "Renta de castillos inflables para fiestas infantiles. Consulta los modelos publicados."
 icon: "castle"
 featured: true
 order: 1
 ---
 
-Nuestros castillos inflables son el clásico favorito de las fiestas infantiles. Disponibles en múltiples tamaños y colores, con diseños que van desde princesas hasta superhéroes. Incluyen entrega, instalación y supervisión.
+Consulta Castillo Baby, Dragones Rojos, Jungla, Gusanitos, Castillo de Princesas y Castillo Blanco en el catálogo publicado.

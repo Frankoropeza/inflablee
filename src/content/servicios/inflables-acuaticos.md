@@ -1,9 +1,9 @@
 ---
 title: "Inflables Acuáticos"
-description: "Renta de inflables acuáticos y toboganes con agua para fiestas de verano. Diversión refrescante."
+description: "Consulta disponibilidad de inflables acuáticos antes de considerarlos para tu evento."
 icon: "water"
 featured: false
 order: 4
 ---
 
-Perfectos para las fiestas de verano. Toboganes con chapoteadero, resbaladillas con agua y zonas acuáticas inflables que mantendrán frescos y felices a todos los invitados.
+El catálogo publicado no muestra inflables acuáticos. Consulta disponibilidad antes de anunciarlos para tu evento.

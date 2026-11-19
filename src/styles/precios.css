@@ -49,13 +49,16 @@
     color: var(--color-text-light);
   }
 
-  .precios-incluye {
+.precios-incluye {
     display: grid;
     gap: 0.5rem;
     margin: var(--spacing-xl) 0 0.75rem;
     padding: 0;
     list-style: none;
-  }
+}
+.precios-incluye-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--spacing-xl); margin-top: var(--spacing-xl); }
+.precios-incluye-grid h3, .precios-requisitos__title { color: var(--color-secondary); font-size: var(--font-size-lg); margin: 0 0 var(--spacing-sm); }
+.precios-requisitos__title { margin-top: var(--spacing-xl); }
   @media (min-width: 768px) {
     .precios-incluye { grid-template-columns: repeat(2, 1fr); }
   }

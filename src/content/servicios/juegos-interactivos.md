@@ -1,9 +1,9 @@
 ---
 title: "Juegos Interactivos"
-description: "Juegos inflables interactivos: pistas de obstáculos, boxing ring inflable y más para eventos especiales."
+description: "Consulta disponibilidad de juegos interactivos antes de considerarlos para tu evento."
 icon: "game"
 featured: false
 order: 5
 ---
 
-Pistas de obstáculos, boxing ring inflable, toro mecánico y más. Nuestros juegos interactivos son perfectos para eventos corporativos, festivales y fiestas con adolescentes y adultos.
+El catálogo publicado no muestra juegos interactivos. Consulta disponibilidad antes de anunciarlos para tu evento.

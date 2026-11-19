@@ -3,14 +3,10 @@ title: "Paquetes | INFLABLEE"
 description: "Información de paquetes de inflables en CDMX y Estado de México."
 ---
 
-EL PRECIO QUE VES ES EL QUE PAGAS
+## Paquetes publicados
 
-## Paquetes todo incluido con hasta 20% de ahorro — sin costos ocultos, sin sorpresas el día del evento
+Paquete fiesta bebés cuesta $2,100 MXN y Paquete fiesta cuesta $2,800 MXN. Para cinco o más inflables simultáneos, solicita una cotización de Evento personalizado.
 
-Cada paquete incluye entrega, instalación, supervisores y retiro. El precio del combo siempre es menor que contratar por separado. **Sin costos ocultos, sin cargos de último momento.** Lo que cotizas es exactamente lo que pagas el día del evento.
+## Información antes de reservar
 
-¿NO ENCUENTRAS LO QUE BUSCAS?
-
-## Dinos tu presupuesto y el tipo de evento — diseñamos el combo que maximiza la diversión
-
-Escríbenos por WhatsApp con los detalles de tu evento y te ayudamos a revisar opciones del catálogo según tu espacio y fecha.
+El envío, el IVA y el anticipo se muestran actualizados en la [tabla de precios](/precios).

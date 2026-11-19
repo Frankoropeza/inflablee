@@ -13,7 +13,7 @@ const paquetes = await getPackageCards("fiestas");
 
 <PageLayout
   title="Inflables para fiestas infantiles CDMX | INFLABLEE"
-  description="Inflables para fiestas de cumpleaños en CDMX y Estado de México. Castillos temáticos, toboganes y paquetes completos desde $900 MXN. Supervisión incluida."
+  description="Inflables para fiestas de cumpleaños en CDMX y Estado de México. Consulta paquetes, medidas y requisitos antes de reservar."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Fiestas Infantiles" }]}
 >
   <main id="contenido-principal">
@@ -37,9 +37,9 @@ const paquetes = await getPackageCards("fiestas");
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
           {[
             { icon: "🎂", title: "Temáticas favoritas", desc: "Princesas, dragones, piratas, superhéroes y más. El castillo que tu hijo eligió para su fiesta." },
-            { icon: "👷", title: "Supervisor dedicado", desc: "Un profesional supervisa el inflable durante toda la fiesta para que tú disfrutes sin preocupaciones." },
-            { icon: "🧼", title: "Limpieza garantizada", desc: "Cada inflable es desinfectado antes de entregarse. Los papás nos lo agradecen siempre." },
-            { icon: "⏰", title: "Puntualidad total", desc: "Llegamos 1 hora antes del evento. Tu fiesta empieza a tiempo, sin retrasos." },
+            { icon: "👤", title: "Supervisión adulta", desc: "Una persona adulta debe supervisar durante todo el evento." },
+            { icon: "🧼", title: "Sanitización", desc: "Sanitización antes de cada evento." },
+            { icon: "📏", title: "Datos para elegir", desc: "Revisa medidas, edades y altura libre antes de reservar." },
           ].map(r => (
             <div class="svc-card">
               <span class="svc-card__icon">{r.icon}</span>
@@ -56,7 +56,7 @@ const paquetes = await getPackageCards("fiestas");
       <div class="container">
         <SectionHeader
           title="Paquetes para cumpleaños"
-          subtitle="Todo incluido. Sin sorpresas. Sin costos ocultos."
+          subtitle="Consulta los componentes, el IVA y el envío por zona antes de reservar."
         />
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
           {paquetes.map(p => (

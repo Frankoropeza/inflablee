@@ -5,24 +5,24 @@ description: "Conoce a INFLABLEE, renta de inflables para fiestas y eventos en M
 
 ## Nuestra historia
 
-INFLABLEE nació con una misión clara: hacer que cada fiesta y evento sea memorable a través de juegos inflables seguros, limpios y de la más alta calidad. Desde nuestros inicios, hemos participado en cientos de eventos, desde cumpleaños íntimos hasta grandes festivales corporativos.
+INFLABLEE renta inflables para fiestas y eventos en CDMX y Estado de México. El catálogo publicado reúne ocho modelos con precios, medidas, edades, altura libre e indicación de interiores.
 
-Nos distinguimos por nuestro compromiso con la seguridad: todos nuestros inflables son sanitizados antes de cada evento, contamos con seguro de responsabilidad civil y nuestro personal está capacitado para supervisar la diversión de los más pequeños.
+Los inflables se sanitizan antes de cada evento. La persona adulta responsable debe supervisar durante todo el evento; si necesitas un supervisor del proveedor, se confirma por separado al cotizar.
 
 ## ¿Por qué elegirnos?
 
 ### Seguridad
 
-Inflables certificados, seguro de responsabilidad civil y supervisión profesional en cada evento.
+Consulta medidas, edades, altura libre y requisitos antes de elegir el modelo.
 
 ### Higiene
 
-Proceso de sanitización completo antes de cada entrega. Inflables siempre limpios y en perfecto estado.
+Sanitización antes de cada evento.
 
 ### Puntualidad
 
-Llegamos a tiempo, instalamos rápido y recogemos al finalizar. Sin preocupaciones para ti.
+La instalación toma de 15 a 30 minutos según el modelo y la recolección se realiza al terminar.
 
 ### Variedad
 
-Amplio catálogo de inflables para todas las edades: brincalines, toboganes, acuáticos y juegos interactivos.
+Ocho modelos publicados para edades de 1 a 12 años; la capacidad se confirma al cotizar según peso y edad.

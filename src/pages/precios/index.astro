@@ -14,7 +14,7 @@ import "@/styles/precios.css";
 const inflables = (await getCollection("inflables")).sort(
   (a, b) => a.data.precio_desde - b.data.precio_desde
 );
-const paquetes = (await getPackageCards("paquetes")).filter((paquete) => paquete.variant === "standard");
+const paquetes = await getPackageCards("paquetes");
 
 const precioMin = Math.min(...inflables.map(i => i.data.precio_desde));
 const precioMax = Math.max(...inflables.map(i => i.data.precio_desde));
@@ -51,7 +51,7 @@ const listaSchema = {
 
 <PageLayout
   title={`Precios de Inflables en CDMX — Desde ${mxn(precioMin)} | INFLABLEE`}
-  description={`Lista de precios de renta de inflables en CDMX y Edomex: de ${mxn(precioMin)} a ${mxn(precioMax)} por modelo, con entrega, instalación, supervisor y retiro incluidos.`}
+  description={`Lista de precios de renta de inflables en CDMX y Edomex: de ${mxn(precioMin)} a ${mxn(precioMax)} por modelo, con medidas, edades y altura libre.`}
   schema={[listaSchema, faqSchema(FAQS_GENERALES)]}
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Precios" }]}
 >
@@ -59,7 +59,7 @@ const listaSchema = {
     <PageHero
       eyebrow="Lista de precios"
       title="Precios de renta de inflables\n<span>sin costos escondidos</span>"
-      desc={`De ${mxn(precioMin)} a ${mxn(precioMax)} según el modelo. El precio ya incluye entrega, instalación, supervisor durante el evento, seguro de responsabilidad civil y retiro.`}
+      desc={`De ${mxn(precioMin)} a ${mxn(precioMax)} según el modelo. Consulta medidas, altura libre y condiciones de entrega por zona.`}
       ctas={[
         { href: "#tabla-precios", label: "Ver la tabla", variant: "primary" },
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero confirmar el precio para mi fecha.")}`, label: "Confirmar mi fecha", variant: "outline" },
@@ -70,22 +70,22 @@ const listaSchema = {
       <div class="container">
         <SectionHeader
           title="Precio por modelo"
-          subtitle="Ordenados de menor a mayor. El precio mostrado es el punto de partida del modelo; la tarifa final depende de la duración y la zona de entrega."
+          subtitle="Precio por evento de 4 a 6 horas, ordenado de menor a mayor. Las medidas son largo × ancho × alto del inflable; la altura libre indica lo necesario sobre el piso para instalarlo."
         />
 
         <div class="precios-tabla-wrap">
           <table class="precios-tabla">
             <caption class="precios-tabla__caption">
-              Renta de inflables en CDMX y Estado de México — precios con IVA, entrega e instalación incluidas.
+              Precio, medidas, edades, altura libre e interiores de los inflables en renta.
             </caption>
             <thead>
               <tr>
                 <th scope="col">Inflable</th>
-                <th scope="col">Categoría</th>
+                <th scope="col">Precio por evento</th>
                 <th scope="col">Medidas</th>
-                <th scope="col">Capacidad</th>
-                <th scope="col">Instalación</th>
-                <th scope="col">Desde</th>
+                <th scope="col">Altura libre</th>
+                <th scope="col">Edades</th>
+                <th scope="col">Bajo techo</th>
               </tr>
             </thead>
             <tbody>
@@ -95,27 +95,34 @@ const listaSchema = {
                     <a href={`/inflables/${i.id}`}>{i.data.title}</a>
                     {!i.data.disponible && <span class="precios-tabla__nota">No disponible</span>}
                   </th>
-                  <td>{categoriaLabel(i.data.categoria)}</td>
-                  <td>{i.data.medidas}</td>
-                  <td>{i.data.capacidad}</td>
-                  <td>{i.data.tiempo_instalacion}</td>
                   <td class="precios-tabla__precio">{mxn(i.data.precio_desde)}</td>
+                  <td>{i.data.medidas}</td>
+                  <td>{i.data.altura_libre}</td>
+                  <td>{i.data.edades}</td>
+                  <td>{i.data.interiores ? "Sí" : "No"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        <ul class="precios-incluye">
-          <li>Entrega, instalación y retiro en CDMX y Estado de México</li>
-          <li>Supervisor durante todo el evento</li>
-          <li>Seguro de responsabilidad civil</li>
-          <li>Sanitización previa y lona de piso</li>
-          <li>Soplador y anclajes</li>
-        </ul>
-        <p class="precios-nota">
-          Lo único que necesitas tú: un contacto eléctrico de 110 V / 15 A a menos de 10 metros del área de montaje.
-        </p>
+        <div class="precios-incluye-grid">
+          <div>
+            <h3>¿Qué incluye el precio?</h3>
+            <ul class="precios-incluye">{SITE.comercial.incluye.map((item) => <li>{item}</li>)}</ul>
+          </div>
+          <div>
+            <h3>¿Qué se cobra aparte?</h3>
+            <ul class="precios-incluye">
+              <li><strong>Envío por zona:</strong> {SITE.comercial.envio.sinCosto} {SITE.comercial.envio.cdmx} {SITE.comercial.envio.edomex}</li>
+              <li><strong>IVA:</strong> {SITE.comercial.iva}</li>
+              <li>{SITE.comercial.anticipo}</li>
+            </ul>
+          </div>
+        </div>
+        <h3 class="precios-requisitos__title">Requisitos del cliente</h3>
+        <ul class="precios-incluye">{SITE.comercial.requisitos.map((item) => <li>{item}</li>)}</ul>
+        <p class="precios-nota">{SITE.comercial.supervisor}</p>
       </div>
     </section>
 
@@ -160,15 +167,13 @@ const listaSchema = {
             <p class="section__seo-label">QUÉ MUEVE EL PRECIO</p>
             <h2 class="section__seo-title">Tres cosas cambian la tarifa: el modelo, la duración y la zona</h2>
             <p class="section__seo-text">
-              El modelo manda: un mini castillo de 2×2 m no cuesta lo mismo que un circuito de obstáculos
-              de 8×3 m, porque cambia el equipo, el transporte y el tiempo de montaje. La duración estándar
-              cubre la fiesta completa; si tu evento se extiende, se cotiza aparte. Y la zona: dentro de
-              CDMX y los municipios conurbados de Edomex la entrega va incluida — más lejos, se calcula
-              el traslado antes de que confirmes, nunca después.
+              El modelo manda: el Castillo Baby mide 2.5 × 2 × 2 m y Extremo mide 8 × 4.5 × 3.50 m.
+              La zona también cambia el total: {SITE.comercial.envio.sinCosto} {SITE.comercial.envio.cdmx}
+              {" "}{SITE.comercial.envio.edomex}
             </p>
             <p class="section__seo-text">
-              Lo que no cambia: el supervisor, el seguro y el retiro ya vienen en el precio que ves arriba.
-              Si quieres el número exacto para tu fecha, <a href="/cotizar">manda los datos de tu evento</a>
+              {SITE.comercial.anticipo} {SITE.comercial.iva} Si quieres el número exacto para tu fecha,
+              <a href="/cotizar"> manda los datos de tu evento</a>
               o revisa primero las <a href="/preguntas-frecuentes">preguntas frecuentes</a>.
             </p>
           </div>

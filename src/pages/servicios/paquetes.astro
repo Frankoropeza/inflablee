@@ -23,7 +23,7 @@ const paquetesEspeciales = paquetes.filter((paquete) => paquete.variant === "pri
     <PageHero
       eyebrow="Paquetes y combos"
       title="Más diversión,\n<span>mejor precio</span>"
-      desc="Combina inflables en paquetes completos y ahorra hasta 20% vs contratar por separado. Todo incluido: entrega, instalación y supervisión."
+      desc="Conoce los dos paquetes publicados y la opción para eventos personalizados de cinco o más inflables."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un paquete de inflables.")}`, label: "Ver disponibilidad", variant: "primary" },
         { href: "/inflables", label: "Ver catálogo completo", variant: "outline" },
@@ -66,7 +66,7 @@ const paquetesEspeciales = paquetes.filter((paquete) => paquete.variant === "pri
     {paquetesEspeciales.length > 0 && (
       <section style="background:var(--color-accent);padding:var(--spacing-3xl) 0;">
         <div class="container">
-          <SectionHeader title="Paquetes especiales 2026" subtitle="Combos para distintos tipos de celebración." />
+          <SectionHeader title="Paquetes disponibles" subtitle="Combinaciones reales para distintos tipos de celebración." />
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--spacing-xl);margin-top:var(--spacing-xl);">
             {paquetesEspeciales.map((p) => (
               <PricingCard

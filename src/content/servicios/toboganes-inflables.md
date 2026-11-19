@@ -1,9 +1,9 @@
 ---
 title: "Toboganes Inflables"
-description: "Toboganes inflables gigantes para eventos y fiestas. Diversión garantizada para niños y adultos."
+description: "Renta de Barco Pirata y otros modelos publicados. Consulta sus fichas antes de cotizar."
 icon: "slide"
 featured: true
 order: 2
 ---
 
-Toboganes inflables de diferentes alturas y estilos. Desde toboganes secos para interiores hasta toboganes acuáticos perfectos para el verano. Máxima diversión con total seguridad.
+Barco Pirata es el modelo publicado de esta categoría. Consulta sus medidas, edades, altura libre y requisitos antes de cotizar.
