@@ -18,7 +18,7 @@ const tiposServicio = [
   {
     icon: "🏫",
     title: "Eventos escolares",
-    desc: "Kermeses, días del niño y festivales. Paquetes para 50 hasta 500 niños con múltiples inflables.",
+    desc: "Kermeses, días del niño y festivales con opciones de inflables para tu evento.",
     href: "/servicios/eventos-escolares",
     tags: ["Kermés", "Día del niño", "Pistas de obstáculos"],
   },
@@ -79,7 +79,7 @@ const paquetes = [
       "Descuento de 10% vs precio individual",
     ],
     featured: true,
-    badge: "⭐ Más popular",
+    badge: "Paquete familiar",
   },
   {
     title: "Paquete Escolar",
@@ -112,11 +112,6 @@ const paquetes = [
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un servicio para mi evento.")}`, label: "Cotizar servicio", variant: "primary" },
         { href: "/inflables", label: "Ver catálogo", variant: "outline" },
-      ]}
-      stats={[
-        { value: "6+", label: "Tipos de eventos" },
-        { value: String(SITE.trayectoria.eventos), label: "Eventos realizados" },
-        { value: `${SITE.resenas.rating}★`, label: "Calificación" },
       ]}
     />
 

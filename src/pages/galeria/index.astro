@@ -20,12 +20,12 @@ const galeria = [
   // Los dos marcados con `ilustracion` no son foto de evento: son ilustración de marca
   // (SVG) porque de esos dos juegos todavía no hay fotografía propia.
   { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)", emoji: "🎂", title: "Cumpleaños princesas en Coyoacán", img: "/img/inflables/castillo-princesas/castillo-princesas-renta-cdmx.avif", w: 1200, h: 675 },
-  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)", emoji: "🌊", title: "Tobogán acuático en Naucalpan", img: "/img/inflables/extremo/extremo-tobogan-doble.avif", w: 1200, h: 675 },
+  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)", emoji: "🌊", title: "Barco pirata con tobogán en Naucalpan", img: "/img/inflables/barco-pirata/barco-pirata-exterior-evento.avif", w: 1200, h: 675 },
   { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a15 0%, #16a34a08 100%)", emoji: "🏫", title: "Kermés escuela primaria Edomex", img: "/img/inflables/gusanitos/gusanitos-brincolin-evento.avif", w: 1200, h: 675 },
   { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FF4B1F20 0%, #FFD70015 100%)", emoji: "🏰", title: "Castillo dragón en Iztapalapa", img: "/img/inflables/dragones-rojos/castillo-dragones-renta-cdmx.avif", w: 1200, h: 675 },
-  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E12 100%)", emoji: "🏃", title: "Pista obstáculos evento corporativo", img: "/img/inflables/extremo/extremo-angulo-corporativo.avif", w: 1200, h: 675 },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E12 100%)", emoji: "🏃", title: "Pista obstáculos evento corporativo", img: "/img/inflables/pista-extremo/extremo-angulo-corporativo.avif", w: 1200, h: 675 },
   { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)", emoji: "🥊", title: "Ring de boxeo en quinceañera", img: "/img/ilustraciones/ring-de-boxeo-inflable.svg", w: 1200, h: 675, ilustracion: true },
-  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #0077CC20 0%, #1A1A2E15 100%)", emoji: "💦", title: "Doble tobogán fiesta de verano", img: "/img/inflables/pista-extremo/alquiler-inflable-extremo-grande-fiestas.avif", w: 720, h: 480 },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🏃", title: "Pista de obstáculos para fiesta de verano", img: "/img/inflables/pista-extremo/alquiler-inflable-extremo-grande-fiestas.avif", w: 720, h: 480 },
   { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F15 0%, #FFD70022 100%)", emoji: "🎉", title: "Paquete cumpleaños en Benito Juárez", img: "/img/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif", w: 1200, h: 675 },
   { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a12 0%, #16a34a20 100%)", emoji: "🎓", title: "Festival fin de ciclo escolar", img: "/img/inflables/mini-jungla/mini-jungla-exterior-evento.avif", w: 1200, h: 675 },
   { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FFD70018 0%, #FF4B1F20 100%)", emoji: "🏰", title: "Castillo princesas en GAM", img: "/img/inflables/castillo-princesas/mini-castillo-princesas-fiesta.avif", w: 1200, h: 675 },
@@ -46,15 +46,10 @@ const slug = (t: string) =>
     <PageHero
       eyebrow="Galería de eventos"
       title="Momentos de pura\n<span>diversión inflable</span>"
-      desc={`${SITE.trayectoria.eventos} eventos realizados en CDMX y Estado de México entre ${SITE.trayectoria.desde} y ${SITE.trayectoria.hasta}. Mira cómo transformamos cada fiesta en un recuerdo inolvidable.`}
+      desc="Explora imágenes de inflables para fiestas, kermeses y eventos en CDMX y Estado de México."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, vi la galería y quiero cotizar para mi evento.")}`, label: "Quiero esto para mi fiesta", variant: "primary" },
         { href: "/inflables", label: "Ver catálogo", variant: "outline" },
-      ]}
-      stats={[
-        { value: String(SITE.trayectoria.eventos), label: "Eventos realizados" },
-        { value: `${SITE.resenas.rating}★`, label: "Calificación promedio" },
-        { value: "0", label: "Eventos cancelados" },
       ]}
     />
 
@@ -118,7 +113,7 @@ const slug = (t: string) =>
       <div class="container" style="max-width:680px;">
         <h2 style="font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--color-secondary);margin-bottom:1rem;">¿Tu fiesta podría ser la próxima?</h2>
         <p style="color:var(--color-text-light);font-size:var(--font-size-lg);line-height:1.7;margin-bottom:var(--spacing-xl);">
-          Únete a las familias y empresas de los {SITE.trayectoria.eventos} eventos que INFLABLEE ya operó en CDMX y Estado de México.
+          Revisa el catálogo para comparar medidas, capacidad y requisitos de los inflables disponibles.
         </p>
         <a href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, vi la galería y quiero cotizar inflables para mi evento.")}`}
           class="btn btn--primary" target="_blank" rel="noopener" style="font-size:var(--font-size-base);padding:1rem 2rem;">

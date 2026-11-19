@@ -5,7 +5,6 @@ import CTABanner from "@/components/CTABanner.astro";
 import FaqItem from "@/components/FaqItem.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import { SITE } from "@/data/site";
-import { TESTIMONIOS } from "@/data/testimonios";
 import { faqSchema, FAQS_GENERALES } from "@/data/faq";
 import { getCollection } from "astro:content";
 
@@ -23,8 +22,6 @@ const waBase = `https://wa.me/${SITE.whatsapp}`;
 const waCotizar = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento 🎈")}`;
 const waCatalogo = `${waBase}?text=${encodeURIComponent("Hola INFLABLEE, me gustaría ver el catálogo completo de inflables.")}`;
 
-const testimonios = TESTIMONIOS;
-
 const faqs = FAQS_GENERALES;
 
 
@@ -40,38 +37,7 @@ const zonas = [
   title="Renta de Inflables CDMX · Desde $800 con Instalación | INFLABLEE"
   description="Castillos inflables, toboganes y brincalines para fiestas en CDMX y Estado de México. Entrega, instalación y supervisor incluidos. Cotiza en WhatsApp."
   pageType="home"
-  schema={[{
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "INFLABLEE",
-    "description": "Empresa de renta de inflables para fiestas en CDMX y Estado de México. Castillos inflables, toboganes acuáticos, pistas de obstáculos y brincalines con entrega e instalación incluida.",
-    "url": "https://inflablee.com",
-    "priceRange": "$800-$3000 MXN",
-    "currenciesAccepted": "MXN",
-    "paymentAccepted": "Efectivo, Transferencia SPEI, Tarjeta de débito, Tarjeta de crédito",
-    "areaServed": [
-      {"@type": "City", "name": "Ciudad de México"},
-      {"@type": "AdministrativeArea", "name": "Estado de México"}
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Catálogo de Inflables INFLABLEE",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Mini Castillo Inflable"}, "price": "800", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo de Princesas"}, "price": "1200", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo Dragones Rojos"}, "price": "1200", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Barco Pirata"}, "price": "2500", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Castillo Blanco Premium"}, "price": "2800", "priceCurrency": "MXN"},
-        {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Pista Extremo"}, "price": "3000", "priceCurrency": "MXN"}
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": String(SITE.resenas.rating),
-      "reviewCount": String(SITE.resenas.count),
-      "bestRating": "5"
-    }
-  }, faqSchema(faqs)]}
+  schema={faqSchema(faqs)}
 >
   <main id="contenido-principal">
 
@@ -115,13 +81,13 @@ const zonas = [
             <div class="hero__seo-block">
               <p class="hero__seo-title"><strong>RENTA DE INFLABLES EN CDMX · PRECIOS DESDE $800 MXN</strong></p>
               <p class="hero__seo-text">
-                8 modelos de brincalines, castillos y toboganes disponibles este fin de semana. Castillos desde 2×2 m (ideal para departamentos y patios chicos) hasta circuitos de obstáculos de 8 metros. Cada inflable incluye soplador eléctrico, lonas de anclaje, <strong>supervisor certificado y seguro de responsabilidad civil</strong> — sin costos ocultos. El precio que aparece en la ficha es el precio final, con IVA incluido.
+                Explora brincalines, castillos y pistas de obstáculos para tu evento. Consulta las medidas y requisitos de cada ficha antes de reservar; así eliges una opción adecuada para tu espacio y fecha.
               </p>
             </div>
             <div class="hero__seo-block">
-              <p class="hero__seo-title"><strong>{SITE.trayectoria.eventos} EVENTOS EN CDMX Y EDOMEX ENTRE {SITE.trayectoria.desde} Y {SITE.trayectoria.hasta} · {SITE.trayectoria.accidentes} ACCIDENTES</strong></p>
+              <p class="hero__seo-title"><strong>RENTA DE INFLABLES EN CDMX Y ZONA METROPOLITANA</strong></p>
               <p class="hero__seo-text">
-                En alcaldías como Coyoacán, Benito Juárez, Tlalpan, Xochimilco e Iztapalapa, y en municipios como Nezahualcóyotl, Ecatepec y Naucalpan. Cada inflable pasa por <strong>verificación de presión, costuras, anclajes y válvula</strong> antes de salir al evento. Depósito de solo el 30% para apartar tu fecha. Si llueve, reagendamos sin costo o devolvemos el anticipo completo.
+                Atendemos las alcaldías de la Ciudad de México y la zona metropolitana del Valle de México. Consulta el catálogo para revisar medidas, capacidad y requerimientos de cada inflable. El anticipo de {SITE.comercial.anticipoPct}% aparta tu fecha.
               </p>
             </div>
           </div>
@@ -140,11 +106,11 @@ const zonas = [
               Catálogo completo
             </span>
             <h2 class="section-title">Elige tu inflable perfecto</h2>
-            <p class="section-subtitle">8 modelos disponibles para todos los presupuestos y tipos de evento. Entrega e instalación siempre incluidas.</p>
+            <p class="section-subtitle">Explora el catálogo y encuentra una opción para tu tipo de evento.</p>
           </div>
           <div class="section-header-split__right">
-            <p class="section__seo-text">Contamos con castillos inflables desde 2×2 m (ideal para departamentos y patios chicos) hasta circuitos de obstáculos de 8 metros. Cada inflable incluye soplador eléctrico, lonas de anclaje, supervisor certificado y seguro de responsabilidad civil — sin costos ocultos. El precio que aparece en la ficha es el precio final, con IVA incluido.</p>
-            <p class="section__seo-text">En temporada alta (abril, mayo, julio, agosto y diciembre) nuestros inflables se reservan hasta con 3 semanas de anticipación. Los sábados a partir de las 12 PM y los domingos completos son las franjas más solicitadas. Consulta disponibilidad hoy mismo — sin compromiso.</p>
+            <p class="section__seo-text">Cada ficha incluye precio publicado, medidas, capacidad, tiempo de instalación y requerimientos eléctricos para que puedas comparar opciones antes de cotizar.</p>
+            <p class="section__seo-text">¿Tienes una fecha en mente? Escríbenos por WhatsApp para confirmar disponibilidad y resolver dudas sobre tu espacio.</p>
           </div>
         </div>
 
@@ -194,7 +160,7 @@ const zonas = [
             <p class="section-subtitle">En 3 pasos tienes tu inflable listo para la fiesta. Sin complicaciones, sin sorpresas.</p>
           </div>
           <div class="section-header-split__right">
-            <p class="section__seo-text">Nuestro equipo atiende por WhatsApp de 8 AM a 10 PM todos los días, incluyendo fines de semana y días festivos. En el primer mensaje te confirmamos disponibilidad; en el segundo, el precio final sin letra chica; en el tercero, el adelanto del 30% asegura tu fecha. Sin formularios, sin llamadas interminables, sin esperas de 24 horas.</p>
+            <p class="section__seo-text">Por WhatsApp puedes compartir la fecha, ubicación y medidas de tu espacio. Te ayudamos a revisar opciones del catálogo y confirmar disponibilidad.</p>
             <p class="section__seo-text">Llegamos 60 minutos antes del inicio con todo el equipo: inflable, soplador, lonas de anclaje y herramientas de instalación. La instalación estándar toma entre 15 y 40 minutos dependiendo del modelo. Al terminar el evento, el equipo regresa, desinfla, dobla, carga y se va — sin dejarte trabajo de limpieza ni desmontaje.</p>
           </div>
         </div>
@@ -218,7 +184,7 @@ const zonas = [
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
             <h3 class="paso__title">Agendamos tu fecha</h3>
-            <p class="paso__desc">Confirmas tu reserva con un anticipo del 50%. Tu fecha queda bloqueada y recibes confirmación inmediata.</p>
+            <p class="paso__desc">Confirmas tu reserva con un anticipo del {SITE.comercial.anticipoPct}%. Tu fecha queda bloqueada y recibes confirmación.</p>
           </div>
 
           <div class="paso">
@@ -241,14 +207,14 @@ const zonas = [
           <div class="section-header-split__left">
             <span class="section-badge">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-              Confianza comprobada
+              Información para reservar
             </span>
             <h2 class="section-title">¿Por qué elegirnos?</h2>
-            <p class="section-subtitle">{SITE.trayectoria.eventos} eventos operados en CDMX y Edomex entre {SITE.trayectoria.desde} y {SITE.trayectoria.hasta}. Aquí está el por qué repiten.</p>
+            <p class="section-subtitle">Consulta las especificaciones de cada inflable antes de reservar.</p>
           </div>
           <div class="section-header-split__right">
-            <p class="section__seo-text">Cada unidad se inspecciona con lista de 15 puntos derivada de las recomendaciones de la ASTM F2374 (estándar internacional para inflables de entretenimiento). Verificamos presión de operación (no mayor a 3.5 PSI), resistencia de costuras laterales, sistema de anclaje de 6 a 10 puntos y funcionamiento del soplador antes de carga. El resultado: cero accidentes en 523 eventos operados entre 2021 y 2025.</p>
-            <p class="section__seo-text">Usamos solución desinfectante al amonio cuaternario (segura para contacto infantil) en todas las superficies internas y externas. El inflable sale sellado en bolsa de protección para que llegue a tu evento en las mismas condiciones en que salió del almacén. Si al desempacarlo no cumple tus expectativas de limpieza, te reembolsamos el depósito completo sin preguntas.</p>
+            <p class="section__seo-text">Cada ficha muestra las medidas, capacidad, tiempo de instalación y requisitos eléctricos del inflable. Revisa esos datos antes de confirmar que el modelo se adapta a tu espacio.</p>
+            <p class="section__seo-text">Si necesitas orientación para elegir, comparte por WhatsApp las medidas y condiciones del área donde planeas instalarlo.</p>
           </div>
         </div>
 
@@ -308,52 +274,10 @@ const zonas = [
               <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
             <div class="razon__content">
-              <h3>{SITE.trayectoria.eventos} eventos operados</h3>
-              <p>Años de experiencia en fiestas infantiles, corporativas y eventos masivos en toda la ZMVM.</p>
+              <h3>Catálogo con especificaciones</h3>
+              <p>Consulta las fichas de cada inflable para comparar medidas, capacidad y requerimientos.</p>
             </div>
           </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ════════════════════════════ TESTIMONIOS ════════════════════════════ -->
-    <section class="seccion seccion--dark testimonios-sec">
-      <div class="container">
-        <div class="section-header-split">
-          <div class="section-header-split__left">
-            <span class="section-badge section-badge--dark">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              Reseñas reales
-            </span>
-            <h2 class="section-title section-title--white">Lo que dicen nuestros clientes</h2>
-            <p class="section-subtitle section-subtitle--muted">{SITE.trayectoria.eventos} eventos entre {SITE.trayectoria.desde} y {SITE.trayectoria.hasta} nos respaldan. Opiniones de familias reales de CDMX.</p>
-          </div>
-          <div class="section-header-split__right">
-            <p class="section__seo-text section__seo-text--light">Los clientes repiten porque llegamos a tiempo, el inflable llega sellado y limpio, el supervisor cuida a los niños y al final no dejan trabajo de desmontaje. <strong>523 eventos entre 2021 y 2025 en CDMX y Estado de México</strong>, con calificación promedio de 4.9 sobre 5. Eso no se compra — se construye evento por evento.</p>
-            <p class="section__seo-text section__seo-text--light">No publicamos reseñas genéricas ni fotos de stock. Cada testimonio que lees tiene nombre, colonia y tipo de evento real. Si quieres <strong>referencias directas de clientes en tu misma alcaldía o municipio</strong>, escríbenos por WhatsApp — te conectamos con ellos antes de que reserves.</p>
-          </div>
-        </div>
-
-        <div class="testimonios-grid">
-          {testimonios.map(t => (
-            <div class="testimonio">
-              <div class="testimonio__quote" aria-hidden="true">"</div>
-              <div class="testimonio__stars" aria-label={`${t.stars} estrellas`}>
-                {Array.from({ length: t.stars }).map(() => (
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFD700" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                ))}
-              </div>
-              <p class="testimonio__text">{t.text}</p>
-              <div class="testimonio__author">
-                <div class="testimonio__avatar" style={`background:${t.color};`}>{t.inicial}</div>
-                <div>
-                  <div class="testimonio__name">{t.name}</div>
-                  <div class="testimonio__event">{t.event}</div>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
       </div>
@@ -899,81 +823,6 @@ html { scroll-behavior: smooth; }
   color: var(--color-text-light, #718096);
   line-height: 1.6;
   margin: 0;
-}
-
-/* ─────────────────── TESTIMONIOS ─────────────────── */
-.testimonios-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-}
-@media (min-width: 640px) { .testimonios-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1100px) { .testimonios-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.testimonio {
-  position: relative;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 16px;
-  padding: 1.75rem 1.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  overflow: hidden;
-  transition: transform 0.2s, background 0.2s;
-}
-.testimonio:hover {
-  transform: translateY(-4px);
-  background: rgba(255,255,255,0.08);
-}
-.testimonio__quote {
-  position: absolute;
-  top: -0.5rem;
-  left: 1rem;
-  font-size: 6rem;
-  font-weight: 900;
-  color: rgba(255,255,255,0.07);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  font-family: Georgia, serif;
-}
-.testimonio__stars {
-  display: flex;
-  gap: 0.2rem;
-}
-.testimonio__text {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.7;
-  margin: 0;
-  flex: 1;
-}
-.testimonio__author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: auto;
-}
-.testimonio__avatar {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: #fff;
-  flex-shrink: 0;
-}
-.testimonio__name {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #fff;
-}
-.testimonio__event {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.5);
 }
 
 /* ─────────────────── ZONAS ─────────────────── */

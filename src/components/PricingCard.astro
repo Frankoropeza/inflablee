@@ -26,7 +26,6 @@ const {
 
 <div class={`pricing-card${featured ? " pricing-card--featured" : ""}`}>
   {badge && <span class="pricing-card__badge">{badge}</span>}
-  {featured && !badge && <span class="pricing-card__badge">⭐ Más popular</span>}
   <h3 class="pricing-card__title">{title}</h3>
   <div class="pricing-card__price-wrap">
     <span class="pricing-card__price">{price}</span>

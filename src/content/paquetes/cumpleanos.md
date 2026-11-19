@@ -7,4 +7,4 @@ includes: ["Castillo inflable mediano", "Tobogán seco", "4 horas de renta", "En
 order: 1
 ---
 
-El paquete perfecto para celebrar el cumpleaños de los más pequeños. Incluye nuestros inflables más populares con todo el servicio de entrega, instalación y supervisión profesional.
+Un paquete para celebrar el cumpleaños de los más pequeños, con servicio de entrega, instalación y supervisión.

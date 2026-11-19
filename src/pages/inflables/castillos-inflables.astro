@@ -41,7 +41,7 @@ const faqs = FAQS_CASTILLOS;
       <div class="container">
         <SectionHeader
           title="Nuestros castillos inflables"
-          subtitle={`${inflables.length > 0 ? inflables.length : "Varios"} modelos disponibles para tu evento. Todos con entrega e instalación en CDMX y Edomex.`}
+          subtitle="Explora las fichas para comparar medidas, capacidad y requisitos antes de cotizar."
         />
         <div class="prod-catalog__grid">
           {inflables.map(i => (
@@ -75,7 +75,7 @@ const faqs = FAQS_CASTILLOS;
 
           <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.75rem;">
             <h3 style="font-size:1.1rem;font-weight:800;color:var(--color-secondary);margin:0 0 0.75rem;">Castillos para niñas (2–8 años)</h3>
-            <p style="font-size:0.9rem;color:var(--color-text-light);line-height:1.7;margin:0 0 1rem;">El <strong>Castillo de Princesas (3×3 m, $1,200 MXN)</strong> es el modelo más rentado para esta franja de edad. Torres rosadas, arcoíris, mini tobogán de 1.5 m y mallas de seguridad en los 4 laterales. Ideal para cumpleaños temáticos en jardines o salones con más de 4.2 × 4.2 m disponibles. Para espacios más pequeños, el <strong>Mini Castillo (2×2 m, $800 MXN)</strong> funciona incluso en departamentos.</p>
+            <p style="font-size:0.9rem;color:var(--color-text-light);line-height:1.7;margin:0 0 1rem;">El <strong>Castillo de Princesas (3×3 m, $1,200 MXN)</strong> tiene torres rosadas, arcoíris, mini tobogán de 1.5 m y mallas de seguridad en los 4 laterales. Ideal para cumpleaños temáticos en jardines o salones con más de 4.2 × 4.2 m disponibles. Para espacios más pequeños, el <strong>Mini Castillo (2×2 m, $800 MXN)</strong> funciona incluso en departamentos.</p>
           </div>
 
           <div style="background:#fff;border:1.5px solid #E2E8F0;border-radius:16px;padding:1.75rem;">
@@ -114,9 +114,9 @@ const faqs = FAQS_CASTILLOS;
 
         <div class="section__seo" style="margin-top:0;padding-top:0;border-top:none;">
           <div class="section__seo-block">
-            <p class="section__seo-label">EL CASTILLO INFLABLE MÁS RENTADO EN CDMX · DATOS REALES 2021–2025</p>
-            <h2 class="section__seo-title">523 eventos operados, 0 accidentes: el protocolo de seguridad que hace la diferencia</h2>
-            <p class="section__seo-text">Cada castillo inflable sale del almacén con lista de verificación de 15 puntos: presión de operación (máx. 3.5 PSI según ASTM F2374), costuras laterales, sistema de anclaje de 6 puntos y soplador eléctrico. El Castillo de Princesas ha sido instalado en 187 eventos; el Castillo Dragones Rojos en 134. Ninguno ha registrado un accidente en 4 años de operación. Eso no es suerte — es protocolo.</p>
+            <p class="section__seo-label">ESPECIFICACIONES PARA ELEGIR TU CASTILLO</p>
+            <h2 class="section__seo-title">Compara medidas, capacidad y requisitos de instalación</h2>
+            <p class="section__seo-text">Revisa la ficha de cada castillo para conocer sus medidas, capacidad, tiempo de instalación y requerimientos eléctricos antes de reservar.</p>
           </div>
           <div class="section__seo-block">
             <p class="section__seo-label">RENTA DE CASTILLOS INFLABLES EN COYOACÁN, TLALPAN, BENITO JUÁREZ Y MÁS</p>
@@ -142,7 +142,7 @@ const faqs = FAQS_CASTILLOS;
     <CTABanner
       eyebrow="¿Ya sabes qué castillo quieres?"
       title="Reserva tu castillo inflable hoy"
-      subtitle="Disponibilidad limitada en fines de semana. Los sábados y domingos se agotan primero. Asegura tu fecha con solo el 30% de anticipo."
+      subtitle={`Consulta disponibilidad y asegura tu fecha con un anticipo del ${SITE.comercial.anticipoPct}%.`}
     />
     <LeadCapture />
   </main>

@@ -26,7 +26,7 @@ La regla general es: **1 inflable por cada 30-40 niños simultáneos**. Aquí te
 
 ### Kermés (todo el día)
 Para una kermés de día completo necesitas variedad. Recomendamos:
-- 1 pista de obstáculos (el más popular)
+- 1 pista de obstáculos
 - 1-2 castillos o brincalines
 - 1 tobogán (acuático en temporada de calor)
 - 1 juego interactivo (ring de boxeo o toro mecánico para adolescentes)

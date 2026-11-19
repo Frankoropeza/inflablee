@@ -19,8 +19,8 @@ export const MUNICIPIOS_DESTACADOS = [
 ] as const;
 
 export const ZONAS_PRINCIPALES = [
-  { href: "/zonas/cdmx", label: "Ciudad de México", desc: "Las 16 alcaldías" },
-  { href: "/zonas/estado-de-mexico", label: "Estado de México", desc: "12 municipios de la ZMVM" },
+  { href: "/zonas/cdmx", label: "Ciudad de México", desc: "Consulta la cobertura en la ciudad" },
+  { href: "/zonas/estado-de-mexico", label: "Estado de México", desc: "Consulta la cobertura metropolitana" },
 ] as const;
 
 /**

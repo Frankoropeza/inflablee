@@ -41,7 +41,7 @@ La evolución del tobogán: incluyen túneles, montañas y rampas, todo con agua
 Para los más pequeños (1-5 años). Seguras, fáciles de instalar y perfectas para jardines pequeños. **Precio desde $800 MXN.**
 
 ### 4. Combos brincalín + agua
-La combinación más popular: brincalín con tobogán acuático integrado. **Precio desde $1,400 MXN.**
+Una combinación posible: brincalín con tobogán acuático integrado. **Precio desde $1,400 MXN.**
 
 ## Lo que necesitas para instalar un inflable acuático
 

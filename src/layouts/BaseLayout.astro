@@ -1,7 +1,6 @@
 ---
 import "@/styles/global.css";
 import { SITE } from "@/data/site";
-import { testimoniosSchema } from "@/data/testimonios";
 
 export interface BreadcrumbItem { name: string; href?: string; }
 
@@ -73,16 +72,7 @@ const schemaLocal = {
     "@type": "PostalAddress",
     "addressCountry": "MX"
   },
-  "areaServed": ["México", "CDMX", "Estado de México"],
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": String(SITE.resenas.rating),
-    "bestRating": "5",
-    "worstRating": "1",
-    "reviewCount": String(SITE.resenas.count),
-    "ratingCount": String(SITE.resenas.count)
-  },
-  "review": testimoniosSchema()
+  "areaServed": ["México", "CDMX", "Estado de México"]
 };
 
 const schemaWebSite = {
