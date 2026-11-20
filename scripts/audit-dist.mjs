@@ -129,6 +129,7 @@ const failures = {
   "Fuentes remotas": [],
   "Sello de build": [],
   "Estructura accesible": [],
+  "Sitemap coherente": [],
 };
 
 if (htmlFiles.length === 0) failures["HTML auditado"].push("no se encontraron HTML auditables");
@@ -216,6 +217,23 @@ if (catalogPrices.length !== EXPECTED_PRICES.length || catalogPrices.sort((a, b)
 for (const file of files.filter(file => /\.(?:html|css)$/i.test(file))) {
   const content = await readFile(file, "utf8");
   if (/fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(content)) failures["Fuentes remotas"].push(path.relative(distDirectory, file));
+}
+
+// Una pagina con noindex no puede anunciarse en el sitemap: es una senal
+// contradictoria para el buscador. La categoria sin fichas publicadas se sirve
+// con noindex, asi que debe quedar fuera del XML.
+const sitemapPath = path.join(distDirectory, "sitemap-0.xml");
+if (await exists(sitemapPath)) {
+  const sitemapXml = await readFile(sitemapPath, "utf8");
+  const sitemapRoutes = new Set([...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => new URL(match[1]).pathname));
+  for (const [file, html] of contents) {
+    const robots = html.match(/<meta\b[^>]*name=["']robots["'][^>]*>/i)?.[0] ?? "";
+    if (!/noindex/i.test(getAttribute(robots, "content") ?? "")) continue;
+    const route = routeForFile(file);
+    if (sitemapRoutes.has(route)) failures["Sitemap coherente"].push(`${route} va con noindex pero esta en el sitemap`);
+  }
+} else {
+  failures["Sitemap coherente"].push("falta sitemap-0.xml");
 }
 
 const buildIdPath = path.join(distDirectory, "build-id.txt");

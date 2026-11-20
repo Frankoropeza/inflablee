@@ -19,24 +19,6 @@ const blog = defineCollection({
   }).strict(),
 });
 
-/**
- * Coleccion sin publicar: estos 5 documentos describen tipos de inflable y el
- * sitio nunca los ha mostrado. Las tarjetas de /servicios son tipos de evento y
- * viven en la coleccion `tiposEvento`. Publicar esto es decision de Frank, asi
- * que `href` y `tags` quedan opcionales: hoy ningun documento los trae.
- */
-const servicios = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/servicios" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().max(155),
-    icon: z.string().min(1),
-    href: z.string().startsWith("/").optional(),
-    tags: z.array(z.string()).default([]),
-    featured: z.boolean().default(false),
-    order: z.number().int().nonnegative().default(99),
-  }).strict(),
-});
 
 const tiposEvento = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/tipos-evento" }),
@@ -146,4 +128,4 @@ const zonasSeo = defineCollection({
   }).strict(),
 });
 
-export const collections = { blog, servicios, tiposEvento, paquetes, inflables, paginas, categorias, zonasSeo };
+export const collections = { blog, tiposEvento, paquetes, inflables, paginas, categorias, zonasSeo };
