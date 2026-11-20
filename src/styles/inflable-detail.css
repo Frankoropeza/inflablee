@@ -147,7 +147,7 @@
 .idetail__price {
   font-size: 2.25rem;
   font-weight: 900;
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   line-height: 1;
 }
 .idetail__price small {
@@ -201,8 +201,8 @@
 }
 
 .btn--success {
-  background: #25D366;
-  color: #fff;
+  background: var(--color-wa);
+  color: var(--color-wa-text);
   border: none;
   display: inline-flex;
   align-items: center;

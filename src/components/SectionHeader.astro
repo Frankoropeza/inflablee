@@ -5,6 +5,8 @@ export interface Props {
  subtitle?:  string;
  link?:  { text: string; href: string };
  twoCol?:  boolean;
+ /** Para secciones con fondo oscuro: sube el contraste del titulo y el subtitulo a AA. */
+ onDark?:  boolean;
  id?:  string;
 }
 
@@ -13,11 +15,12 @@ const {
  subtitle,
  link,
  twoCol = false,
+ onDark = false,
  id,
 } = Astro.props;
 ---
 
-<div class={`section-header ${twoCol ? "section-header--two-col" : ""}`}>
+<div class={`section-header ${twoCol ? "section-header--two-col" : ""} ${onDark ? "section-header--on-dark" : ""}`}>
  <div class="section-header__left">
  <h2 class="section-header__title" id={id}>{title}</h2>
  {subtitle && <p class="section-header__subtitle">{subtitle}</p>}

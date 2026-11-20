@@ -7,7 +7,7 @@ import InflableCard from "@/components/InflableCard.astro";
 import { SITE } from "@/data/site";
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
-import { categoriaColor, categoriaLabel } from "@/data/categorias";
+import { categoriaColorDeep, categoriaLabel } from "@/data/categorias";
 import "@/styles/inflable-detail.css";
 export async function getStaticPaths() {
   const inflables = await getCollection("inflables");
@@ -26,7 +26,7 @@ const relacionados = todosInflables
   .filter(i => i.data.categoria === inflable.data.categoria && i.id !== inflable.id)
   .slice(0, 3);
 const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${inflable.data.title}. ¿Cuál es la disponibilidad y precio exacto?`);
-const catColor = categoriaColor(inflable.data.categoria);
+const catColor = categoriaColorDeep(inflable.data.categoria);
 const catLabel = categoriaLabel(inflable.data.categoria);
 const imagenes = inflable.data.imagenes ?? [];
 const mainImage = inflable.data.imagen ?? (imagenes.length > 0 ? imagenes[0] : null);
@@ -135,7 +135,7 @@ const schema = {
               </div>
               <div class="idetail__strip-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-                <span class="idetail__strip-value" style="color: var(--color-primary-text);">${inflable.data.precio_desde.toLocaleString()} MXN</span>
+                <span class="idetail__strip-value" style="color: var(--color-primary-light);">${inflable.data.precio_desde.toLocaleString()} MXN</span>
                 <span class="idetail__strip-label">Desde</span>
               </div>
             </div>
@@ -152,7 +152,7 @@ const schema = {
               <span class="idetail__price-note">{SITE.comercial.iva}</span>
             </div>
             <div class="idetail__includes">
-              <h3 class="idetail__includes-title">¿Qué incluye tu renta?</h3>
+              <h2 class="idetail__includes-title">¿Qué incluye tu renta?</h2>
               <ul class="idetail__includes-list">
                 <li>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -171,7 +171,7 @@ const schema = {
                   {SITE.comercial.incluye[3]}
                 </li>
               </ul>
-              <h3 class="idetail__includes-title">Envío y supervisión</h3>
+              <h2 class="idetail__includes-title">Envío y supervisión</h2>
               <p class="idetail__price-note">{SITE.comercial.envio.sinCosto} {SITE.comercial.envio.cdmx} {SITE.comercial.envio.edomex}</p>
               <p class="idetail__price-note">{SITE.comercial.supervisor}</p>
             </div>

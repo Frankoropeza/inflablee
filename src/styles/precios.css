@@ -39,7 +39,7 @@
   .precios-tabla tbody tr:hover { background: var(--color-accent); }
   .precios-tabla__precio {
     font-weight: 800;
-    color: var(--color-primary);
+    color: var(--color-primary-text);
     white-space: nowrap;
   }
   .precios-tabla__nota {
@@ -104,7 +104,7 @@
   .precios-paquete__price {
     font-size: var(--font-size-xl);
     font-weight: 800;
-    color: var(--color-primary);
+    color: var(--color-primary-text);
   }
   .precios-paquete__desc { color: var(--color-text-light); }
   .precios-paquete__list {

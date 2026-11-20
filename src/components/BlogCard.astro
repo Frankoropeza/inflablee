@@ -43,9 +43,7 @@ const formattedDate = pubDate.toLocaleDateString("es-MX", {
  {image ? (
  <Image src={image} alt={imageAlt || title} class="blog-card__image" loading="lazy" decoding="async" />
  ) : (
- <div class={`blog-card__placeholder blog-card__placeholder--${categorySlug}`}>
- INFLABLEE
- </div>
+ <div class={`blog-card__placeholder blog-card__placeholder--${categorySlug}`} aria-hidden="true"></div>
  )}
  </a>
  <div class="blog-card__body">

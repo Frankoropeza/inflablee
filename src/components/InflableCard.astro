@@ -44,7 +44,8 @@ import { SITE } from "@/data/site";
 import { getCategoria } from "@/data/categorias";
 
 const cat = getCategoria(categoria);
-const badge = { label: cat?.badge ?? categoria, color: cat?.color ?? "#6B7280" };
+// El relleno del badge usa colorDeep: lleva texto blanco encima y debe cumplir AA.
+const badge = { label: cat?.badge ?? categoria, color: cat?.colorDeep ?? "#4B5563" };
 const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${title}. ¿Cuál es el precio y disponibilidad?`);
 ---
 

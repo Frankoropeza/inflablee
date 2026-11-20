@@ -115,7 +115,7 @@
 .inflable-card__price {
   font-size: var(--font-size-xl);
   font-weight: 900;
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   line-height: 1;
 }
 .inflable-card__price small {
@@ -140,7 +140,7 @@
   font-weight: 500;
 }
 .inflable-card__spec svg {
-  color: var(--color-primary);
+  color: var(--color-primary-text);
   flex-shrink: 0;
 }
 
@@ -156,8 +156,8 @@
   justify-content: center;
   gap: 0.4rem;
   padding: 0.75rem 1rem;
-  background: #25D366;
-  color: #fff;
+  background: var(--color-wa);
+  color: var(--color-wa-text);
   border-radius: var(--border-radius);
   font-size: var(--font-size-sm);
   font-weight: 700;
@@ -184,5 +184,5 @@
 }
 .inflable-card__btn-detail:hover {
   border-color: var(--color-primary);
-  color: var(--color-primary);
+  color: var(--color-primary-text);
 }

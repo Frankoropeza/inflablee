@@ -85,7 +85,7 @@ html { scroll-behavior: smooth; }
 
 .hero__desc {
   font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.95);
   line-height: 1.7;
   margin: 0 0 2rem;
   max-width: 520px;
@@ -103,8 +103,8 @@ html { scroll-behavior: smooth; }
   align-items: center;
   gap: 0.6rem;
   padding: 1rem 1.75rem;
-  background: #25D366;
-  color: #fff;
+  background: var(--color-wa);
+  color: var(--color-wa-text);
   border-radius: 12px;
   font-size: 1.05rem;
   font-weight: 800;
@@ -229,7 +229,7 @@ html { scroll-behavior: smooth; }
   align-items: center;
   gap: 0.4rem;
   background: rgba(255,75,31,0.1);
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.35rem 0.9rem;
@@ -347,9 +347,12 @@ html { scroll-behavior: smooth; }
   border-color: var(--color-primary, #FF4B1F);
 }
 .paso__num {
+  /* Marca de agua decorativa: el ordinal se dibuja con ::before para que no sea
+     texto del DOM. Como texto a 8 % de opacidad nunca llegaria a AA y solo le
+     daba ruido a los lectores de pantalla. */
   font-size: 5rem;
   font-weight: 900;
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
   opacity: 0.08;
   line-height: 1;
   position: absolute;
@@ -359,6 +362,7 @@ html { scroll-behavior: smooth; }
   pointer-events: none;
   user-select: none;
 }
+.paso__num::before { content: attr(data-num); }
 .paso__icon-wrap {
   width: 64px; height: 64px;
   background: rgba(255,75,31,0.08);
@@ -367,7 +371,7 @@ html { scroll-behavior: smooth; }
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.25rem;
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
 }
 .paso__title {
   font-size: 1.1rem;
@@ -384,7 +388,7 @@ html { scroll-behavior: smooth; }
 .paso__link {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
   text-decoration: none;
   transition: opacity 0.15s;
 }
@@ -460,13 +464,13 @@ html { scroll-behavior: smooth; }
 }
 .zona-chip:hover {
   border-color: var(--color-primary, #FF4B1F);
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
   background: rgba(255,75,31,0.04);
 }
 .zona-chip--more {
   background: rgba(255,75,31,0.08);
   border-color: rgba(255,75,31,0.3);
-  color: var(--color-primary, #FF4B1F);
+  color: var(--color-primary-on-soft, #9E3115);
   font-weight: 700;
 }
 }

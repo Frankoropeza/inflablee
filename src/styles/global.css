@@ -15,6 +15,12 @@
   --color-primary:       #FF4B1F;
   --color-primary-text:  #C43D1A; /* naranja como texto sobre blanco: 5.21:1 */
   --color-primary-deep:  #C43D1A; /* relleno con texto blanco encima: 5.21:1 */
+  /* El verde de WhatsApp es su marca y no se oscurece: lo que cambia es que el
+     texto encima va oscuro (6.25:1 contra blanco encima, que daba 1.98:1). */
+  --color-wa:            #25D366;
+  --color-wa-text:       #0B3B36;
+  /* Naranja legible sobre el durazno tenue de las pildoras: 6.12:1. */
+  --color-primary-on-soft: #9E3115;
   --color-primary-dark:  #CC3A16;
   --color-primary-light: #FF7B57;
   --color-secondary:     #1A1A2E;
@@ -455,6 +461,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   line-height: var(--line-height-base);
   margin: 0;
 }
+/* Sobre fondo oscuro el gris de texto se queda en 3.06:1; esta variante lo sube. */
+.section-header--on-dark .section-header__title { color: var(--color-white); }
+.section-header--on-dark .section-header__subtitle { color: rgba(255,255,255,0.78); }
+.section-header--on-dark .section-header__link { color: var(--color-primary-light); }
 .section-header__link {
   display: inline-flex;
   align-items: center;
@@ -780,7 +790,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 .footer__copy {
   font-size: var(--font-size-xs);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.62);
 }
 .footer__legal {
   display: flex;
@@ -789,7 +799,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 .footer__legal a {
   font-size: var(--font-size-xs);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.62);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -826,9 +836,9 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: #25D366;
+  background: var(--color-wa);
   border-radius: 50%;
-  color: #fff;
+  color: var(--color-wa-text);
   box-shadow: 0 4px 16px rgba(37,211,102,0.4);
   transition: all var(--transition-fast);
 }
