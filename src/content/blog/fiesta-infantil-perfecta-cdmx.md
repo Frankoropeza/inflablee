@@ -6,6 +6,7 @@ cardDescription: "Una guía práctica para elegir espacio, inflable y logística
 pubDate: 2026-08-04
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif"
 tags: ["fiesta infantil", "CDMX", "inflables", "planeación", "cumpleaños"]
 draft: false
 ---

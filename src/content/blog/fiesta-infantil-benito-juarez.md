@@ -6,6 +6,7 @@ cardDescription: "Revisa espacio, acceso y requisitos antes de reservar un infla
 pubDate: 2026-08-11
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/mini-castillo/mini-castillo-exterior.avif"
 tags: ["Benito Juárez", "fiesta infantil", "inflables", "CDMX", "Narvarte"]
 draft: false
 ---

@@ -6,6 +6,7 @@ cardDescription: "Una guía para preparar el espacio y cotizar un inflable para 
 pubDate: 2026-08-25
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/dragones-rojos/castillo-dragones-exterior-jardin.avif"
 tags: ["Iztapalapa", "fiesta infantil", "inflables", "zona oriente", "cumpleaños"]
 draft: false
 ---

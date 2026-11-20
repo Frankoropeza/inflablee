@@ -6,6 +6,7 @@ cardDescription: "Guía para elegir Castillo Baby y preparar el espacio para una
 pubDate: 2026-10-20
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif"
 tags: ["cumpleaños", "1 a 3 años", "Castillo Baby", "inflables", "fiesta infantil"]
 draft: false
 ---

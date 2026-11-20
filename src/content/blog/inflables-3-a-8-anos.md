@@ -6,6 +6,7 @@ cardDescription: "Datos para comparar Dragones Rojos, Jungla y Gusanitos antes d
 pubDate: 2026-10-27
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/dragones-rojos/castillo-dragones-exterior-jardin.avif"
 tags: ["3 a 8 años", "inflables", "Dragones Rojos", "Jungla", "Gusanitos"]
 draft: false
 ---

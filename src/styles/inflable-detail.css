@@ -221,27 +221,27 @@
   border-top: 1px solid var(--color-border);
   max-width: 720px;
 }
-.idetail__prose :global(h2) {
+.idetail__prose h2 {
   font-size: var(--font-size-xl);
   font-weight: 800;
   color: var(--color-secondary);
   margin: var(--spacing-xl) 0 var(--spacing-sm);
 }
-.idetail__prose :global(p) {
+.idetail__prose p {
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: var(--spacing-md);
 }
-.idetail__prose :global(ul) {
+.idetail__prose ul {
   padding-left: 1.5rem;
   margin-bottom: var(--spacing-md);
 }
-.idetail__prose :global(li) {
+.idetail__prose li {
   color: var(--color-text-light);
   line-height: 1.8;
   margin-bottom: 0.25rem;
 }
-.idetail__prose :global(strong) { color: var(--color-secondary); }
+.idetail__prose strong { color: var(--color-secondary); }
 
 /* Grid */
 .inflables-grid {

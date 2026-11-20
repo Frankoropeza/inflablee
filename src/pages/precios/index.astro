@@ -83,6 +83,7 @@ const listaSchema = {
                 <th scope="col">Inflable</th>
                 <th scope="col">Precio por evento</th>
                 <th scope="col">Medidas</th>
+                <th scope="col">Tamaño</th>
                 <th scope="col">Altura libre</th>
                 <th scope="col">Edades</th>
                 <th scope="col">Bajo techo</th>
@@ -97,6 +98,7 @@ const listaSchema = {
                   </th>
                   <td class="precios-tabla__precio">{mxn(i.data.precio_desde)}</td>
                   <td>{i.data.medidas}</td>
+                  <td>{i.data.tamano}</td>
                   <td>{i.data.altura_libre}</td>
                   <td>{i.data.edades}</td>
                   <td>{i.data.interiores ? "Sí" : "No"}</td>

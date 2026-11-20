@@ -16,6 +16,7 @@ export interface Props {
   pageType?: "home" | "page" | "article";
   noindex?: boolean;
   breadcrumbs?: Array<{ name: string; href?: string }>;
+  pagination?: { prev?: string; next?: string };
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   pageType,
   noindex,
   breadcrumbs,
+  pagination,
 } = Astro.props;
 const metadata = buildPageMetadata({ title, description, canonical, pathname: Astro.url.pathname });
 const schemas = buildPageSchemas({ breadcrumbs, schema });
@@ -40,6 +42,7 @@ const schemas = buildPageSchemas({ breadcrumbs, schema });
   schemas={schemas}
   pageType={pageType}
   noindex={noindex}
+  pagination={pagination}
 >
   <Topbar phone={SITE.tel} whatsapp={SITE.whatsapp} />
   <Header whatsapp={SITE.whatsapp} currentPath={Astro.url.pathname} />

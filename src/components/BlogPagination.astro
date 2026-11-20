@@ -1,0 +1,33 @@
+---
+export interface Props {
+  currentPage: number;
+  lastPage: number;
+  prev?: string;
+  next?: string;
+}
+
+const { currentPage, lastPage, prev, next } = Astro.props;
+const pages = Array.from({ length: lastPage }, (_, index) => index + 1);
+const hrefFor = (page: number) => page === 1 ? "/blog/" : `/blog/${page}/`;
+---
+
+{lastPage > 1 && (
+  <nav aria-label="Paginación del blog" style="margin-top:var(--spacing-2xl);">
+    <ul role="list" style="display:flex;flex-wrap:wrap;justify-content:center;gap:var(--spacing-sm);padding:0;margin:0;list-style:none;">
+      {prev && <li><a class="btn btn--outline btn--sm" href={prev} aria-label="Página anterior">Anterior</a></li>}
+      {pages.map(page => (
+        <li>
+          <a
+            class="btn btn--outline btn--sm"
+            href={hrefFor(page)}
+            aria-label={`Página ${page}`}
+            aria-current={page === currentPage ? "page" : undefined}
+          >
+            {page}
+          </a>
+        </li>
+      ))}
+      {next && <li><a class="btn btn--outline btn--sm" href={next} aria-label="Página siguiente">Siguiente</a></li>}
+    </ul>
+  </nav>
+)}

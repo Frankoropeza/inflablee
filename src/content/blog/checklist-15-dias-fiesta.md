@@ -6,6 +6,7 @@ cardDescription: "Una secuencia de 15 días para confirmar espacio, inflable, ac
 pubDate: 2026-11-12
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif"
 tags: ["checklist", "fiesta infantil", "planeación", "inflables", "anticipo"]
 draft: false
 ---

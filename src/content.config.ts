@@ -81,6 +81,7 @@ const inflables = defineCollection({
     title: z.string(),
     categoria: z.enum(CATEGORIA_KEYS),
     precio_desde: z.number().positive(),
+    tamano: z.enum(["chico", "mediano", "grande"]),
     capacidad: z.string(),
     medidas: z.string(),
     edades: z.string(),

@@ -6,6 +6,7 @@ cardDescription: "Revisa logística, altura libre y condiciones de reserva para 
 pubDate: 2026-09-01
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/castillo-blanco/alquiler-castillo-blanco-bodas-terraza-cdmx.avif"
 tags: ["Miguel Hidalgo", "Polanco", "fiesta infantil", "inflables", "zona poniente"]
 draft: false
 ---

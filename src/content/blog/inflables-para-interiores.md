@@ -6,6 +6,7 @@ cardDescription: "Qué medir en un salón o área bajo techo antes de elegir un 
 pubDate: 2026-10-13
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-castillo/mini-castillo-interior-fiesta.avif"
 tags: ["interiores", "inflables", "medidas", "altura libre", "fiesta infantil"]
 draft: false
 ---

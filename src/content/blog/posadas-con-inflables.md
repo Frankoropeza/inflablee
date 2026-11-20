@@ -6,6 +6,7 @@ cardDescription: "Guía para integrar un inflable a una posada sin suponer horar
 pubDate: 2026-11-18
 author: "Equipo INFLABLEE"
 category: "Eventos"
+image: "../../assets/inflables/castillo-blanco/alquiler-castillo-blanco-bodas-terraza-cdmx.avif"
 tags: ["posadas", "fin de año", "inflables", "paquetes", "fiesta infantil"]
 draft: false
 ---

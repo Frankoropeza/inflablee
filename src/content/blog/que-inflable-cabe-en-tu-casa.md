@@ -6,6 +6,7 @@ cardDescription: "Guía para medir largo, ancho y altura libre antes de elegir u
 pubDate: 2026-10-06
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-jungla/mini-jungla-frontal-jardin.avif"
 tags: ["medidas", "altura libre", "inflables", "fiesta infantil", "planeación"]
 draft: false
 ---

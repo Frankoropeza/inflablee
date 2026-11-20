@@ -44,6 +44,7 @@ const articleSchema = {
 <PageLayout
   title={`${post.data.seoTitle ?? post.data.title} | INFLABLEE`}
   description={post.data.description}
+  ogImage={post.data.image?.src}
   pageType="article"
   schema={articleSchema}
   breadcrumbs={[

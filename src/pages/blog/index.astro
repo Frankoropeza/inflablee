@@ -2,17 +2,21 @@
 import PageLayout from "@/layouts/PageLayout.astro";
 import PageHero from "@/components/PageHero.astro";
 import BlogCard from "@/components/BlogCard.astro";
+import BlogPagination from "@/components/BlogPagination.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("blog"))
+const allPosts = (await getCollection("blog"))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = allPosts.slice(0, 9);
+const lastPage = Math.ceil(allPosts.length / 9);
 ---
 
 <PageLayout
   title="Blog — Consejos para Fiestas e Inflables | INFLABLEE"
   description="Artículos, consejos y guías sobre fiestas infantiles, renta de inflables y organización de eventos."
   breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Blog" }]}
+  pagination={{ next: lastPage > 1 ? "/blog/2/" : undefined }}
 >
   <main id="contenido-principal">
     <PageHero
@@ -40,6 +44,7 @@ const posts = (await getCollection("blog"))
             Próximamente publicaremos artículos sobre fiestas e inflables. ¡Vuelve pronto!
           </p>
         )}
+        <BlogPagination currentPage={1} lastPage={lastPage} next={lastPage > 1 ? "/blog/2/" : undefined} />
       </div>
     </section>
   </main>

@@ -6,6 +6,7 @@ cardDescription: "Qué preparar para solicitar inflables en una kermés escolar 
 pubDate: 2026-11-17
 author: "Equipo INFLABLEE"
 category: "Eventos"
+image: "../../assets/inflables/pista-extremo/alquiler-circuito-extremo-fiestas-mexico.avif"
 tags: ["kermés", "eventos escolares", "inflables", "planeación", "supervisión"]
 draft: false
 ---

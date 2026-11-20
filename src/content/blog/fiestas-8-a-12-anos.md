@@ -6,6 +6,7 @@ cardDescription: "Qué revisar para elegir un inflable publicado para edades de 
 pubDate: 2026-11-03
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/pista-extremo/alquiler-brincolin-extremo-fiestas-infantiles.avif"
 tags: ["8 a 12 años", "fiesta infantil", "Extremo", "Barco Pirata", "inflables"]
 draft: false
 ---

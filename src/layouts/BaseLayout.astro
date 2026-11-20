@@ -10,6 +10,7 @@ export interface Props {
   pageType?: "home" | "page" | "article";
   noindex?: boolean;
   schemas?: object[];
+  pagination?: { prev?: string; next?: string };
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   pageType = "page",
   noindex = false,
   schemas = [],
+  pagination,
 } = Astro.props;
 
 const schemaOrg = {
@@ -92,6 +94,9 @@ const ogType = pageType === "article" ? "article" : "website";
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {pagination?.prev && <link rel="prev" href={new URL(pagination.prev, SITE.url).href} />}
+    {pagination?.next && <link rel="next" href={new URL(pagination.next, SITE.url).href} />}
+    <link rel="alternate" type="application/rss+xml" title="Blog INFLABLEE" href={`${SITE.url}/rss.xml`} />
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
 
     <meta property="og:type" content={ogType} />

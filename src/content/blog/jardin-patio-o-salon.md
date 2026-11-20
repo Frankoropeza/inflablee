@@ -6,6 +6,7 @@ cardDescription: "Una forma práctica de evaluar jardín, patio o salón antes d
 pubDate: 2026-11-14
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/mini-jungla/mini-jungla-exterior-evento.avif"
 tags: ["jardín", "patio", "salón", "medidas", "inflables"]
 draft: false
 ---

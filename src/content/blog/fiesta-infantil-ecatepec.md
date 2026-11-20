@@ -6,6 +6,7 @@ cardDescription: "Pasos prácticos para preparar espacio, acceso y reserva de un
 pubDate: 2026-09-29
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/pista-extremo/alquiler-circuito-extremo-fiestas-mexico.avif"
 tags: ["Ecatepec", "fiesta infantil", "inflables", "Estado de México", "planeación"]
 draft: false
 ---

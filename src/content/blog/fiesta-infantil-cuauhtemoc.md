@@ -6,6 +6,7 @@ cardDescription: "Pasos prácticos para elegir un inflable y preparar el espacio
 pubDate: 2026-09-15
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/mini-castillo/mini-castillo-interior-fiesta.avif"
 tags: ["Cuauhtémoc", "fiesta infantil", "patios", "salones", "inflables"]
 draft: false
 ---

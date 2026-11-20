@@ -1,0 +1,63 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import BlogPagination from "@/components/BlogPagination.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = (await getCollection("blog"))
+    .filter(post => !post.data.draft)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return paginate(posts, { pageSize: 9 }).filter(({ params }) => params.page !== undefined);
+};
+
+interface Props {
+  page: Page<CollectionEntry<"blog">>;
+}
+
+const { page } = Astro.props as Props;
+const pageTitle = `Blog — Página ${page.currentPage} | INFLABLEE`;
+const pageUrl = (url?: string) => url ? `${url.replace(/\/$/, "")}/` : undefined;
+const prev = pageUrl(page.url.prev);
+const next = pageUrl(page.url.next);
+---
+
+<PageLayout
+  title={pageTitle}
+  description="Artículos, consejos y guías sobre fiestas infantiles, renta de inflables y organización de eventos."
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Blog", href: "/blog/" }, { name: `Página ${page.currentPage}` }]}
+  pagination={{ prev, next }}
+>
+  <main id="contenido-principal">
+    <PageHero
+      eyebrow="Blog INFLABLEE"
+      title="Consejos para fiestas y eventos"
+      desc="Guías, tips y todo lo que necesitas saber para organizar el mejor evento con inflables."
+    />
+
+    <section style="padding:var(--spacing-4xl) 0;">
+      <div class="container">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--spacing-xl);">
+          {page.data.map(post => (
+            <BlogCard
+              title={post.data.title}
+              slug={post.id}
+              description={post.data.cardDescription ?? post.data.description}
+              pubDate={post.data.pubDate}
+              category={post.data.category || "General"}
+            />
+          ))}
+        </div>
+        <BlogPagination
+          currentPage={page.currentPage}
+          lastPage={page.lastPage}
+          prev={prev}
+          next={next}
+        />
+      </div>
+    </section>
+  </main>
+</PageLayout>

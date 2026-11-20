@@ -6,6 +6,7 @@ cardDescription: "Guía para medir el espacio y organizar la renta de un inflabl
 pubDate: 2026-09-22
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/mini-jungla/mini-jungla-exterior-evento.avif"
 tags: ["Naucalpan", "Tlalnepantla", "fiesta infantil", "inflables", "Estado de México"]
 draft: false
 ---

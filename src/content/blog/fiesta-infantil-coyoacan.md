@@ -6,6 +6,7 @@ cardDescription: "Planea la instalación de un inflable en Coyoacán con medidas
 pubDate: 2026-08-18
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/castillo-princesas/castillo-princesas-exterior-jardin.avif"
 tags: ["Coyoacán", "fiesta infantil", "inflables", "zona sur", "logística"]
 draft: false
 ---

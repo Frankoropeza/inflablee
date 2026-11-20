@@ -6,6 +6,7 @@ cardDescription: "Guía para revisar el espacio, acceso y reserva de un inflable
 pubDate: 2026-09-08
 author: "Equipo INFLABLEE"
 category: "Zonas"
+image: "../../assets/inflables/gusanitos/gusanitos-exterior-jardin.avif"
 tags: ["Gustavo A. Madero", "fiesta infantil", "inflables", "zona norte", "planeación"]
 draft: false
 ---

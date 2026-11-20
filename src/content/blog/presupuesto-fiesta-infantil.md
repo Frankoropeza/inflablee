@@ -6,6 +6,7 @@ cardDescription: "Separa precios publicados, envío, factura y anticipo para ped
 pubDate: 2026-11-10
 author: "Equipo INFLABLEE"
 category: "Precios"
+image: "../../assets/inflables/castillo-blanco/alquiler-castillo-blanco-bodas-decoracion.avif"
 tags: ["presupuesto", "fiesta infantil", "precios", "inflables", "anticipo"]
 draft: false
 ---

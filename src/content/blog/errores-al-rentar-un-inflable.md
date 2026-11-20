@@ -6,6 +6,7 @@ cardDescription: "Los errores que se previenen con medidas, edades, acceso, toma
 pubDate: 2026-11-19
 author: "Equipo INFLABLEE"
 category: "Guías"
+image: "../../assets/inflables/dragones-rojos/castillo-dragones-lateral-cdmx.avif"
 tags: ["renta de inflables", "CDMX", "medidas", "cotización", "fiesta infantil"]
 draft: false
 ---
