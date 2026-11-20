@@ -28,7 +28,7 @@ const {
           <p class="footer__cta-sub">Cotización sin compromiso. Consulta requisitos y envío por zona.</p>
         </div>
         <div class="footer__cta-actions">
-          <a href="/cotizar" class="footer__cta-btn footer__cta-btn--primary">
+          <a href="/cotizar/" class="footer__cta-btn footer__cta-btn--primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
             Solicitar cotización
           </a>
@@ -87,25 +87,25 @@ const {
           <h3 class="footer__col-title">Inflables</h3>
           <ul class="footer__list">
             {CATEGORIAS.map(c => (
-              <li><a href={`/inflables/${c.slug}`} class="footer__link">{c.label}</a></li>
+            <li><a href={`/inflables/${c.slug}/`} class="footer__link">{c.label}</a></li>
             ))}
-            <li><a href="/inflables/inflables-gigantes" class="footer__link">Inflables gigantes</a></li>
-            <li><a href="/inflables" class="footer__link footer__link--cta">Ver catálogo completo &rarr;</a></li>
+            <li><a href="/inflables/inflables-gigantes/" class="footer__link">Inflables gigantes</a></li>
+            <li><a href="/inflables/" class="footer__link footer__link--cta">Ver catálogo completo &rarr;</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
           <h3 class="footer__col-title">Empresa</h3>
           <ul class="footer__list">
-            <li><a href="/nosotros" class="footer__link">Nosotros</a></li>
-            <li><a href="/servicios" class="footer__link">Servicios</a></li>
-            <li><a href="/servicios/paquetes" class="footer__link">Paquetes</a></li>
-            <li><a href="/precios" class="footer__link">Precios</a></li>
-            <li><a href="/preguntas-frecuentes" class="footer__link">Preguntas frecuentes</a></li>
-            <li><a href="/galeria" class="footer__link">Galería</a></li>
-            <li><a href="/blog" class="footer__link">Blog</a></li>
-            <li><a href="/cotizar" class="footer__link">Cotizar</a></li>
-            <li><a href="/contacto" class="footer__link">Contacto</a></li>
+            <li><a href="/nosotros/" class="footer__link">Nosotros</a></li>
+            <li><a href="/servicios/" class="footer__link">Servicios</a></li>
+            <li><a href="/servicios/paquetes/" class="footer__link">Paquetes</a></li>
+            <li><a href="/precios/" class="footer__link">Precios</a></li>
+            <li><a href="/preguntas-frecuentes/" class="footer__link">Preguntas frecuentes</a></li>
+            <li><a href="/galeria/" class="footer__link">Galería</a></li>
+            <li><a href="/blog/" class="footer__link">Blog</a></li>
+            <li><a href="/cotizar/" class="footer__link">Cotizar</a></li>
+            <li><a href="/contacto/" class="footer__link">Contacto</a></li>
           </ul>
         </div>
 
@@ -115,8 +115,8 @@ const {
             {ZONAS_PRINCIPALES.map(z => (
               <li><a href={z.href} class="footer__link">{z.label}</a></li>
             ))}
-            <li><a href="/zonas" class="footer__link">Ver todas las zonas</a></li>
-            <li><a href="/cotizar" class="footer__link footer__link--cta">Cotizar mi evento &rarr;</a></li>
+            <li><a href="/zonas/" class="footer__link">Ver todas las zonas</a></li>
+            <li><a href="/cotizar/" class="footer__link footer__link--cta">Cotizar mi evento &rarr;</a></li>
           </ul>
         </div>
       </div>
@@ -128,9 +128,9 @@ const {
       <div class="footer__bottom-inner">
         <p class="footer__copy">&copy; {new Date().getFullYear()} INFLABLEE. Todos los derechos reservados.</p>
         <nav class="footer__legal" aria-label="Legal">
-          <a href="/aviso-de-privacidad">Aviso de privacidad</a>
-          <a href="/terminos-y-condiciones">Términos y condiciones</a>
-          <a href="/contacto">Contacto</a>
+          <a href="/aviso-de-privacidad/">Aviso de privacidad</a>
+          <a href="/terminos-y-condiciones/">Términos y condiciones</a>
+          <a href="/contacto/">Contacto</a>
         </nav>
       </div>
     </div>

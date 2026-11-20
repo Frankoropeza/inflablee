@@ -33,7 +33,7 @@ const listaSchema = {
       "@type": "Product",
       "name": i.data.title,
       "category": categoriaLabel(i.data.categoria),
-      "url": new URL(`/inflables/${i.id}`, SITE.url).href,
+      "url": new URL(`/inflables/${i.id}/`, SITE.url).href,
       ...(i.data.imagen ? { "image": new URL(i.data.imagen.src, SITE.url).href } : {}),
       "offers": {
         "@type": "Offer",
@@ -42,7 +42,7 @@ const listaSchema = {
         "availability": i.data.disponible
           ? "https://schema.org/InStock"
           : "https://schema.org/OutOfStock",
-        "url": new URL(`/inflables/${i.id}`, SITE.url).href,
+        "url": new URL(`/inflables/${i.id}/`, SITE.url).href,
       },
     },
   })),
@@ -92,7 +92,7 @@ const listaSchema = {
               {inflables.map(i => (
                 <tr>
                   <th scope="row">
-                    <a href={`/inflables/${i.id}`}>{i.data.title}</a>
+                    <a href={`/inflables/${i.id}/`}>{i.data.title}</a>
                     {!i.data.disponible && <span class="precios-tabla__nota">No disponible</span>}
                   </th>
                   <td class="precios-tabla__precio">{mxn(i.data.precio_desde)}</td>
@@ -155,7 +155,7 @@ const listaSchema = {
           ))}
         </div>
         <p class="precios-nota">
-          <a href="/servicios/paquetes">Ver el detalle de cada paquete &rarr;</a>
+          <a href="/servicios/paquetes/">Ver el detalle de cada paquete &rarr;</a>
         </p>
       </div>
     </section>
@@ -173,8 +173,14 @@ const listaSchema = {
             </p>
             <p class="section__seo-text">
               {SITE.comercial.anticipo} {SITE.comercial.iva} Si quieres el número exacto para tu fecha,
-              <a href="/cotizar"> manda los datos de tu evento</a>
-              o revisa primero las <a href="/preguntas-frecuentes">preguntas frecuentes</a>.
+              <a href="/cotizar/"> manda los datos de tu evento</a>
+              o revisa primero las <a href="/preguntas-frecuentes/">preguntas frecuentes</a>.
+            </p>
+            <p class="section__seo-text">
+              Para ordenar los rubros antes de pedir una cotización, consulta cómo
+              <a href="/blog/presupuesto-fiesta-infantil/"> armar el presupuesto de una fiesta infantil</a>.
+              También puedes revisar los <a href="/blog/errores-al-rentar-un-inflable/">errores comunes al rentar un inflable</a>
+              y decidir entre <a href="/blog/jardin-patio-o-salon/">jardín, patio o salón</a> con las medidas del modelo a la mano.
             </p>
           </div>
         </div>
@@ -187,7 +193,7 @@ const listaSchema = {
       title="¿Te confirmamos el precio de tu fecha?"
       subtitle="Mándanos la fecha, la zona y el espacio que tienes. Te devolvemos el precio cerrado."
       secondaryText="Ver preguntas frecuentes"
-      secondaryHref="/preguntas-frecuentes"
+      secondaryHref="/preguntas-frecuentes/"
     />
   </main>
 </PageLayout>

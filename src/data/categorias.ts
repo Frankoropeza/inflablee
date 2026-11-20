@@ -72,5 +72,5 @@ export const categoriaGradient = (key: string) =>
   getCategoria(key)?.gradient ?? "linear-gradient(135deg, #FF4B1F22 0%, #1A1A2E11 100%)";
 export const categoriaHref = (key: string) => {
   const slug = getCategoria(key)?.slug;
-  return slug ? `/inflables/${slug}` : "/inflables";
+  return slug ? `/inflables/${slug}/` : "/inflables/";
 };

@@ -11,7 +11,7 @@ import { SITE } from "@/data/site";
 <PageLayout
   title="Inflables para Eventos Corporativos en CDMX | INFLABLEE"
   description="Renta de inflables para eventos corporativos y convivencias en CDMX y Estado de México. Consulta los modelos publicados."
-  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Eventos Corporativos" }]}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios/" }, { name: "Eventos Corporativos" }]}
 >
   <main id="contenido-principal">
     <PageHero
@@ -20,7 +20,7 @@ import { SITE } from "@/data/site";
       desc="Consulta el catálogo disponible y solicita una cotización personalizada si requieres cinco o más inflables simultáneos."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para un evento corporativo.")}`, label: "Cotizar evento", variant: "primary" },
-        { href: "/inflables/juegos-interactivos", label: "Ver juegos interactivos", variant: "outline" },
+        { href: "/inflables/juegos-interactivos/", label: "Ver juegos interactivos", variant: "outline" },
       ]}
     />
 

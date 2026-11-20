@@ -11,11 +11,11 @@ draft: false
 
 ## Empieza por edad y espacio
 
-El catálogo de INFLABLEE indica las edades de cada modelo. Castillo Baby es para 1 a 3 años; Gusanitos para 2 a 8; Dragones Rojos y Jungla para 3 a 8; Castillo de Princesas para 2 a 10; y Barco Pirata, Extremo y Castillo Blanco para 3 a 12 años.
+El [catálogo de INFLABLEE](/inflables/) indica las edades de cada modelo. Castillo Baby es para 1 a 3 años; Gusanitos para 2 a 8; Dragones Rojos y Jungla para 3 a 8; Castillo de Princesas para 2 a 10; y Barco Pirata, Extremo y Castillo Blanco para 3 a 12 años. Para comparar el grupo de 3 a 8 años, consulta la guía de [inflables para 3 a 8 años](/blog/inflables-3-a-8-anos/).
 
 ## Revisa medidas y altura libre
 
-Las medidas se publican como largo × ancho × alto. Además, revisa la altura libre: es el espacio necesario sobre el piso para instalar el inflable. Castillo Baby requiere 3.2 m; Gusanitos se confirma al cotizar; y los demás modelos publicados son para exteriores.
+Las medidas se publican como largo × ancho × alto. Además, revisa la altura libre: es el espacio necesario sobre el piso para instalar el inflable. Castillo Baby requiere 3.2 m; Gusanitos se confirma al cotizar; y los demás modelos publicados son para exteriores. La guía [qué inflable cabe en tu casa](/blog/que-inflable-cabe-en-tu-casa/) explica cómo tomar estas medidas.
 
 ## Confirma requisitos antes de reservar
 

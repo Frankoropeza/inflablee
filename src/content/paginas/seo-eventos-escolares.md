@@ -10,3 +10,5 @@ Para un evento que requiere cinco o más inflables simultáneos, cotiza Evento p
 ## Requisitos del espacio
 
 Confirma corriente de 110 V a menos de 20 m, superficie plana y despejada, además de supervisión de una persona adulta durante todo el evento.
+
+Consulta la guía para organizar una [kermés escolar con inflables](/blog/kermes-escolar-con-inflables/) antes de definir el área, las edades y la cotización.

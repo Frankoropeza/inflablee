@@ -14,7 +14,7 @@ const paquetes = await getPackageCards("escolares");
 <PageLayout
   title="Inflables para Kermeses y Eventos Escolares CDMX | INFLABLEE"
   description="Inflables para kermeses, días del niño y festivales escolares en CDMX y Estado de México. Consulta opciones para eventos de gran escala."
-  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Eventos Escolares" }]}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios/" }, { name: "Eventos Escolares" }]}
 >
   <main id="contenido-principal">
     <PageHero
@@ -23,7 +23,7 @@ const paquetes = await getPackageCards("escolares");
       desc="Cotiza un evento personalizado si necesitas cinco o más inflables simultáneos."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para un evento escolar.")}`, label: "Cotizar evento", variant: "primary" },
-        { href: "/inflables/pistas-obstaculos", label: "Ver pistas", variant: "outline" },
+        { href: "/inflables/pistas-obstaculos/", label: "Ver pistas", variant: "outline" },
       ]}
     />
 

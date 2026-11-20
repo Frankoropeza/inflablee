@@ -8,9 +8,9 @@ sectionTitle: "Municipios con cobertura en Edomex"
 sectionDescription: "Consulta la cobertura y el costo de envío de tu municipio al cotizar."
 primaryCta: "Cotizar en Edomex"
 secondaryCta: "Ver catálogo"
-secondaryHref: "/inflables"
+secondaryHref: "/inflables/"
 ctaSecondaryCta: "Ver catálogo completo"
-ctaSecondaryHref: "/inflables"
+ctaSecondaryHref: "/inflables/"
 heroStats:
   - value: "Cobertura"
     label: "Municipios"
@@ -27,3 +27,7 @@ ctaDescription: "Comparte tu municipio y fecha para confirmar disponibilidad y c
 Consulta la tabla de precios para ver los rangos actualizados de envío por zona. Si tu municipio no aparece, escríbenos para confirmar cobertura y costo.
 
 [Consultar mi municipio](https://wa.me/525539048634)
+
+## Guías para organizar tu evento
+
+Si el evento será en el poniente del Estado de México, consulta la guía de [fiestas infantiles en Naucalpan y Tlalnepantla](/blog/fiestas-naucalpan-tlalnepantla/). Para eventos en Ecatepec, revisa la guía de [fiesta infantil en Ecatepec](/blog/fiesta-infantil-ecatepec/) antes de cotizar.

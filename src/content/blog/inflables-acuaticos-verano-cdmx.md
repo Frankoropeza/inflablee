@@ -12,11 +12,11 @@ draft: false
 
 ## Confirma el modelo publicado
 
-Revisa el catálogo antes de planear la actividad de tu evento. Cada ficha indica precio, medidas, edades, tiempo de instalación, altura libre e interiores. Si buscas un modelo distinto a los ocho publicados, consulta disponibilidad antes de anunciarlo.
+Revisa el [catálogo de inflables](/inflables/) antes de planear la actividad de tu evento. Cada ficha indica precio, medidas, edades, tiempo de instalación, altura libre e interiores. Si buscas un modelo distinto a los ocho publicados, consulta disponibilidad antes de anunciarlo.
 
 ## Prepara el lugar
 
-El lugar debe tener una toma de corriente de 110 V a menos de 20 m, superficie plana y despejada sin vidrio ni objetos punzantes. La persona adulta responsable debe supervisar durante todo el evento.
+El lugar debe tener una toma de corriente de 110 V a menos de 20 m, superficie plana y despejada sin vidrio ni objetos punzantes. La persona adulta responsable debe supervisar durante todo el evento. Antes de elegir un modelo, revisa [qué inflable cabe en tu casa](/blog/que-inflable-cabe-en-tu-casa/).
 
 ## Considera el envío
 

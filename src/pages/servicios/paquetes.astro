@@ -17,7 +17,7 @@ const paquetesEspeciales = paquetes.filter((paquete) => paquete.variant === "pri
 <PageLayout
   title="Paquetes de renta de inflables | INFLABLEE"
   description="Paquetes de renta de inflables para cumpleaños, posadas y eventos corporativos en CDMX y Edomex."
-  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios" }, { name: "Paquetes" }]}
+  breadcrumbs={[{ name: "Inicio", href: "/" }, { name: "Servicios", href: "/servicios/" }, { name: "Paquetes" }]}
 >
   <main id="contenido-principal">
     <PageHero
@@ -26,7 +26,7 @@ const paquetesEspeciales = paquetes.filter((paquete) => paquete.variant === "pri
       desc="Conoce los dos paquetes publicados y la opción para eventos personalizados de cinco o más inflables."
       ctas={[
         { href: `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar un paquete de inflables.")}`, label: "Ver disponibilidad", variant: "primary" },
-        { href: "/inflables", label: "Ver catálogo completo", variant: "outline" },
+        { href: "/inflables/", label: "Ver catálogo completo", variant: "outline" },
       ]}
     />
 

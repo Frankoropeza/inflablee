@@ -57,7 +57,7 @@ const zonasEdomex = [
         <SectionHeader
           title="🏙️ Ciudad de México"
           subtitle="Consulta la cobertura disponible en las alcaldías de la Ciudad de México."
-          link={{ text: "Ver detalle CDMX →", href: "/zonas/cdmx" }}
+          link={{ text: "Ver detalle CDMX →", href: "/zonas/cdmx/" }}
         />
         <div class="zonas-grid">
           {zonasCDMX.map(z => (
@@ -65,7 +65,7 @@ const zonasEdomex = [
               nombre={z.nombre}
               tipo="cdmx"
               colonias={z.colonias}
-              href="/zonas/cdmx"
+              href="/zonas/cdmx/"
             />
           ))}
         </div>
@@ -78,7 +78,7 @@ const zonasEdomex = [
         <SectionHeader
           title="🏘️ Estado de México"
           subtitle="Consulta la cobertura disponible en la zona metropolitana del Valle de México."
-          link={{ text: "Ver detalle Edomex →", href: "/zonas/estado-de-mexico" }}
+          link={{ text: "Ver detalle Edomex →", href: "/zonas/estado-de-mexico/" }}
         />
         <div class="zonas-grid">
           {zonasEdomex.map(z => (
@@ -86,7 +86,7 @@ const zonasEdomex = [
               nombre={z.nombre}
               tipo="edomex"
               colonias={z.colonias}
-              href="/zonas/estado-de-mexico"
+              href="/zonas/estado-de-mexico/"
             />
           ))}
         </div>
@@ -102,7 +102,7 @@ const zonasEdomex = [
         />
         <div class="zonas-rutas">
           {ZONAS_GEO.map(z => (
-            <a href={`/zonas/${z.slug}`} class="zonas-ruta">
+            <a href={`/zonas/${z.slug}/`} class="zonas-ruta">
               <span class="zonas-ruta__nombre">{z.nombre}</span>
               <span class="zonas-ruta__detalle">
                 {[...z.alcaldias, ...z.municipios].slice(0, 3).join(" · ")}

@@ -12,11 +12,11 @@ draft: false
 
 ## Prepara el área
 
-Antes del montaje, confirma una toma de corriente de 110 V a menos de 20 m del área y una superficie plana y despejada, sin vidrio ni objetos punzantes. Revisa también las medidas y la altura libre de la ficha del modelo elegido.
+Antes del montaje, confirma una toma de corriente de 110 V a menos de 20 m del área y una superficie plana y despejada, sin vidrio ni objetos punzantes. Revisa también las medidas y la altura libre de la ficha del modelo elegido. La guía [qué inflable cabe en tu casa](/blog/que-inflable-cabe-en-tu-casa/) explica qué datos medir antes de reservar.
 
 ## Supervisa durante todo el evento
 
-Una persona adulta debe supervisar durante todo el evento. La capacidad se confirma al cotizar porque depende del peso y la edad de las niñas y niños que usarán el inflable.
+Una persona adulta debe supervisar durante todo el evento. La capacidad se confirma al cotizar porque depende del peso y la edad de las niñas y niños que usarán el inflable. Consulta también los [requisitos y preguntas frecuentes](/preguntas-frecuentes/) antes de solicitar la cotización.
 
 ## Elige por edad
 

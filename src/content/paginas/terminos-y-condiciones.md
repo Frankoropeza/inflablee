@@ -11,7 +11,7 @@ Estas condiciones aplican a la renta de inflables de INFLABLEE en CDMX y Estado 
 
 - Las cotizaciones se emiten para una fecha y un modelo específicos; no apartan la fecha por sí solas.
 - La fecha se considera reservada hasta que se confirma por escrito con INFLABLEE.
-- Los detalles actualizados de IVA y anticipo se muestran en la [tabla de precios](/precios).
+- Los detalles actualizados de IVA y anticipo se muestran en la [tabla de precios](/precios/).
 
 ## 2. Qué incluye el servicio
 
@@ -19,7 +19,7 @@ Estas condiciones aplican a la renta de inflables de INFLABLEE en CDMX y Estado 
 - Motor inflador y extensión eléctrica.
 - Sanitización antes de cada evento.
 - Recolección al terminar.
-- El envío se confirma por zona; consulta los rangos actualizados en la [tabla de precios](/precios).
+- El envío se confirma por zona; consulta los rangos actualizados en la [tabla de precios](/precios/).
 
 ## 3. Requisitos del lugar
 
@@ -55,4 +55,4 @@ La instalación se realiza antes de la hora de inicio acordada y el retiro al t�
 
 ## 9. Contacto
 
-Para cualquier aclaración sobre estas condiciones: [contacto@inflablee.com](mailto:contacto@inflablee.com) o [55 3904 8634](tel:+525539048634). Consulta también el [aviso de privacidad](/aviso-de-privacidad).
+Para cualquier aclaración sobre estas condiciones: [contacto@inflablee.com](mailto:contacto@inflablee.com) o [55 3904 8634](tel:+525539048634). Consulta también el [aviso de privacidad](/aviso-de-privacidad/).

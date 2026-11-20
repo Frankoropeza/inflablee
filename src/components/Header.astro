@@ -36,75 +36,75 @@ const isSectionCurrent = (prefix: string) => currentPath.startsWith(prefix);
           <a href="/" class={`nav-desktop__link ${isActive("/")}`} aria-current={matchesPath("/") ? "page" : undefined}>Inicio</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/inflables" class={`nav-desktop__link ${isSection("/inflables")}`} aria-current={isSectionCurrent("/inflables") ? "page" : undefined}>Inflables</a>
+          <a href="/inflables/" class={`nav-desktop__link ${isSection("/inflables")}`} aria-current={isSectionCurrent("/inflables") ? "page" : undefined}>Inflables</a>
           <div class="mega-menu">
             <div class="mega-menu__category">
               <p class="mega-menu__title">Por categoría</p>
               <ul class="mega-menu__list">
                 {CATEGORIAS.map(c => (
-                  <li><a href={`/inflables/${c.slug}`} class="mega-menu__link">{c.emoji} {c.label}</a></li>
+                  <li><a href={`/inflables/${c.slug}/`} class="mega-menu__link">{c.emoji} {c.label}</a></li>
                 ))}
-                <li><a href="/inflables/inflables-gigantes" class="mega-menu__link">🎪 Inflables gigantes</a></li>
+                <li><a href="/inflables/inflables-gigantes/" class="mega-menu__link">🎪 Inflables gigantes</a></li>
               </ul>
-              <a href="/inflables" class="mega-menu__view-all">Ver catálogo completo &rarr;</a>
+              <a href="/inflables/" class="mega-menu__view-all">Ver catálogo completo &rarr;</a>
             </div>
             <div class="mega-menu__category">
               <p class="mega-menu__title">Por tipo de evento</p>
               <ul class="mega-menu__list">
-                <li><a href="/servicios/fiestas-infantiles" class="mega-menu__link">Fiestas infantiles</a></li>
-                <li><a href="/servicios/eventos-escolares" class="mega-menu__link">Eventos escolares</a></li>
-                <li><a href="/servicios/eventos-corporativos" class="mega-menu__link">Eventos corporativos</a></li>
-                <li><a href="/servicios/paquetes" class="mega-menu__link">Paquetes</a></li>
+                <li><a href="/servicios/fiestas-infantiles/" class="mega-menu__link">Fiestas infantiles</a></li>
+                <li><a href="/servicios/eventos-escolares/" class="mega-menu__link">Eventos escolares</a></li>
+                <li><a href="/servicios/eventos-corporativos/" class="mega-menu__link">Eventos corporativos</a></li>
+                <li><a href="/servicios/paquetes/" class="mega-menu__link">Paquetes</a></li>
               </ul>
-              <a href="/servicios" class="mega-menu__view-all">Todos los servicios &rarr;</a>
+              <a href="/servicios/" class="mega-menu__view-all">Todos los servicios &rarr;</a>
             </div>
             <div class="mega-menu__category mega-menu__category--cta">
               <p class="mega-menu__title">¿No sabes cuál elegir?</p>
               <p class="mega-menu__desc">Dinos el espacio que tienes y la edad de los niños; te decimos cuál cabe y cuánto cuesta.</p>
-              <a href="/cotizar" class="btn btn--primary btn--sm">Cotizar mi evento</a>
+              <a href="/cotizar/" class="btn btn--primary btn--sm">Cotizar mi evento</a>
               <a href={`https://wa.me/${whatsapp}`} class="mega-menu__whatsapp" target="_blank" rel="noopener">o escríbenos por WhatsApp</a>
             </div>
           </div>
         </li>
         <li class="nav-desktop__item">
-          <a href="/servicios/paquetes" class={`nav-desktop__link ${isActive("/servicios/paquetes")}`} aria-current={matchesPath("/servicios/paquetes") ? "page" : undefined}>Paquetes</a>
+          <a href="/servicios/paquetes/" class={`nav-desktop__link ${isActive("/servicios/paquetes")}`} aria-current={matchesPath("/servicios/paquetes") ? "page" : undefined}>Paquetes</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/zonas" class={`nav-desktop__link ${isSection("/zonas")}`} aria-current={isSectionCurrent("/zonas") ? "page" : undefined}>Zonas</a>
+          <a href="/zonas/" class={`nav-desktop__link ${isSection("/zonas")}`} aria-current={isSectionCurrent("/zonas") ? "page" : undefined}>Zonas</a>
           <div class="mega-menu">
             <div class="mega-menu__category">
               <p class="mega-menu__title">Ciudad de México</p>
               <ul class="mega-menu__list">
                 {ALCALDIAS_DESTACADAS.map(a => (
-                  <li><a href="/zonas/cdmx" class="mega-menu__link">{a}</a></li>
+                  <li><a href="/zonas/cdmx/" class="mega-menu__link">{a}</a></li>
                 ))}
               </ul>
-              <a href="/zonas/cdmx" class="mega-menu__view-all">Ver cobertura en CDMX &rarr;</a>
+              <a href="/zonas/cdmx/" class="mega-menu__view-all">Ver cobertura en CDMX &rarr;</a>
             </div>
             <div class="mega-menu__category">
               <p class="mega-menu__title">Estado de México</p>
               <ul class="mega-menu__list">
                 {MUNICIPIOS_DESTACADOS.map(m => (
-                  <li><a href="/zonas/estado-de-mexico" class="mega-menu__link">{m}</a></li>
+                  <li><a href="/zonas/estado-de-mexico/" class="mega-menu__link">{m}</a></li>
                 ))}
               </ul>
-              <a href="/zonas/estado-de-mexico" class="mega-menu__view-all">Ver municipios &rarr;</a>
+              <a href="/zonas/estado-de-mexico/" class="mega-menu__view-all">Ver municipios &rarr;</a>
             </div>
             <div class="mega-menu__category mega-menu__category--cta">
               <p class="mega-menu__title">¿Entregamos en tu zona?</p>
               <p class="mega-menu__desc">Consulta el costo de envío por zona antes de reservar.</p>
-              <a href="/zonas" class="btn btn--outline btn--sm">Ver cobertura</a>
+              <a href="/zonas/" class="btn btn--outline btn--sm">Ver cobertura</a>
             </div>
           </div>
         </li>
         <li class="nav-desktop__item">
-          <a href="/galeria" class={`nav-desktop__link ${isActive("/galeria")}`} aria-current={matchesPath("/galeria") ? "page" : undefined}>Galería</a>
+          <a href="/galeria/" class={`nav-desktop__link ${isActive("/galeria")}`} aria-current={matchesPath("/galeria") ? "page" : undefined}>Galería</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/blog" class={`nav-desktop__link ${isSection("/blog")}`} aria-current={isSectionCurrent("/blog") ? "page" : undefined}>Blog</a>
+          <a href="/blog/" class={`nav-desktop__link ${isSection("/blog")}`} aria-current={isSectionCurrent("/blog") ? "page" : undefined}>Blog</a>
         </li>
         <li class="nav-desktop__item">
-          <a href="/contacto" class={`nav-desktop__link ${isActive("/contacto")}`} aria-current={matchesPath("/contacto") ? "page" : undefined}>Contacto</a>
+          <a href="/contacto/" class={`nav-desktop__link ${isActive("/contacto")}`} aria-current={matchesPath("/contacto") ? "page" : undefined}>Contacto</a>
         </li>
       </ul>
     </nav>
@@ -130,15 +130,15 @@ const isSectionCurrent = (prefix: string) => currentPath.startsWith(prefix);
   role="navigation" aria-label="Navegación móvil" aria-hidden="true">
   <ul>
     <li class="mobile-nav__item"><a href="/" class="mobile-nav__link" aria-current={matchesPath("/") ? "page" : undefined}>Inicio</a></li>
-    <li class="mobile-nav__item"><a href="/inflables" class="mobile-nav__link" aria-current={isSectionCurrent("/inflables") ? "page" : undefined}>Inflables</a></li>
-    <li class="mobile-nav__item"><a href="/servicios/paquetes" class="mobile-nav__link" aria-current={matchesPath("/servicios/paquetes") ? "page" : undefined}>Paquetes</a></li>
-    <li class="mobile-nav__item"><a href="/zonas" class="mobile-nav__link" aria-current={isSectionCurrent("/zonas") ? "page" : undefined}>Zonas de entrega</a></li>
-    <li class="mobile-nav__item"><a href="/galeria" class="mobile-nav__link" aria-current={matchesPath("/galeria") ? "page" : undefined}>Galería</a></li>
-    <li class="mobile-nav__item"><a href="/precios" class="mobile-nav__link" aria-current={matchesPath("/precios") ? "page" : undefined}>Precios</a></li>
-    <li class="mobile-nav__item"><a href="/preguntas-frecuentes" class="mobile-nav__link" aria-current={matchesPath("/preguntas-frecuentes") ? "page" : undefined}>Preguntas frecuentes</a></li>
-    <li class="mobile-nav__item"><a href="/blog" class="mobile-nav__link" aria-current={isSectionCurrent("/blog") ? "page" : undefined}>Blog</a></li>
-    <li class="mobile-nav__item"><a href="/nosotros" class="mobile-nav__link" aria-current={matchesPath("/nosotros") ? "page" : undefined}>Nosotros</a></li>
-    <li class="mobile-nav__item"><a href="/contacto" class="mobile-nav__link" aria-current={matchesPath("/contacto") ? "page" : undefined}>Contacto</a></li>
+    <li class="mobile-nav__item"><a href="/inflables/" class="mobile-nav__link" aria-current={isSectionCurrent("/inflables") ? "page" : undefined}>Inflables</a></li>
+    <li class="mobile-nav__item"><a href="/servicios/paquetes/" class="mobile-nav__link" aria-current={matchesPath("/servicios/paquetes") ? "page" : undefined}>Paquetes</a></li>
+    <li class="mobile-nav__item"><a href="/zonas/" class="mobile-nav__link" aria-current={isSectionCurrent("/zonas") ? "page" : undefined}>Zonas de entrega</a></li>
+    <li class="mobile-nav__item"><a href="/galeria/" class="mobile-nav__link" aria-current={matchesPath("/galeria") ? "page" : undefined}>Galería</a></li>
+    <li class="mobile-nav__item"><a href="/precios/" class="mobile-nav__link" aria-current={matchesPath("/precios") ? "page" : undefined}>Precios</a></li>
+    <li class="mobile-nav__item"><a href="/preguntas-frecuentes/" class="mobile-nav__link" aria-current={matchesPath("/preguntas-frecuentes") ? "page" : undefined}>Preguntas frecuentes</a></li>
+    <li class="mobile-nav__item"><a href="/blog/" class="mobile-nav__link" aria-current={isSectionCurrent("/blog") ? "page" : undefined}>Blog</a></li>
+    <li class="mobile-nav__item"><a href="/nosotros/" class="mobile-nav__link" aria-current={matchesPath("/nosotros") ? "page" : undefined}>Nosotros</a></li>
+    <li class="mobile-nav__item"><a href="/contacto/" class="mobile-nav__link" aria-current={matchesPath("/contacto") ? "page" : undefined}>Contacto</a></li>
   </ul>
   <div class="mobile-nav__cta">
     <a href={`https://wa.me/${whatsapp}?text=${encodeURIComponent("Hola INFLABLEE, quiero cotizar inflables para mi evento.")}`}

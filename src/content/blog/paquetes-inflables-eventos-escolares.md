@@ -11,11 +11,11 @@ draft: false
 
 ## Paquetes publicados
 
-Paquete fiesta bebés cuesta $2,100 MXN e incluye un Castillo Baby, una mesa con cuatro sillitas y pintacaritas para cuatro niños. Paquete fiesta cuesta $2,800 MXN e incluye Jungla o Dragones Rojos, una mesa con diez sillitas y una hora de pintacaritas.
+Paquete fiesta bebés cuesta $2,100 MXN e incluye un Castillo Baby, una mesa con cuatro sillitas y pintacaritas para cuatro niños. Paquete fiesta cuesta $2,800 MXN e incluye Jungla o Dragones Rojos, una mesa con diez sillitas y una hora de pintacaritas. Revisa los [paquetes publicados](/servicios/paquetes/) antes de comparar sus componentes.
 
 ## Evento personalizado
 
-Para cinco o más inflables simultáneos existe Evento personalizado. Incluye un coordinador logístico dedicado y facturación disponible; se cotiza de acuerdo con el evento.
+Para cinco o más inflables simultáneos existe Evento personalizado. Incluye un coordinador logístico dedicado y facturación disponible; se cotiza de acuerdo con el evento. La guía de [kermés escolar con inflables](/blog/kermes-escolar-con-inflables/) ayuda a ordenar los datos del plantel antes de cotizar.
 
 ## Antes de cotizar
 

@@ -56,7 +56,7 @@ const schema = inflables.map(i => ({
         <ul class="cat-bar__list" role="list">
           <li><a href="#todos" class="cat-bar__btn cat-bar__btn--active">🎪 Todos</a></li>
           {categorias.map(c => (
-            <li><a href={`/inflables/${c.slug}`} class="cat-bar__btn">{c.emoji} {c.label}</a></li>
+            <li><a href={`/inflables/${c.slug}/`} class="cat-bar__btn">{c.emoji} {c.label}</a></li>
           ))}
         </ul>
       </div>
@@ -120,7 +120,7 @@ const schema = inflables.map(i => ({
         />
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:var(--spacing-xl);">
           {[...categorias, { slug: "inflables-gigantes", label: "Inflables gigantes", emoji: "🎪" }].map(c => (
-            <a href={`/inflables/${c.slug}`} class="cat-link-card">
+            <a href={`/inflables/${c.slug}/`} class="cat-link-card">
               <span class="cat-link-card__emoji">{c.emoji}</span>
               <div>
                 <strong class="cat-link-card__title">{c.label}</strong>
