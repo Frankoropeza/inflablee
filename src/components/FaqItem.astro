@@ -3,6 +3,7 @@
 export interface Props {
  id:  string;
  question: string;
+ // Solo texto plano: evita que este componente genérico se convierta en un sumidero de HTML arbitrario.
  answer:  string;
 }
 
@@ -15,6 +16,6 @@ const { id, question, answer } = Astro.props;
  <span class="faq__icon" aria-hidden="true">+</span>
  </summary>
  <div class="faq__answer">
- <p set:html={answer} />
+ <p>{answer}</p>
  </div>
 </details>

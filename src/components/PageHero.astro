@@ -11,6 +11,7 @@ export interface Props {
  eyebrow?:  string;
  title:  string;
  desc:  string;
+ // Texto plano separado por "||"; se renderiza como nodos para no aceptar HTML arbitrario.
  desc2?:  string;
  chips?:  Chip[];
  stats?:  StatItem[];
@@ -87,7 +88,7 @@ const metrics = (stats && stats.length > 0)
  {desc2 && (
  <div class="page-hero-std__right">
  {desc2.split("||").map(para => (
- <p set:html={para.trim()} />
+ <p>{para.trim()}</p>
  ))}
  </div>
  )}

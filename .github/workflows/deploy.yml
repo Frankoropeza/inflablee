@@ -31,6 +31,9 @@ jobs:
       - name: Build with Astro
         run: npm run build
 
+      - name: Audit generated site
+        run: node scripts/audit-dist.mjs
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
@@ -46,3 +49,25 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
+
+  domain-gate:
+    name: Verify domain serves deployed commit
+    needs: deploy
+    runs-on: ubuntu-latest
+    env:
+      EXPECTED_SHA: ${{ github.sha }}
+    steps:
+      - name: Wait for inflablee.com to serve this commit
+        shell: bash
+        run: |
+          for attempt in {1..10}; do
+            served_sha="$(curl --fail --silent --show-error --max-time 15 https://inflablee.com/build-id.txt | head -n 1 || true)"
+            if [ "$served_sha" = "$EXPECTED_SHA" ]; then
+              echo "inflablee.com sirve el commit $EXPECTED_SHA"
+              exit 0
+            fi
+            echo "Intento $attempt/10: el dominio devolvió '${served_sha:-sin respuesta}'."
+            if [ "$attempt" -lt 10 ]; then sleep 30; fi
+          done
+          echo "El dominio no sirvió el commit desplegado: $EXPECTED_SHA" >&2
+          exit 1

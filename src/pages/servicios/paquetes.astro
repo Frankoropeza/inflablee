@@ -41,7 +41,7 @@ const paquetesEspeciales = paquetes.filter((paquete) => paquete.variant === "pri
             {paquetesEstandar.map((p) => (
               <div style="background:var(--color-white);border-radius:var(--border-radius-lg);padding:var(--spacing-xl);box-shadow:var(--shadow-sm);border:1.5px solid var(--color-border);">
                 <h3 style="font-size:var(--font-size-xl);font-weight:800;color:var(--color-secondary);margin-bottom:var(--spacing-xs);">{p.title}</h3>
-                <p style="color:var(--color-primary);font-weight:700;font-size:var(--font-size-xl);margin-bottom:var(--spacing-sm);">{p.price}</p>
+                <p style="color: var(--color-primary-text);font-weight:700;font-size:var(--font-size-xl);margin-bottom:var(--spacing-sm);">{p.price}</p>
                 <p style="color:var(--color-text-light);margin-bottom:var(--spacing-md);font-size:var(--font-size-sm);">{p.description}</p>
                 {p.includes.length > 0 && (
                   <ul style="list-style:none;padding:0;margin-bottom:var(--spacing-lg);">
