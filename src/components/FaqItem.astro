@@ -9,22 +9,12 @@ export interface Props {
 const { id, question, answer } = Astro.props;
 ---
 
-<div class="faq__item">
- <button
- class="faq__question"
- aria-expanded="false"
- aria-controls={`faq-${id}`}
- id={`faq-q-${id}`}
- >
+<details class="faq__item" id={`faq-${id}`}>
+ <summary class="faq__question">
  {question}
  <span class="faq__icon" aria-hidden="true">+</span>
- </button>
- <div
- class="faq__answer"
- id={`faq-${id}`}
- role="region"
- aria-labelledby={`faq-q-${id}`}
- >
+ </summary>
+ <div class="faq__answer">
  <p set:html={answer} />
  </div>
-</div>
+</details>

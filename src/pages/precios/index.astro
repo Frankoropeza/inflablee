@@ -34,7 +34,7 @@ const listaSchema = {
       "name": i.data.title,
       "category": categoriaLabel(i.data.categoria),
       "url": new URL(`/inflables/${i.id}`, SITE.url).href,
-      ...(i.data.imagen ? { "image": new URL(i.data.imagen, SITE.url).href } : {}),
+      ...(i.data.imagen ? { "image": new URL(i.data.imagen.src, SITE.url).href } : {}),
       "offers": {
         "@type": "Offer",
         "price": String(i.data.precio_desde),

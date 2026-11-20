@@ -1,13 +1,11 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import { CATEGORIA_KEYS } from "./data/categorias";
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     seoTitle: z.string().optional(),
     description: z.string().max(155),
@@ -15,7 +13,7 @@ const blog = defineCollection({
     pubDate: z.date(),
     author: z.string().default("Equipo INFLABLEE"),
     category: z.string().optional(),
-    image: z.string().refine((value) => existsSync(join(process.cwd(), "public", value.replace(/^\//, ""))), "La imagen debe existir en public/").optional(),
+    image: image().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }).strict(),
@@ -79,7 +77,7 @@ const paquetes = defineCollection({
 
 const inflables = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/inflables" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     categoria: z.enum(CATEGORIA_KEYS),
     precio_desde: z.number().positive(),
@@ -90,8 +88,8 @@ const inflables = defineCollection({
     altura_libre: z.string(),
     interiores: z.boolean(),
     descripcion: z.string(),
-    imagen: z.string().refine((value) => existsSync(join(process.cwd(), "public", value.replace(/^\//, ""))), "La imagen debe existir en public/").optional(),
-    imagenes: z.array(z.string().refine((value) => existsSync(join(process.cwd(), "public", value.replace(/^\//, ""))), "La imagen debe existir en public/")).default([]),
+    imagen: image().optional(),
+    imagenes: z.array(image()).default([]),
     disponible: z.boolean().default(true),
     featured: z.boolean().default(false),
     order: z.number().int().nonnegative().default(99),

@@ -6,6 +6,7 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import InflableCard from "@/components/InflableCard.astro";
 import { SITE } from "@/data/site";
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
 import { categoriaColor, categoriaLabel } from "@/data/categorias";
 import "@/styles/inflable-detail.css";
 export async function getStaticPaths() {
@@ -27,7 +28,7 @@ const relacionados = todosInflables
 const waText = encodeURIComponent(`Hola INFLABLEE, me interesa rentar: ${inflable.data.title}. ¿Cuál es la disponibilidad y precio exacto?`);
 const catColor = categoriaColor(inflable.data.categoria);
 const catLabel = categoriaLabel(inflable.data.categoria);
-const imagenes: string[] = inflable.data.imagenes ?? [];
+const imagenes = inflable.data.imagenes ?? [];
 const mainImage = inflable.data.imagen ?? (imagenes.length > 0 ? imagenes[0] : null);
 const galleryImages = imagenes.length > 0 ? imagenes : (mainImage ? [mainImage] : []);
 const descBase = `Renta de ${inflable.data.title} en CDMX desde $${inflable.data.precio_desde.toLocaleString()} MXN.`;
@@ -39,7 +40,7 @@ const schema = {
   "@type": "Product",
   "name": inflable.data.title,
   "description": inflable.data.descripcion,
-  ...(mainImage ? { "image": `${SITE.url}${mainImage}` } : {}),
+  ...(mainImage ? { "image": new URL(mainImage.src, SITE.url).href } : {}),
   "offers": {
     "@type": "Offer",
     "priceCurrency": "MXN",
@@ -66,12 +67,13 @@ const schema = {
           <div class="idetail__gallery">
             {mainImage ? (
               <div class="idetail__main-img-wrap">
-                <img
+                <Image
                   src={mainImage}
                   alt={`Renta de ${inflable.data.title} en CDMX`}
-                  width="600"
-                  height="450"
+                  widths={[240, 400]}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   loading="eager"
+                  fetchpriority="high"
                   class="idetail__main-img"
                 />
                 {inflable.data.featured && (
@@ -88,14 +90,14 @@ const schema = {
             {galleryImages.length > 1 && (
               <div class="idetail__thumbs">
                 {galleryImages.map((img, i) => (
-                  <img
+                  <Image
                     src={img}
                     alt={`${inflable.data.title} vista ${i + 1}`}
-                    width="100"
-                    height="75"
+                    width={100}
                     loading="lazy"
+                    decoding="async"
                     class="idetail__thumb"
-                    onclick={`document.querySelector('.idetail__main-img').src='${img}'`}
+                    onclick={`document.querySelector('.idetail__main-img').src='${img.src}'`}
                   />
                 ))}
               </div>

@@ -34,7 +34,7 @@ const articleSchema = {
   "author": { "@type": "Organization", "name": post.data.author },
   "publisher": { "@type": "Organization", "name": SITE.name, "url": SITE.url },
   "mainEntityOfPage": { "@type": "WebPage", "@id": new URL(`/blog/${post.id}`, SITE.url).href },
-  ...(post.data.image ? { "image": new URL(post.data.image, SITE.url).href } : {}),
+  ...(post.data.image ? { "image": new URL(post.data.image.src, SITE.url).href } : {}),
 };
 ---
 

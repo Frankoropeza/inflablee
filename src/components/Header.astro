@@ -147,3 +147,39 @@ const isSection = (prefix: string) =>
     </a>
   </div>
 </nav>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobile-nav");
+  const overlay = document.getElementById("mobile-overlay");
+
+  function setNavState(open: boolean) {
+    mobileNav?.classList.toggle("mobile-nav--open", open);
+    overlay?.classList.toggle("mobile-overlay--open", open);
+    mobileNav?.setAttribute("aria-hidden", String(!open));
+    overlay?.setAttribute("aria-hidden", String(!open));
+    if (mobileNav) (mobileNav as HTMLElement).inert = !open;
+    hamburger?.setAttribute("aria-expanded", String(open));
+    hamburger?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    document.body.style.overflow = open ? "hidden" : "";
+  }
+
+  function closeNav() {
+    setNavState(false);
+    hamburger?.focus();
+  }
+
+  if (hamburger && mobileNav) {
+    setNavState(false);
+    hamburger.addEventListener("click", () => {
+      mobileNav.classList.contains("mobile-nav--open") ? closeNav() : setNavState(true);
+    });
+    overlay?.addEventListener("click", closeNav);
+    mobileNav.addEventListener("click", (event) => {
+      if ((event.target as HTMLElement).closest("a")) setNavState(false);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileNav.classList.contains("mobile-nav--open")) closeNav();
+    });
+  }
+</script>

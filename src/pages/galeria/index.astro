@@ -5,6 +5,19 @@ import SectionHeader from "@/components/SectionHeader.astro";
 import CTABanner from "@/components/CTABanner.astro";
 import LeadCapture from "@/components/LeadCapture.astro";
 import { SITE } from "@/data/site";
+import { Image } from "astro:assets";
+import castilloPrincesas from "@/assets/inflables/castillo-princesas/castillo-princesas-renta-cdmx.avif";
+import barcoPirata from "@/assets/inflables/barco-pirata/barco-pirata-exterior-evento.avif";
+import gusanitos from "@/assets/inflables/gusanitos/gusanitos-brincolin-evento.avif";
+import dragonesRojos from "@/assets/inflables/dragones-rojos/castillo-dragones-renta-cdmx.avif";
+import extremoCorporativo from "@/assets/inflables/pista-extremo/extremo-angulo-corporativo.avif";
+import ringBoxeo from "@/assets/ilustraciones/ring-de-boxeo-inflable.svg";
+import extremoGrande from "@/assets/inflables/pista-extremo/alquiler-inflable-extremo-grande-fiestas.avif";
+import miniCastillo from "@/assets/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif";
+import miniJungla from "@/assets/inflables/mini-jungla/mini-jungla-exterior-evento.avif";
+import princesasFiesta from "@/assets/inflables/castillo-princesas/mini-castillo-princesas-fiesta.avif";
+import toroMecanico from "@/assets/ilustraciones/toro-mecanico-inflable.svg";
+import extremoKermes from "@/assets/inflables/pista-extremo/alquiler-circuito-obstaculos-inflable-cdmx.avif";
 import "@/styles/galeria.css";
 
 const categorias = [
@@ -17,21 +30,21 @@ const categorias = [
 ];
 
 const galeria = [
-  // `img` es la foto real del inflable que se usó en ese evento (public/img/inflables/).
+  // `img` es la foto real del inflable que se usó en ese evento.
   // Los dos marcados con `ilustracion` no son foto de evento: son ilustración de marca
   // (SVG) porque de esos dos juegos todavía no hay fotografía propia.
-  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)", emoji: "🎂", title: "Cumpleaños princesas en Coyoacán", img: "/img/inflables/castillo-princesas/castillo-princesas-renta-cdmx.avif", w: 1200, h: 675 },
-  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)", emoji: "🌊", title: "Barco pirata con tobogán en Naucalpan", img: "/img/inflables/barco-pirata/barco-pirata-exterior-evento.avif", w: 1200, h: 675 },
-  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a15 0%, #16a34a08 100%)", emoji: "🏫", title: "Kermés escuela primaria Edomex", img: "/img/inflables/gusanitos/gusanitos-brincolin-evento.avif", w: 1200, h: 675 },
-  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FF4B1F20 0%, #FFD70015 100%)", emoji: "🏰", title: "Castillo dragón en Iztapalapa", img: "/img/inflables/dragones-rojos/castillo-dragones-renta-cdmx.avif", w: 1200, h: 675 },
-  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E12 100%)", emoji: "🏃", title: "Pista obstáculos evento corporativo", img: "/img/inflables/pista-extremo/extremo-angulo-corporativo.avif", w: 1200, h: 675 },
-  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)", emoji: "🥊", title: "Ring de boxeo en quinceañera", img: "/img/ilustraciones/ring-de-boxeo-inflable.svg", w: 1200, h: 675, ilustracion: true },
-  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🏃", title: "Pista de obstáculos para fiesta de verano", img: "/img/inflables/pista-extremo/alquiler-inflable-extremo-grande-fiestas.avif", w: 720, h: 480 },
-  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F15 0%, #FFD70022 100%)", emoji: "🎉", title: "Paquete cumpleaños en Benito Juárez", img: "/img/inflables/mini-castillo/mini-castillo-cumpleanos-infantil.avif", w: 1200, h: 675 },
-  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a12 0%, #16a34a20 100%)", emoji: "🎓", title: "Festival fin de ciclo escolar", img: "/img/inflables/mini-jungla/mini-jungla-exterior-evento.avif", w: 1200, h: 675 },
-  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FFD70018 0%, #FF4B1F20 100%)", emoji: "🏰", title: "Castillo princesas en GAM", img: "/img/inflables/castillo-princesas/mini-castillo-princesas-fiesta.avif", w: 1200, h: 675 },
-  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #FFD70015 100%)", emoji: "🤠", title: "Toro mecánico evento empresa", img: "/img/ilustraciones/toro-mecanico-inflable.svg", w: 1200, h: 675, ilustracion: true },
-  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🎪", title: "Pista obstáculos 15m en kermés", img: "/img/inflables/pista-extremo/alquiler-circuito-obstaculos-inflable-cdmx.avif", w: 720, h: 480 },
+  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F22 0%, #FFD70022 100%)", emoji: "🎂", title: "Cumpleaños princesas en Coyoacán", img: castilloPrincesas, w: 1200, h: 675 },
+  { cat: "Toboganes Acuáticos", gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)", emoji: "🌊", title: "Barco pirata con tobogán en Naucalpan", img: barcoPirata, w: 1200, h: 675 },
+  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a15 0%, #16a34a08 100%)", emoji: "🏫", title: "Kermés escuela primaria Edomex", img: gusanitos, w: 1200, h: 675 },
+  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FF4B1F20 0%, #FFD70015 100%)", emoji: "🏰", title: "Castillo dragón en Iztapalapa", img: dragonesRojos, w: 1200, h: 675 },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #1A1A2E12 100%)", emoji: "🏃", title: "Pista obstáculos evento corporativo", img: extremoCorporativo, w: 1200, h: 675 },
+  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FFD70022 0%, #FF4B1F18 100%)", emoji: "🥊", title: "Ring de boxeo en quinceañera", img: ringBoxeo, w: 1200, h: 675, ilustracion: true },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🏃", title: "Pista de obstáculos para fiesta de verano", img: extremoGrande, w: 720, h: 480 },
+  { cat: "Fiestas Infantiles", gradient: "linear-gradient(135deg, #FF4B1F15 0%, #FFD70022 100%)", emoji: "🎉", title: "Paquete cumpleaños en Benito Juárez", img: miniCastillo, w: 1200, h: 675 },
+  { cat: "Eventos Escolares", gradient: "linear-gradient(135deg, #16a34a12 0%, #16a34a20 100%)", emoji: "🎓", title: "Festival fin de ciclo escolar", img: miniJungla, w: 1200, h: 675 },
+  { cat: "Castillos Inflables", gradient: "linear-gradient(135deg, #FFD70018 0%, #FF4B1F20 100%)", emoji: "🏰", title: "Castillo princesas en GAM", img: princesasFiesta, w: 1200, h: 675 },
+  { cat: "Juegos Interactivos", gradient: "linear-gradient(135deg, #FF4B1F18 0%, #FFD70015 100%)", emoji: "🤠", title: "Toro mecánico evento empresa", img: toroMecanico, w: 1200, h: 675, ilustracion: true },
+  { cat: "Pistas de Obstáculos", gradient: "linear-gradient(135deg, #1A1A2E18 0%, #FF4B1F15 100%)", emoji: "🎪", title: "Pista obstáculos 15m en kermés", img: extremoKermes, w: 720, h: 480 },
 ];
 
 const slug = (t: string) =>
@@ -80,19 +93,28 @@ const slug = (t: string) =>
               style={`background:${item.gradient};`}
               data-cat={slug(item.cat)}
             >
-              {item.img && (
+              {item.img && (item.ilustracion ? (
                 <img
-                  src={item.img}
-                  alt={item.ilustracion
-                    ? `Ilustración de ${item.title.toLowerCase()} — INFLABLEE`
-                    : `${item.title} — renta de inflables INFLABLEE`}
+                  src={item.img.src}
+                  alt={`Ilustración de ${item.title.toLowerCase()} — INFLABLEE`}
                   width={item.w}
                   height={item.h}
-                  loading={i < 3 ? "eager" : "lazy"}
+                  loading="lazy"
                   decoding="async"
                   class="galeria-item__img"
                 />
-              )}
+              ) : (
+                <Image
+                  src={item.img}
+                  alt={`${item.title} — renta de inflables INFLABLEE`}
+                  widths={[360, 720, 1200]}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchpriority={i === 0 ? "high" : "auto"}
+                  decoding="async"
+                  class="galeria-item__img"
+                />
+              ))}
               <figcaption class="galeria-item__overlay">
                 {!item.img && <span class="galeria-item__emoji">{item.emoji}</span>}
                 <div class="galeria-item__info">
