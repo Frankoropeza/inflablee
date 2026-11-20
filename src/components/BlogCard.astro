@@ -31,10 +31,14 @@ const categorySlug = category.toLowerCase()
  .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
  .replace(/\s+/g, "-");
 
+// El pubDate viene sin hora, asi que Zod lo deja en medianoche UTC. Hay que
+// formatearlo en UTC o la fecha se corre un dia segun la zona de quien compila:
+// en CDMX salia 18 de noviembre y en el runner de CI 19.
 const formattedDate = pubDate.toLocaleDateString("es-MX", {
  day: "numeric",
  month: "long",
  year: "numeric",
+ timeZone: "UTC",
 });
 ---
 

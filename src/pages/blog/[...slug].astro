@@ -19,10 +19,13 @@ interface Props {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+// Mismo criterio que BlogCard: el pubDate no trae hora, se formatea en UTC para
+// que la fecha publicada no dependa de la zona horaria de la maquina que compila.
 const formattedDate = post.data.pubDate.toLocaleDateString("es-MX", {
   day: "numeric",
   month: "long",
   year: "numeric",
+  timeZone: "UTC",
 });
 
 const articleSchema = {

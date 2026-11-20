@@ -19,15 +19,15 @@ export const CATEGORIAS = [
   },
   {
     key: "toboganes",
-    slug: "toboganes-acuaticos",
-    label: "Toboganes acuáticos",
+    slug: "toboganes-acuaticos", // URL publicada: no se cambia. La etiqueta si, porque el catalogo no tiene inflables acuaticos.
+    label: "Toboganes",
     labelSingular: "Tobogán",
     badge: "Tobogán",
     emoji: "🌊",
     color: "#0077CC",
     colorDeep: "#0062A8", // texto blanco encima: AA
     gradient: "linear-gradient(135deg, #1A1A2E22 0%, #0077CC22 100%)",
-    title: "Toboganes acuáticos en CDMX | INFLABLEE",
+    title: "Inflables con tobogán en CDMX | INFLABLEE",
     description: "Consulta los inflables publicados para fiestas en CDMX y Edomex.",
   },
   {
