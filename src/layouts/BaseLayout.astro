@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from '../lib/jsonld';
 import "@/styles/global.css";
 import { SITE } from "@/data/site";
 
@@ -116,7 +117,7 @@ const ogType = pageType === "article" ? "article" : "website";
     <meta name="theme-color" content="#FF4B1F" />
 
     {allSchemas.map(s => (
-      <script type="application/ld+json" set:html={JSON.stringify(s, null, 0)} />
+      <script type="application/ld+json" set:html={serializeJsonLd(s)} />
     ))}
   </head>
   <body>
